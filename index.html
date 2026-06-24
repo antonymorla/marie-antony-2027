@@ -372,7 +372,10 @@
     var raf=0;
     function update(){ raf=0; items.forEach(function(it){ var d=it.v.duration||0; if(d){ var t=it.prog()*(d-0.05); if(Math.abs(t-(it.v.currentTime||0))>0.03){ try{ it.v.currentTime=t; }catch(e){} } } }); }
     function onScroll(){ if(!raf) raf=requestAnimationFrame(update); }
-    items.forEach(function(it){ try{ it.v.muted=true; it.v.setAttribute('playsinline',''); it.v.preload='auto'; }catch(e){} if(it.v.readyState<1) it.v.addEventListener('loadedmetadata',update); });
+    items.forEach(function(it){ try{ it.v.muted=true; it.v.setAttribute('playsinline',''); it.v.preload='auto'; it.v.load(); }catch(e){} it.v.addEventListener('loadedmetadata',update); it.v.addEventListener('canplay',update); });
+    // iOS : réveiller le décodeur au 1er contact, sinon le seek ne rend aucune image
+    function prime(){ items.forEach(function(it){ var p; try{ p=it.v.play(); }catch(e){} if(p&&p.then){ p.then(function(){ it.v.pause(); update(); }).catch(function(){}); } }); }
+    ['touchstart','pointerdown','click'].forEach(function(ev){ window.addEventListener(ev,function once(){ prime(); ['touchstart','pointerdown','click'].forEach(function(e){ window.removeEventListener(e,once); }); },{passive:true}); });
     window.addEventListener('scroll',onScroll,{passive:true});
     window.addEventListener('resize',onScroll); onScroll();
   })();
