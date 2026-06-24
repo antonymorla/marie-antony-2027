@@ -78,7 +78,7 @@
   .bubble { position: fixed; border-radius: 50%; border: 1px solid var(--ma-olive); background: color-mix(in srgb, var(--ma-olive) 12%, transparent);
             pointer-events: none; z-index: 9998; }
 
-  /* ---- Pictogrammes animés (brasero, côte de bœuf, hortensia) ---- */
+  /* ---- Pictogrammes animés ---- */
   .picto { color: var(--ma-olive); display: block; }
   .repas { display:flex; flex-direction:column; align-items:center; gap:.3rem; margin-top:clamp(2.2rem,5vw,3.2rem); }
   .repas__row { display:flex; align-items:flex-end; justify-content:center; gap:clamp(1rem,4vw,2.4rem); }
@@ -110,6 +110,10 @@
     @keyframes drive{ 0%,100%{ transform:translateX(-2px) rotate(-.6deg) } 50%{ transform:translateX(2px) rotate(.6deg) } }
     img[src*="icon-soleil-mer"]{ animation:shine 4s ease-in-out infinite; transform-origin:center; }
     @keyframes shine{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.07) } }
+    img[src*="icon-olivier"], img[src*="icon-couronne-olivier"], img[src*="icon-branche-olivier"], img[src*="icon-cypres"], img[src*="icon-palmier"]{ animation:leafsway 6.5s ease-in-out infinite; transform-origin:bottom center; }
+    @keyframes leafsway{ 0%,100%{ transform:rotate(-2deg) } 50%{ transform:rotate(2deg) } }
+    img[src*="icon-alliances"]{ animation:ringpulse 3.6s ease-in-out infinite; transform-origin:center; }
+    @keyframes ringpulse{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.06) } }
   }
 </style>
 </head>
