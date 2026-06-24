@@ -47,11 +47,19 @@
   .fs-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center;
                justify-content: center; background: var(--ma-ivory); }
   .fs-box { display: flex; flex-direction: column; align-items: center; gap: .4rem; width: 100%; }
-  .fs-box video { width: min(88vw, 820px); height: auto; max-height: 72vh; object-fit: contain; mix-blend-mode: darken; }
+  .fs-box video { width: min(88vw, 820px); height: auto; max-height: 72vh; object-fit: contain; mix-blend-mode: darken;
+    -webkit-mask-image: radial-gradient(ellipse 90% 84% at 50% 50%, #000 60%, transparent 100%);
+            mask-image: radial-gradient(ellipse 90% 84% at 50% 50%, #000 60%, transparent 100%); }
   .fs-hint { margin: 0; text-align: center; pointer-events: none; font-family: var(--font-script);
              color: var(--ma-olive); font-size: clamp(1.6rem,3.6vw,2.4rem); opacity: .9; }
   @media (prefers-reduced-motion: reduce) {
     .fs-track { height: auto; } .fs-sticky { position: static; height: auto; } .fs-box video { height: auto; }
+  }
+  /* Mobile : pas de scroll-scrub (peu fiable) → vidéo en lecture auto, centrée */
+  @media (max-width: 760px) {
+    .fs-track { height: auto; }
+    .fs-sticky { position: static; height: auto; padding: 1.5rem 0; }
+    .fs-box video { max-height: 70vh; }
   }
 
   /* ---------- Curseur coupe de champagne ---------- */
@@ -119,7 +127,12 @@
       <p class="prose r r-2">De la Côte d'Azur à l'arrière-pays, on a appris à aimer les longues tablées, les fins de journée dorées et la compagnie de ceux qu'on aime — Volnay compris.</p>
       <p class="prose r r-3">Le 22 mai 2027, on se dit oui à Antibes, puis on file au Château de Vaucouleurs pour une soirée à notre image : simple, lumineuse et pleine de Provence.</p>
       <div class="photobooth r r-2 tilt-r"><img src="assets/img/bw/photobooth-strip.png" alt="Marie & Antony"></div>
-      <div class="photobooth r r-3 tilt-l" style="margin-top:1.8rem"><img src="assets/img/bw/volnay.png" alt="Volnay"><div class="vid__cap" style="margin-top:.35rem">Volnay</div></div>
+      <div class="ph-cluster r r-3" style="margin-top:1.6rem">
+        <img class="tilt-l" src="assets/img/bw/volnay-1.png" alt="Volnay">
+        <img class="tilt-r" src="assets/img/bw/volnay-2.png" alt="Volnay">
+        <img class="tilt-l" src="assets/img/bw/volnay-3.png" alt="Volnay">
+      </div>
+      <p class="vid__cap r r-3" style="margin-top:.4rem">Volnay</p>
     </section>
 
     <!-- ===== Le jour J ===== -->
@@ -190,7 +203,7 @@
         <img class="tilt-l" src="assets/img/bw/frame-hero.png" alt="">
         <img class="tilt-r" src="assets/img/bw/frame-kiss.png" alt="">
         <img class="tilt-l" src="assets/img/bw/frame-port.png" alt="">
-        <img class="tilt-r" src="assets/img/bw/volnay.png" alt="Volnay">
+        <img class="tilt-r" src="assets/img/bw/volnay-1.png" alt="Volnay">
       </div>
       <div class="vid vid--sm" data-ani>
         <div class="vidcrop" style="aspect-ratio:692/720;--vw:185%;--vx:-42.5%">
@@ -354,7 +367,11 @@
   /* film plein écran : scrub au scroll */
   (function(){ var film=document.getElementById('film'), track=document.querySelector('.fs-track');
     if(!film||!track) return;
-    if(reduce){ film.loop=true; film.muted=true; film.play().catch(function(){}); return; }
+    var noScrub = reduce || window.matchMedia('(max-width:760px)').matches || !window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+    if(noScrub){ film.loop=true; film.muted=true; film.setAttribute('playsinline','');
+      if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) e.target.play().catch(function(){}); else e.target.pause(); }); },{threshold:0.2}).observe(film); }
+      else { film.play().catch(function(){}); }
+      return; }
     var dur=0, raf=0;
     function setDur(){ dur=film.duration||0; update(); }
     function update(){ raf=0; var rect=track.getBoundingClientRect(), total=rect.height-window.innerHeight;
@@ -367,19 +384,22 @@
 
   /* curseur coupe de champagne + bulles au clic */
   (function(){ if(reduce) return;
-    if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-    var c=document.createElement('div'); c.className='coupe-cursor';
-    c.innerHTML='<img src="assets/icons/icon-coupes.png" alt="">'; document.body.appendChild(c);
-    document.body.classList.add('coupe-on');
-    window.addEventListener('mousemove',function(e){ c.style.opacity='1'; c.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'; });
-    window.addEventListener('mouseout',function(e){ if(!e.relatedTarget) c.style.opacity='0'; });
-    window.addEventListener('mousedown',function(e){
-      for(var i=0;i<5;i++){ var b=document.createElement('div'); b.className='bubble';
+    function spawnBubbles(x,y){ for(var i=0;i<5;i++){ var b=document.createElement('div'); b.className='bubble';
         var sz=4+Math.random()*6; b.style.width=b.style.height=sz+'px';
-        b.style.left=(e.clientX+(Math.random()*22-11))+'px'; b.style.top=(e.clientY+Math.random()*6)+'px';
+        b.style.left=(x+(Math.random()*22-11))+'px'; b.style.top=(y+Math.random()*6)+'px';
         document.body.appendChild(b);
         b.animate([{transform:'translateY(0)',opacity:.85},{transform:'translateY(-'+(38+Math.random()*42)+'px)',opacity:0}],{duration:600+Math.random()*500,easing:'ease-out'}).onfinish=function(){ this.effect.target.remove(); };
-      } }); })();
+      } }
+    if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+      var c=document.createElement('div'); c.className='coupe-cursor';
+      c.innerHTML='<img src="assets/icons/icon-coupes.png" alt="">'; document.body.appendChild(c);
+      document.body.classList.add('coupe-on');
+      window.addEventListener('mousemove',function(e){ c.style.opacity='1'; c.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'; });
+      window.addEventListener('mouseout',function(e){ if(!e.relatedTarget) c.style.opacity='0'; });
+      window.addEventListener('mousedown',function(e){ spawnBubbles(e.clientX,e.clientY); });
+    }
+    window.addEventListener('touchstart',function(e){ var t=e.touches&&e.touches[0]; if(t) spawnBubbles(t.clientX,t.clientY); },{passive:true});
+  })();
 
 })();
 </script>
