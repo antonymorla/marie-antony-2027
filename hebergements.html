@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hébergements — Marie & Antony</title>
+<meta name="description" content="Où dormir autour du Château de Vaucouleurs pour le mariage de Marie & Antony, le 22 mai 2027.">
+<link rel="icon" type="image/png" href="assets/logos/logo-olivier-monogram.png">
+<link rel="stylesheet" href="ds/styles.css">
+<link rel="stylesheet" href="ds/components.css">
+<link rel="stylesheet" href="ds/site-illustre.css">
+<style>
+  .illu { overflow-x: clip; }
+  .inav { display:none; }
+  /* Nav v2 (logo centré) */
+  .nav2 { position: sticky; top: 0; z-index: 50; display: flex; flex-direction: column; align-items: center;
+          gap: .55rem; padding: .85rem 1rem .7rem; background: color-mix(in srgb, var(--ma-ivory) 92%, transparent);
+          backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .3s var(--ease), padding .3s var(--ease); }
+  .nav2[data-scrolled="true"] { border-bottom-color: var(--ma-line-soft); padding-top:.5rem; padding-bottom:.5rem; }
+  .nav2__brand img { height: 62px; width:auto; display:block; transition: height .3s var(--ease); }
+  .nav2[data-scrolled="true"] .nav2__brand img { height: 40px; }
+  .nav2__menu { display:flex; align-items:center; gap:clamp(.7rem,2vw,1.7rem); flex-wrap:wrap; justify-content:center; }
+  .nav2__menu a { font-family:var(--font-caps); text-transform:uppercase; letter-spacing:.2em; font-size:.72rem; color:var(--ma-ink); text-decoration:none; position:relative; padding:.25em 0; white-space:nowrap; transition:color .3s var(--ease); }
+  .nav2__menu a::after { content:""; position:absolute; left:0; right:0; bottom:-2px; height:1px; background:var(--ma-olive); transform:scaleX(0); transition:transform .3s var(--ease); }
+  .nav2__menu a:hover { color:var(--ma-olive); } .nav2__menu a:hover::after, .nav2__menu a[aria-current="page"]::after { transform:scaleX(1); }
+  .nav2__menu a[aria-current="page"] { color:var(--ma-olive); }
+  .nav2__cta { color:var(--ma-olive); border:1px solid var(--ma-olive); border-radius:999px; padding:.35em 1.1em; }
+  .nav2__cta::after { display:none; } .nav2__cta:hover { background:var(--ma-olive); color:var(--ma-ivory); }
+  @media (max-width:640px){ .nav2__brand img{height:46px;} .nav2__menu{gap:.55rem .9rem;} .nav2__menu a{font-size:.62rem;letter-spacing:.13em;} }
+
+  /* Cartes logements */
+  .lodges { display:grid; grid-template-columns:1fr; gap:clamp(1.2rem,3vw,1.8rem); margin-top:clamp(2rem,5vw,3rem); text-align:left; }
+  @media (min-width:680px){ .lodges{ grid-template-columns:1fr 1fr; } }
+  @media (min-width:1040px){ .lodges{ grid-template-columns:1fr 1fr 1fr; } }
+  .lodge { background:var(--ma-cream); border:1px solid var(--ma-line); border-radius:var(--radius-lg); overflow:hidden; display:flex; flex-direction:column; }
+  .lodge__media { aspect-ratio:4/3; width:100%; }
+  .lodge__media img { width:100%; height:100%; object-fit:cover; display:block; }
+  .lodge__media--none { display:flex; align-items:center; justify-content:center; background:var(--ma-ivory-warm); }
+  .lodge__media--none img { width:auto; height:62px; opacity:.45; }
+  .lodge__body { padding:1.05rem 1.2rem 1.25rem; display:flex; flex-direction:column; gap:.55rem; flex:1; }
+  .lodge__trip { font-family:var(--font-caps); text-transform:uppercase; letter-spacing:.22em; font-size:.62rem; color:var(--ma-olive); }
+  .lodge__name { font-family:var(--font-serif); font-weight:500; font-size:1.3rem; color:var(--ma-ink); margin:0; line-height:1.15; }
+  .lodge__meta { display:flex; flex-wrap:wrap; gap:.3rem .8rem; font-family:var(--font-body); font-size:.92rem; color:var(--ma-ink-soft); }
+  .lodge__meta span::before { content:"· "; color:var(--ma-olive-soft); }
+  .lodge__meta span:first-child::before { content:""; }
+  .lodge__info { font-family:var(--font-body); font-style:italic; color:var(--ma-ink-faint); font-size:.9rem; margin:0; }
+  .lodge__cta { margin-top:auto; padding-top:.5rem; }
+  .lead { font-family:var(--font-body); font-size:1.15rem; line-height:1.7; color:var(--ma-ink-soft); max-width:52ch; margin:0 auto; }
+  .backlink { display:inline-block; margin-top:clamp(2.5rem,6vw,4rem); font-family:var(--font-caps); text-transform:uppercase; letter-spacing:.22em; font-size:.72rem; color:var(--ma-olive); text-decoration:none; }
+  .backlink:hover { color:var(--ma-olive-deep); }
+  .r { opacity:0; transform:translateY(22px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+  .r.in { opacity:1; transform:none; }
+  /* curseur coupe */
+  .coupe-cursor{ position:fixed; top:0; left:0; width:30px; height:30px; margin:-15px 0 0 -14px; pointer-events:none; z-index:9999; opacity:0; transition:opacity .3s var(--ease); will-change:transform; }
+  .coupe-cursor img{ width:100%; height:100%; display:block; filter:brightness(0); }
+  body.coupe-on, body.coupe-on a, body.coupe-on button { cursor:none; }
+</style>
+</head>
+<body>
+<div class="illu">
+
+  <header class="nav2" id="nav2">
+    <a class="nav2__brand" href="index.html#accueil" aria-label="Accueil — Marie & Antony"><img src="assets/logos/logo-olivier-monogram.png" alt="Marie & Antony"></a>
+    <nav class="nav2__menu">
+      <a href="index.html#histoire">Notre histoire</a>
+      <a href="index.html#jourj">Le jour J</a>
+      <a href="index.html#lieux">Lieux</a>
+      <a href="hebergements.html" aria-current="page">Hébergements</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#rsvp" class="nav2__cta">RSVP</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sec col--wide">
+      <p class="eyebrow-caps r">Où dormir</p>
+      <h1 class="script-big r" style="font-size:clamp(3rem,8vw,5rem)">Hébergements</h1>
+      <div class="dot-rule r" aria-hidden="true"><span class="l"></span><img src="assets/icons/icon-branche-olivier.png" alt=""><span class="l"></span></div>
+      <p class="lead r">Quelques adresses qu'on a repérées autour du <strong>Château de Vaucouleurs</strong>, des plus proches aux plus lointaines. De la villa entre amis à l'hôtel les pieds dans l'eau — il y en a pour tous les goûts. Les durées indiquées sont en voiture jusqu'au château.</p>
+      <div class="lodges" id="lodges"></div>
+      <div style="text-align:center"><a class="backlink" href="index.html#accueil">← Retour à l'accueil</a></div>
+    </section>
+  </main>
+
+  <footer class="ifooter">
+    <img class="mono" src="assets/logos/logo-olivier-monogram.png" alt="Marie & Antony" style="filter:brightness(0) invert(1)">
+    <p class="date">22 · 05 · 2027</p>
+    <p class="sign">Avec amour, Marie &amp; Antony</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var HB='assets/hebergements/';
+  var LODGES=[
+    {name:"Camping la Bastiane",img:"bastiane.jpg",trip:"6 min",meta:["Camping 4★","Mobil-homes & spa"],info:"Puget-sur-Argens",site:"https://www.labastiane.com/"},
+    {name:"Villa Benji",img:"benji.jpg",trip:"6 min",meta:["6 personnes","Piscine chauffée"],info:"Maison de vacances",site:"https://www.puget-lesadrets-tourisme.com/fiche/villa-benji-maison-de-vacances/"},
+    {name:"Hôtel l'Arena",img:"arena.jpg",trip:"7 min",meta:["Hôtel","Piscine & jardin"],info:"Fréjus",site:"https://hotel-frejus-arena.com/fr/"},
+    {name:"Villa la Framboisine",img:"framboisine.jpg",trip:"8 min",meta:["8 personnes","Villa 4★ · piscine"],info:"Puget-sur-Argens",site:"https://www.puget-lesadrets-tourisme.com/fiche/la-framboisine/"},
+    {name:"Villa Venica",img:"venica.jpg",trip:"13 min",meta:["20 personnes","Piscine & jardin"],info:"3 nuits minimum",site:"https://www.villavenica.com/"},
+    {name:"Le Daya Hôtel & Spa",img:"daya.jpg",trip:"16 min",meta:["Hôtel 5★","Spa & golf"],info:"Roquebrune-sur-Argens",site:"https://ledaya.fr/"},
+    {name:"Mas de la Colombe",img:"colombe.jpg",trip:"17 min",meta:["10 personnes","5 chambres · piscine"],info:"Mas provençal",site:"https://www.puget-lesadrets-tourisme.com/fiche/le-mas-la-colombe/"},
+    {name:"Mercure Thalasso & Spa",img:"mercure.jpg",trip:"17 min",meta:["Hôtel","Thalasso · les pieds dans l'eau"],info:"Port-Fréjus",site:"https://www.thalasso-portfrejus.com/hotel/"},
+    {name:"Le Mas de la Clé d'Or",img:"",trip:"",meta:[],info:"À priori non disponible",site:""}
+  ];
+  var box=document.getElementById('lodges'), h='';
+  LODGES.forEach(function(l){
+    var media = l.img
+      ? '<div class="lodge__media"><img src="'+HB+l.img+'" alt="'+l.name+'" loading="lazy"></div>'
+      : '<div class="lodge__media lodge__media--none"><img src="assets/icons/icon-valise.png" alt=""></div>';
+    var trip = l.trip ? '<p class="lodge__trip">'+l.trip+' du château</p>' : '<p class="lodge__trip" style="color:var(--ma-ink-faint)">Hébergement</p>';
+    var meta = l.meta.length ? '<div class="lodge__meta">'+l.meta.map(function(m){return '<span>'+m+'</span>';}).join('')+'</div>' : '';
+    var info = l.info ? '<p class="lodge__info">'+l.info+'</p>' : '';
+    var cta = l.site ? '<div class="lodge__cta"><a class="ma-btn ma-btn--outline ma-btn--sm" href="'+l.site+'" target="_blank" rel="noopener">Voir le site →</a></div>' : '';
+    h += '<article class="lodge r">'+media+'<div class="lodge__body">'+trip+'<h2 class="lodge__name">'+l.name+'</h2>'+meta+info+cta+'</div></article>';
+  });
+  box.innerHTML=h;
+
+  // nav scrolled
+  var nav=document.getElementById('nav2'); var f=function(){ nav.setAttribute('data-scrolled',String(scrollY>20)); }; f(); addEventListener('scroll',f,{passive:true});
+  // reveals
+  var els=[].slice.call(document.querySelectorAll('.r'));
+  if(reduce||!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in');}); }
+  else { var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -8% 0px',threshold:.1}); els.forEach(function(e){ io.observe(e); });
+    setTimeout(function(){ els.forEach(function(e){ e.classList.add('in'); }); }, 2500); }
+  // curseur coupe
+  if(!reduce && matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var c=document.createElement('div'); c.className='coupe-cursor'; c.innerHTML='<img src="assets/icons/icon-coupes.png" alt="">'; document.body.appendChild(c); document.body.classList.add('coupe-on');
+    addEventListener('mousemove',function(e){ c.style.opacity='1'; c.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'; });
+    addEventListener('mouseout',function(e){ if(!e.relatedTarget) c.style.opacity='0'; });
+  }
+})();
+</script>
+</body>
+</html>
