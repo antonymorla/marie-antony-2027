@@ -1,0 +1,55 @@
+/* ============================================================
+   Marie & Antony — Base / réinitialisation douce
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  margin: 0 0 var(--sp-4);
+  line-height: var(--lh-snug);
+}
+
+p { margin: 0 0 var(--sp-4); text-wrap: pretty; }
+
+a { color: var(--accent); text-decoration: none; }
+
+hr {
+  border: 0;
+  border-top: var(--hair) solid var(--border);
+  margin: var(--sp-6) 0;
+}
+
+/* Accessibilité : focus visible olive */
+:focus-visible {
+  outline: 2px solid var(--ma-olive);
+  outline-offset: 2px;
+}
+
+/* Respect des préférences de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,60 @@
+/* ============================================================
+   Marie & Antony — Couleurs
+   Palette stricte : ivoire (papier) · vert olive (accent unique) · encre (texte).
+   Pas de seconde couleur vive, pas de dégradé, pas d'ombre portée.
+   ============================================================ */
+
+:root {
+  /* ---- Base : ivoire / papier ---- */
+  --ma-ivory:        #F3EFE2;  /* fond dominant — papier */
+  --ma-ivory-warm:   #EFE9D8;  /* panneau alterné, très subtil */
+  --ma-ivory-deep:   #E7E0CC;  /* réserve plus marquée / champs */
+  --ma-cream:        #FBF8EF;  /* blanc cassé pour cartes posées sur ivoire */
+
+  /* ---- Accent : vert olive (couleur unique) ---- */
+  --ma-olive:        #6B7A48;  /* accent — logo, traits, titres, boutons */
+  --ma-olive-deep:   #56643A;  /* survol / pression / contraste AA sur ivoire */
+  --ma-olive-ink:    #45512E;  /* olive très foncé pour petits textes */
+  --ma-olive-soft:   #8E9B72;  /* olive clair — états désactivés, fonds */
+  --ma-olive-mist:   #C7CDB4;  /* olive brumeux — fonds de remplissage légers */
+
+  /* ---- Encre : texte ---- */
+  --ma-ink:          #23211C;  /* texte courant */
+  --ma-ink-soft:     #4C483F;  /* texte secondaire */
+  --ma-ink-faint:    #6E695D;  /* légendes, méta */
+
+  /* ---- Filets (hairlines olive) ---- */
+  --ma-line:         rgba(107, 122, 72, 0.40);  /* filet olive standard */
+  --ma-line-soft:    rgba(107, 122, 72, 0.22);  /* filet olive discret */
+  --ma-line-strong:  #6B7A48;                   /* filet olive plein */
+
+  /* ============================================================
+     Alias sémantiques
+     ============================================================ */
+  --bg:              var(--ma-ivory);
+  --bg-alt:          var(--ma-ivory-warm);
+  --bg-deep:         var(--ma-ivory-deep);
+  --surface:         var(--ma-cream);
+  --surface-olive:   var(--ma-olive);
+
+  --text:            var(--ma-ink);
+  --text-muted:      var(--ma-ink-soft);
+  --text-faint:      var(--ma-ink-faint);
+  --text-on-olive:   var(--ma-ivory);
+  --text-accent:     var(--ma-olive);
+  --text-accent-strong: var(--ma-olive-deep);
+
+  --accent:          var(--ma-olive);
+  --accent-hover:    var(--ma-olive-deep);
+  --accent-soft:     var(--ma-olive-soft);
+
+  --border:          var(--ma-line);
+  --border-soft:     var(--ma-line-soft);
+  --border-strong:   var(--ma-line-strong);
+
+  /* Sélection de texte */
+  --selection-bg:    var(--ma-olive);
+  --selection-fg:    var(--ma-ivory);
+}
+
+::selection { background: var(--selection-bg); color: var(--selection-fg); }

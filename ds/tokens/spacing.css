@@ -1,0 +1,48 @@
+/* ============================================================
+   Marie & Antony — Espacement, rythme, formes
+   Beaucoup de réserve de blanc. Coins légèrement arrondis. Aucune ombre portée.
+   ============================================================ */
+
+:root {
+  /* ---- Échelle d'espacement (base 8px, généreuse) ---- */
+  --sp-1:  0.25rem;   /* 4  */
+  --sp-2:  0.5rem;    /* 8  */
+  --sp-3:  0.75rem;   /* 12 */
+  --sp-4:  1rem;      /* 16 */
+  --sp-5:  1.5rem;    /* 24 */
+  --sp-6:  2rem;      /* 32 */
+  --sp-7:  3rem;      /* 48 */
+  --sp-8:  4rem;      /* 64 */
+  --sp-9:  6rem;      /* 96 */
+  --sp-10: 8rem;      /* 128 — respiration entre sections */
+  --sp-12: 12rem;     /* 192 — grand silence */
+
+  /* ---- Rythme vertical des sections ---- */
+  --section-y:        clamp(4rem, 10vw, 8rem); /* @kind spacing */
+  --section-y-large:  clamp(6rem, 14vw, 12rem); /* @kind spacing */
+
+  /* ---- Largeurs de contenu ---- */
+  --measure:       66ch;     /* longueur de lecture confortable */
+  --container:     1200px;   /* largeur de page max */
+  --container-narrow: 760px; /* colonnes de texte centrées */
+  --container-wide: 1440px;
+
+  /* ---- Rayons (légèrement arrondis) ---- */
+  --radius-sm:  3px;
+  --radius:     6px;     /* boutons, champs, cartes */
+  --radius-lg:  10px;
+  --radius-pill: 999px;
+
+  /* ---- Filets ---- */
+  --hair: 1px;           /* épaisseur de filet standard */
+
+  /* ---- Transitions (douces, jamais clinquantes) ---- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --dur-fast: 180ms; /* @kind other */
+  --dur:      320ms; /* @kind other */
+  --dur-slow: 640ms; /* @kind other */
+  --dur-draw: 1600ms; /* @kind other */    /* tracé d'illustration au scroll */
+
+  /* Aucune ombre portée dans le système : on s'appuie sur le filet olive. */
+  --shadow-none: none; /* @kind shadow */
+}

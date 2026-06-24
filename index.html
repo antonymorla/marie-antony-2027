@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marie & Antony — 22 mai 2027</title>
+<meta name="description" content="Marie & Antony se marient le 22 mai 2027 — cathédrale d'Antibes & Château de Vaucouleurs. Programme, lieux, infos pratiques et RSVP.">
+<link rel="icon" type="image/png" href="assets/logos/logo-olivier-monogram.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Marie & Antony — 22 mai 2027">
+<meta property="og:description" content="On se marie ! Rejoins-nous le 22 mai 2027 à Antibes & au Château de Vaucouleurs.">
+<meta property="og:image" content="assets/img/bw/photobooth-row.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="ds/styles.css">
+<link rel="stylesheet" href="ds/components.css">
+<link rel="stylesheet" href="ds/site-illustre.css">
+<style id="site-extra">
+  /* overflow:clip ne casse pas position:sticky (≠ overflow:hidden) */
+  .illu { overflow-x: clip; }
+
+  /* ---------- Nav v2 : logo centré, plus grand, plus visible ---------- */
+  .inav { display: none; } /* on remplace la nav du design system */
+  .nav2 { position: sticky; top: 0; z-index: 50; display: flex; flex-direction: column; align-items: center;
+          gap: .55rem; padding: .85rem 1rem .7rem;
+          background: color-mix(in srgb, var(--ma-ivory) 92%, transparent); backdrop-filter: blur(8px);
+          border-bottom: 1px solid transparent; transition: border-color .3s var(--ease), padding .3s var(--ease); }
+  .nav2[data-scrolled="true"] { border-bottom-color: var(--ma-line-soft); padding-top: .5rem; padding-bottom: .5rem; }
+  .nav2__brand { display: block; line-height: 0; }
+  .nav2__brand img { height: 62px; width: auto; display: block; transition: height .3s var(--ease); }
+  .nav2[data-scrolled="true"] .nav2__brand img { height: 40px; }
+  .nav2__menu { display: flex; align-items: center; gap: clamp(.7rem, 2vw, 1.7rem); flex-wrap: wrap; justify-content: center; }
+  .nav2__menu a { font-family: var(--font-caps); text-transform: uppercase; letter-spacing: .2em; font-size: .72rem;
+                  color: var(--ma-ink); text-decoration: none; position: relative; padding: .25em 0; white-space: nowrap;
+                  transition: color .3s var(--ease); }
+  .nav2__menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: var(--ma-olive);
+                         transform: scaleX(0); transform-origin: center; transition: transform .3s var(--ease); }
+  .nav2__menu a:hover { color: var(--ma-olive); }
+  .nav2__menu a:hover::after { transform: scaleX(1); }
+  .nav2__cta { color: var(--ma-olive); border: 1px solid var(--ma-olive); border-radius: 999px; padding: .35em 1.1em; }
+  .nav2__cta::after { display: none; }
+  .nav2__cta:hover { background: var(--ma-olive); color: var(--ma-ivory); }
+  @media (max-width: 640px) { .nav2__brand img { height: 46px; } .nav2__menu { gap: .55rem .9rem; } .nav2__menu a { font-size: .62rem; letter-spacing: .13em; } }
+
+  /* ---------- Film plein écran (scroll-scrub) ---------- */
+  #filmscroll { position: relative; background: var(--ma-ivory); }
+  .fs-track { height: 360vh; position: relative; }
+  .fs-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; align-items: center;
+               justify-content: center; background: var(--ma-ivory); }
+  .fs-box { display: flex; flex-direction: column; align-items: center; gap: .4rem; width: 100%; }
+  .fs-box video { width: min(88vw, 820px); height: auto; max-height: 72vh; object-fit: contain; mix-blend-mode: darken; }
+  .fs-hint { margin: 0; text-align: center; pointer-events: none; font-family: var(--font-script);
+             color: var(--ma-olive); font-size: clamp(1.6rem,3.6vw,2.4rem); opacity: .9; }
+  @media (prefers-reduced-motion: reduce) {
+    .fs-track { height: auto; } .fs-sticky { position: static; height: auto; } .fs-box video { height: auto; }
+  }
+
+  /* ---------- Curseur coupe de champagne ---------- */
+  .coupe-cursor { position: fixed; top: 0; left: 0; width: 30px; height: 30px; margin: -15px 0 0 -14px;
+                  pointer-events: none; z-index: 9999; opacity: 0; transition: opacity .3s var(--ease), width .15s, height .15s; will-change: transform; }
+  .coupe-cursor img { width: 100%; height: 100%; display: block; }
+  body.coupe-on, body.coupe-on a, body.coupe-on button, body.coupe-on label,
+  body.coupe-on input, body.coupe-on select, body.coupe-on textarea, body.coupe-on .ma-btn { cursor: none; }
+  .bubble { position: fixed; border-radius: 50%; border: 1px solid var(--ma-olive); background: color-mix(in srgb, var(--ma-olive) 12%, transparent);
+            pointer-events: none; z-index: 9998; }
+</style>
+</head>
+<body>
+<div class="illu">
+
+  <!-- ===== Nav v2 ===== -->
+  <header class="nav2" id="nav2">
+    <a class="nav2__brand" href="#accueil" aria-label="Accueil — Marie & Antony">
+      <img src="assets/logos/logo-olivier-monogram.png" alt="Marie & Antony">
+    </a>
+    <nav class="nav2__menu">
+      <a href="#histoire">Notre histoire</a>
+      <a href="#jourj">Le jour J</a>
+      <a href="#lieux">Lieux</a>
+      <a href="#infos">Infos</a>
+      <a href="#faq">FAQ</a>
+      <a href="#rsvp" class="nav2__cta">RSVP</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== Hero ===== -->
+    <header class="ihero col--wide" id="accueil">
+      <div class="r in"><div class="ihero__photos" id="heroPhotos"><img src="assets/img/bw/photobooth-row.png" alt="Marie & Antony"></div></div>
+      <p class="script-kicker r in">On se marie&nbsp;!</p>
+      <img class="ihero__tree draw in" id="heroTree" src="assets/logos/logo-olivier-monogram.png" alt="Olivier Marie & Antony">
+      <h1 class="script-big r in">Marie &amp; Antony</h1>
+      <p class="caps-line r in">22 Mai 2027</p>
+      <p class="caps-sub r in">Antibes — Puget-sur-Argens</p>
+      <div class="ihero__cd r in"><div class="ma-count" id="countdown" aria-label="Compte à rebours"></div></div>
+      <div class="ihero__cta r in"><a class="ma-btn ma-btn--outline ma-btn--lg" href="#rsvp">Confirmer ma présence</a></div>
+      <a class="scrollcue" href="#histoire" aria-label="Défiler"><span>Faites défiler</span><span class="arrow"></span></a>
+    </header>
+
+    <!-- ===== Horizon ===== -->
+    <div class="scene" aria-hidden="true">
+      <div class="horizon draw par" data-par="0.5">
+        <img class="h-cypres"  src="assets/icons/icon-cypres.png" alt="">
+        <img class="h-antibes" src="assets/icons/icon-vieil-antibes.png" alt="">
+        <img class="h-olivier" src="assets/icons/icon-olivier-large.png" alt="">
+        <img class="h-chateau" src="assets/icons/icon-chateau-vaucouleurs.png" alt="">
+        <img class="h-palmier" src="assets/icons/icon-palmier.png" alt="">
+        <img class="h-cypres"  src="assets/icons/icon-cypres.png" alt="">
+      </div>
+      <div class="horizon-base"></div>
+    </div>
+
+    <!-- ===== Notre histoire ===== -->
+    <section class="sec col" id="histoire">
+      <p class="eyebrow-caps r">Notre histoire</p>
+      <h2 class="script-mid r">Il était une fois…</h2>
+      <svg class="squiggle" viewBox="0 0 280 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q 22 -2, 42 8 T 82 8 T 122 8 T 162 8 T 202 8 T 242 8 T 278 8"/></svg>
+      <p class="prose prose--italic r">Entre la mer et les oliviers, une évidence — et puis l'envie de la fêter avec vous.</p>
+      <p class="prose r r-2">De la Côte d'Azur à l'arrière-pays, on a appris à aimer les longues tablées, les fins de journée dorées et la compagnie de ceux qu'on aime — Volnay compris.</p>
+      <p class="prose r r-3">Le 22 mai 2027, on se dit oui à Antibes, puis on file au Château de Vaucouleurs pour une soirée à notre image : simple, lumineuse et pleine de Provence.</p>
+      <div class="photobooth r r-2 tilt-r"><img src="assets/img/bw/photobooth-strip.png" alt="Marie & Antony"></div>
+      <div class="photobooth r r-3 tilt-l" style="margin-top:1.8rem"><img src="assets/img/bw/volnay.png" alt="Volnay"><div class="vid__cap" style="margin-top:.35rem">Volnay</div></div>
+    </section>
+
+    <!-- ===== Le jour J ===== -->
+    <section class="sec col" id="jourj">
+      <p class="eyebrow-caps r">Le jour J</p>
+      <h2 class="script-mid r">Le programme</h2>
+      <div class="dot-rule" aria-hidden="true"><span class="l"></span><img src="assets/icons/icon-branche-olivier.png" alt=""><span class="l"></span></div>
+      <div class="prog" id="prog"></div>
+    </section>
+
+    <!-- ===== Le grand film — plein écran, défilement ===== -->
+    <section id="filmscroll" aria-label="Notre voyage jusqu'au oui">
+      <div class="fs-track">
+        <div class="fs-sticky">
+          <div class="fs-box">
+            <video id="film" src="public/journey-line.mp4" muted playsinline preload="auto" poster="public/journey-line-poster.jpg"></video>
+            <p class="fs-hint">Notre voyage jusqu'au oui</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Lieux ===== -->
+    <section class="sec col" id="lieux">
+      <p class="eyebrow-caps r">Les lieux</p>
+      <h2 class="script-mid r">Antibes &amp; le château</h2>
+      <div class="vid vid--md" data-ani>
+        <div class="vidcrop" style="aspect-ratio:792/720;--vw:162%;--vx:-30.8%">
+          <video src="assets/video/vieil-antibes.mp4" loop muted playsinline preload="metadata"></video>
+        </div>
+      </div>
+      <div class="lieux2" id="lieux2"></div>
+    </section>
+
+    <!-- ===== Infos ===== -->
+    <section class="sec col" id="infos">
+      <p class="eyebrow-caps r">Infos pratiques</p>
+      <h2 class="script-mid r">Préparer votre séjour</h2>
+      <svg class="squiggle" viewBox="0 0 280 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q 22 -2, 42 8 T 82 8 T 122 8 T 162 8 T 202 8 T 242 8 T 278 8"/></svg>
+      <div class="infos2" id="infos2"></div>
+    </section>
+
+    <!-- ===== À faire ===== -->
+    <section class="sec col" id="afaire">
+      <p class="eyebrow-caps r">À faire autour</p>
+      <h2 class="script-mid r">La Côte d'Azur</h2>
+      <div class="vid vid--md" data-ani>
+        <div class="vidcrop" style="aspect-ratio:888/720;--vw:144%;--vx:-22.1%">
+          <video src="assets/video/jeep.mp4" loop muted playsinline preload="metadata"></video>
+        </div>
+      </div>
+      <div class="todo" id="todo"></div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="sec col" id="faq">
+      <p class="eyebrow-caps r">Questions</p>
+      <h2 class="script-mid r">Tout savoir</h2>
+      <div class="dot-rule" aria-hidden="true"><span class="l"></span><img src="assets/icons/icon-branche-olivier.png" alt=""><span class="l"></span></div>
+      <div class="faq2 r"><div class="ma-acc" id="faq-acc"></div></div>
+    </section>
+
+    <!-- ===== RSVP ===== -->
+    <section class="sec col" id="rsvp">
+      <p class="eyebrow-caps r">RSVP</p>
+      <h2 class="script-mid r">Serez-vous des nôtres&nbsp;?</h2>
+      <div class="ph-cluster r">
+        <img class="tilt-l" src="assets/img/bw/frame-hero.png" alt="">
+        <img class="tilt-r" src="assets/img/bw/frame-kiss.png" alt="">
+        <img class="tilt-l" src="assets/img/bw/frame-port.png" alt="">
+        <img class="tilt-r" src="assets/img/bw/volnay.png" alt="Volnay">
+      </div>
+      <div class="vid vid--sm" data-ani>
+        <div class="vidcrop" style="aspect-ratio:692/720;--vw:185%;--vx:-42.5%">
+          <video src="assets/video/coupes.mp4" loop muted playsinline preload="metadata"></video>
+        </div>
+        <div class="vid__cap">Aux mariés&nbsp;!</div>
+      </div>
+      <div id="rsvp-slot">
+        <form class="rsvp2 r" id="rsvp-form" novalidate>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
+          <input type="hidden" name="_subject" value="Nouveau RSVP — Marie & Antony">
+          <input type="hidden" name="_template" value="table">
+          <label class="ma-field"><span class="ma-field__label">Nom(s)</span>
+            <input class="ma-control" name="noms" placeholder="Marie & Antony" required></label>
+          <div class="rsvp2__row">
+            <label class="ma-field"><span class="ma-field__label">Email</span>
+              <input class="ma-control" type="email" name="email" placeholder="vous@exemple.fr" required></label>
+            <label class="ma-field"><span class="ma-field__label">Nombre d'invités</span>
+              <select class="ma-control" name="invites"><option value="" disabled selected>Choisir…</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+          </div>
+          <div class="rsvp2__presence">
+            <span class="lbl">Présence</span>
+            <div class="rsvp2__checks">
+              <label class="ma-check"><input type="checkbox" name="ceremonie" checked><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Cérémonie</label>
+              <label class="ma-check"><input type="checkbox" name="diner" checked><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Dîner</label>
+              <label class="ma-check"><input type="checkbox" name="soiree"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Soirée</label>
+            </div>
+          </div>
+          <label class="ma-field"><span class="ma-field__label">Restrictions alimentaires</span>
+            <input class="ma-control" name="regime" placeholder="Allergies, régime…"></label>
+          <label class="ma-field"><span class="ma-field__label">Une chanson / un mot pour nous</span>
+            <textarea class="ma-control" name="mot"></textarea>
+            <span class="ma-field__hint">Fais-nous danser, ou laisse-nous un petit mot.</span></label>
+          <div class="rsvp2__submit"><button class="ma-btn ma-btn--solid ma-btn--lg" type="submit">Envoyer</button></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="ifooter">
+    <img class="mono draw" src="assets/logos/logo-olivier-monogram.png" alt="Marie & Antony">
+    <p class="date">22 · 05 · 2027</p>
+    <p class="sign">Avec amour, Marie &amp; Antony</p>
+    <div class="garland" aria-hidden="true"><span class="l"></span><img src="assets/icons/icon-branche-olivier.png" alt=""><span class="l"></span></div>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var IB = 'assets/icons';
+
+  var DATA = {
+    programme: [
+      { icon: 'cathedrale-antibes', time: '15 h 30', name: 'Cérémonie', desc: "À la cathédrale d'Antibes, au cœur de la vieille ville." },
+      { icon: 'coupes', time: '17 h 30', name: "Vin d'honneur", desc: "Sur la terrasse du château, face aux oliviers." },
+      { icon: 'couronne-olivier', time: '20 h 00', name: 'Dîner', desc: "Sous les platanes, aux saveurs de Provence." },
+      { icon: 'soleil-mer', time: '23 h 00', name: 'Soirée', desc: "On danse jusqu'au bout de la nuit." }
+    ],
+    lieux: [
+      { kicker: 'Cérémonie', icon: 'cathedrale-antibes', name: "Cathédrale d'Antibes", addr: "Rue du Saint-Esprit, 06600 Antibes", maps: 'https://maps.google.com/?q=Cath%C3%A9drale+Antibes' },
+      { kicker: 'Réception', icon: 'chateau-vaucouleurs', name: 'Château de Vaucouleurs', addr: '83480 Puget-sur-Argens', maps: 'https://maps.google.com/?q=Ch%C3%A2teau+de+Vaucouleurs+Puget-sur-Argens' }
+    ],
+    infos: [
+      { icon: 'jeep', title: 'Accès', body: ['Voiture : A8, sortie Le Muy.', 'Train : Antibes & Les Arcs.', 'Avion : Nice (45 min).'] },
+      { icon: 'valise', title: 'Où dormir', body: ['Hôtel du Cap-Eden-Roc', 'Les Lodges Sainte-Victoire', 'Gîtes autour du château'] },
+      { icon: 'couronne-olivier', title: 'Dress code', body: ['Tenue de ville chic.', 'Tons clairs bienvenus.', "Attention à l'herbe du parc !"] },
+      { icon: 'epagneul', title: 'Bon à savoir', body: ['Parking gratuit.', 'Enfants bienvenus.', 'Volnay sera de la fête.'] }
+    ],
+    afaire: [
+      { icon: 'palmier', title: "Le Cap d'Antibes", desc: "Le sentier du littoral et ses criques." },
+      { icon: 'soleil-mer', title: 'Les plages', desc: "La Garoupe, Juan-les-Pins, les pieds dans l'eau." },
+      { icon: 'vieil-antibes', title: 'Le vieil Antibes', desc: "Le marché provençal et le musée Picasso." },
+      { icon: 'jeep', title: "L'arrière-pays", desc: "L'Estérel rouge et les vignes de Provence." }
+    ],
+    faq: [
+      { q: "À quelle heure dois-je arriver ?", a: "La cérémonie débute à 15 h 30 à la cathédrale d'Antibes. Prévois d'arriver vers 15 h 15." },
+      { q: "Quel est le dress code ?", a: "Tenue de ville chic, tons clairs et naturels bienvenus. Le dîner se tient sur l'herbe — méfie-toi des talons trop fins." },
+      { q: "Puis-je venir accompagné·e ou avec mes enfants ?", a: "Avec plaisir ! Indique le nombre d'invités et la présence d'enfants dans ton RSVP." },
+      { q: "Y a-t-il un hébergement sur place ?", a: "Pas au château même, mais de belles options à Puget-sur-Argens, Fréjus et Antibes (voir infos pratiques)." },
+      { q: "Comment se garer ?", a: "Un grand parking gratuit est disponible au château. Du covoiturage s'organisera depuis Antibes." },
+      { q: "Avez-vous une liste de cadeaux ?", a: "Votre présence est déjà le plus beau des cadeaux. Une cagnotte voyage de noces suivra par ici." }
+    ]
+  };
+  function icon(n){ return IB + '/icon-' + n + '.png'; }
+  function el(h){ var t=document.createElement('template'); t.innerHTML=h.trim(); return t.content.firstChild; }
+
+  (function(){ var b=document.getElementById('prog'),h='';
+    DATA.programme.forEach(function(p,i){ if(i>0)h+='<span class="prog__link" aria-hidden="true"></span>';
+      h+='<div class="prog__item r"><img class="draw" src="'+icon(p.icon)+'" alt=""><span class="prog__time">'+p.time+'</span><span class="prog__name">'+p.name+'</span><p class="prog__desc">'+p.desc+'</p></div>'; });
+    b.innerHTML=h; })();
+
+  (function(){ var b=document.getElementById('lieux2'),h='';
+    DATA.lieux.forEach(function(l,i){ h+='<div class="lieu2 '+(i===0?'r-left':'r-right')+'"><img class="pic draw" src="'+icon(l.icon)+'" alt=""><p class="kick">'+l.kicker+'</p><h3>'+l.name+'</h3><p class="addr">'+l.addr+'</p><a class="ma-btn ma-btn--outline ma-btn--sm" href="'+l.maps+'" target="_blank" rel="noopener">Itinéraire →</a></div>'; });
+    b.innerHTML=h; })();
+
+  (function(){ var b=document.getElementById('infos2'),h='';
+    DATA.infos.forEach(function(c){ h+='<div class="info2 r"><img src="'+icon(c.icon)+'" alt=""><h4>'+c.title+'</h4>'+c.body.map(function(x){return '<p>'+x+'</p>';}).join('')+'</div>'; });
+    b.innerHTML=h; })();
+
+  (function(){ var b=document.getElementById('todo'),h='';
+    DATA.afaire.forEach(function(a){ h+='<div class="todo__i r"><img src="'+icon(a.icon)+'" alt=""><h4>'+a.title+'</h4><p>'+a.desc+'</p></div>'; });
+    b.innerHTML=h; })();
+
+  (function(){ var b=document.getElementById('faq-acc');
+    DATA.faq.forEach(function(f,i){
+      var item=el('<div class="ma-acc__item" data-open="false"><button class="ma-acc__btn" aria-expanded="false">'+f.q+'<span class="ma-acc__sign" aria-hidden="true"></span></button><div class="ma-acc__panel"><div class="ma-acc__inner">'+f.a+'</div></div></div>');
+      var btn=item.querySelector('.ma-acc__btn'),panel=item.querySelector('.ma-acc__panel');
+      btn.addEventListener('click',function(){ var open=item.getAttribute('data-open')==='true'; item.setAttribute('data-open',String(!open)); btn.setAttribute('aria-expanded',String(!open)); panel.style.height=open?'0px':panel.firstElementChild.offsetHeight+'px'; });
+      b.appendChild(item);
+      if(i===0) requestAnimationFrame(function(){ item.setAttribute('data-open','true'); btn.setAttribute('aria-expanded','true'); panel.style.height=panel.firstElementChild.offsetHeight+'px'; });
+    });
+    window.addEventListener('resize',function(){ b.querySelectorAll('.ma-acc__item[data-open="true"] .ma-acc__panel').forEach(function(p){ p.style.height=p.firstElementChild.offsetHeight+'px'; }); });
+  })();
+
+  (function(){ var target=new Date('2027-05-22T15:30:00+02:00').getTime(), box=document.getElementById('countdown');
+    var u=[['j','Jours'],['h','Heures'],['m','Minutes'],['s','Secondes']];
+    box.innerHTML=u.map(function(x,i){ return (i>0?'<span class="ma-count__sep">·</span>':'')+'<div class="ma-count__unit"><span class="ma-count__n" data-u="'+x[0]+'">—</span><span class="ma-count__l">'+x[1]+'</span></div>'; }).join('');
+    function tick(){ var d=Math.max(0,target-Date.now()),s=Math.floor(d/1000),v={j:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60};
+      for(var k in v){ var n=box.querySelector('[data-u="'+k+'"]'); if(n)n.textContent=(k==='j'?v[k]:('0'+v[k]).slice(-2)); } }
+    tick(); setInterval(tick,1000); })();
+
+  (function(){ var nav=document.getElementById('nav2'); var f=function(){ nav.setAttribute('data-scrolled',String(window.scrollY>20)); }; f(); window.addEventListener('scroll',f,{passive:true}); })();
+
+  (function(){ var form=document.getElementById('rsvp-form');
+    function thanks(){ document.getElementById('rsvp-slot').innerHTML='<div class="rsvp2__thanks"><p class="script-mid" style="margin:0">Merci&nbsp;!</p><p class="prose" style="margin-top:.8rem">On a bien reçu ta réponse. On a hâte de te retrouver le 22 mai.</p></div>'; }
+    form.addEventListener('submit',function(e){ e.preventDefault(); if(!form.checkValidity()){ form.reportValidity(); return; }
+      var data={}; new FormData(form).forEach(function(v,k){ if(k.charAt(0)!=='_'||k==='_subject') data[k]=v; });
+      fetch('https://formsubmit.co/ajax/contact@abri-francais.fr',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)}).then(thanks,thanks); }); })();
+
+  /* vidéos clips : play/pause au scroll */
+  (function(){ var vids=[].slice.call(document.querySelectorAll('[data-ani] video'));
+    vids.forEach(function(v){ v.muted=true; });
+    if(!('IntersectionObserver' in window)){ vids.forEach(function(v){ v.play().catch(function(){}); }); return; }
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting)e.target.play().catch(function(){}); else e.target.pause(); }); },{threshold:0.2});
+    vids.forEach(function(v){ io.observe(v); }); })();
+
+  /* révélations + parallaxe .par */
+  (function(){ var els=[].slice.call(document.querySelectorAll('.r, .r-left, .r-right, .r-scale, .draw'));
+    if(reduce || !('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('in'); }); }
+    else { var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -8% 0px',threshold:0.1});
+      els.forEach(function(e){ if(!e.classList.contains('in')) io.observe(e); }); }
+    if(reduce) return;
+    var pars=[].slice.call(document.querySelectorAll('[data-par]')), raf=0;
+    function onScroll(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; var vh=window.innerHeight;
+      pars.forEach(function(e){ var r=e.getBoundingClientRect(), off=(r.top+r.height/2-vh/2)/vh, sp=parseFloat(e.dataset.par)||0.3; e.style.setProperty('--py',(off*sp*-60)+'px'); }); }); }
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll(); })();
+
+  /* hero : parallaxe souris (photos) + parallaxe scroll + rotation olivier */
+  (function(){ var tree=document.getElementById('heroTree'), photos=document.getElementById('heroPhotos');
+    var sc=window.scrollY, cx=0, cy=0;
+    function applyTree(){ if(tree) tree.style.transform='translateY('+(sc*0.10).toFixed(1)+'px) rotate('+(cx*1.6).toFixed(2)+'deg)'; }
+    window.addEventListener('scroll',function(){ sc=window.scrollY; applyTree(); },{passive:true});
+    if(!reduce) window.addEventListener('mousemove',function(e){ cx=e.clientX/window.innerWidth-0.5; cy=e.clientY/window.innerHeight-0.5; applyTree();
+      if(photos) photos.style.transform='translate('+(cx*-22).toFixed(1)+'px,'+(cy*-12).toFixed(1)+'px)'; }); })();
+
+  /* film plein écran : scrub au scroll */
+  (function(){ var film=document.getElementById('film'), track=document.querySelector('.fs-track');
+    if(!film||!track) return;
+    if(reduce){ film.loop=true; film.muted=true; film.play().catch(function(){}); return; }
+    var dur=0, raf=0;
+    function setDur(){ dur=film.duration||0; update(); }
+    function update(){ raf=0; var rect=track.getBoundingClientRect(), total=rect.height-window.innerHeight;
+      var p=total>0?Math.min(1,Math.max(0,-rect.top/total)):0;
+      if(dur){ var t=p*(dur-0.05); if(Math.abs(t-(film.currentTime||0))>0.02){ try{ film.currentTime=t; }catch(e){} } } }
+    film.addEventListener('loadedmetadata',setDur); film.addEventListener('loadeddata',update);
+    if(film.readyState>=1) setDur();
+    window.addEventListener('scroll',function(){ if(!raf) raf=requestAnimationFrame(update); },{passive:true});
+    window.addEventListener('resize',function(){ if(!raf) raf=requestAnimationFrame(update); }); })();
+
+  /* curseur coupe de champagne + bulles au clic */
+  (function(){ if(reduce) return;
+    if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    var c=document.createElement('div'); c.className='coupe-cursor';
+    c.innerHTML='<img src="assets/icons/icon-coupes.png" alt="">'; document.body.appendChild(c);
+    document.body.classList.add('coupe-on');
+    window.addEventListener('mousemove',function(e){ c.style.opacity='1'; c.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'; });
+    window.addEventListener('mouseout',function(e){ if(!e.relatedTarget) c.style.opacity='0'; });
+    window.addEventListener('mousedown',function(e){
+      for(var i=0;i<5;i++){ var b=document.createElement('div'); b.className='bubble';
+        var sz=4+Math.random()*6; b.style.width=b.style.height=sz+'px';
+        b.style.left=(e.clientX+(Math.random()*22-11))+'px'; b.style.top=(e.clientY+Math.random()*6)+'px';
+        document.body.appendChild(b);
+        b.animate([{transform:'translateY(0)',opacity:.85},{transform:'translateY(-'+(38+Math.random()*42)+'px)',opacity:0}],{duration:600+Math.random()*500,easing:'ease-out'}).onfinish=function(){ this.effect.target.remove(); };
+      } }); })();
+
+})();
+</script>
+</body>
+</html>
