@@ -77,9 +77,52 @@
   body.coupe-on input, body.coupe-on select, body.coupe-on textarea, body.coupe-on .ma-btn { cursor: none; }
   .bubble { position: fixed; border-radius: 50%; border: 1px solid var(--ma-olive); background: color-mix(in srgb, var(--ma-olive) 12%, transparent);
             pointer-events: none; z-index: 9998; }
+
+  /* ---- Pictogrammes animés (brasero, côte de bœuf, hortensia) ---- */
+  .picto { color: var(--ma-olive); display: block; }
+  .repas { display:flex; flex-direction:column; align-items:center; gap:.3rem; margin-top:clamp(2.2rem,5vw,3.2rem); }
+  .repas__row { display:flex; align-items:flex-end; justify-content:center; gap:clamp(1rem,4vw,2.4rem); }
+  .repas__row .picto { width:clamp(64px,16vw,90px); height:auto; }
+  .repas__cap { font-family:var(--font-body); font-style:italic; color:var(--ma-ink-soft); font-size:1.05rem; margin:.5rem 0 0; max-width:34ch; }
+  .repas__cap em { font-family:var(--font-script); font-style:normal; color:var(--ma-olive); font-size:1.5rem; }
+  .hort-rule { display:flex; align-items:center; justify-content:center; gap:1rem; margin:clamp(2.5rem,6vw,4rem) auto 0; }
+  .hort-rule .l { width:clamp(40px,12vw,90px); height:1px; background:var(--ma-line); }
+  .hort-rule .picto { width:60px; height:auto; }
+  .hort-accent { width:72px; height:auto; margin:1.2rem auto .2rem; }
+  .flame { transform-box:fill-box; transform-origin:50% 100%; animation:flick 1s ease-in-out infinite alternate; }
+  .flame.f2{ animation-duration:.8s; animation-delay:.15s } .flame.f3{ animation-duration:1.15s; animation-delay:.3s }
+  .flame.f4{ animation-duration:.7s; animation-delay:.05s } .flame.f5{ animation-duration:.95s; animation-delay:.22s }
+  @keyframes flick{ from{ transform:scaleY(.8) translateY(2px); opacity:.55 } to{ transform:scaleY(1.12) translateY(-2px); opacity:1 } }
+  .ember { transform-box:fill-box; animation:rise 2.4s ease-in infinite; opacity:0 }
+  .ember.e2{ animation-delay:.8s } .ember.e3{ animation-delay:1.6s }
+  @keyframes rise{ 0%{ transform:translateY(0) scale(1); opacity:0 } 15%{ opacity:.9 } 100%{ transform:translateY(-34px) scale(.5); opacity:0 } }
+  .heat { transform-box:fill-box; animation:heat 2s ease-in-out infinite; } .heat.h2{ animation-delay:.5s }
+  @keyframes heat{ 0%,100%{ transform:translateX(-1.5px); opacity:.4 } 50%{ transform:translateX(1.5px); opacity:.9 } }
+  .sway { transform-box:fill-box; transform-origin:50% 100%; animation:sway 5s ease-in-out infinite; }
+  @keyframes sway{ 0%,100%{ transform:rotate(-2.5deg) } 50%{ transform:rotate(2.5deg) } }
+  .floret { transform-box:fill-box; transform-origin:center; animation:bloom .9s ease both }
+  @keyframes bloom{ from{ transform:scale(.2); opacity:0 } to{ transform:scale(1); opacity:1 } }
+  /* ambient sur pictos existants */
+  @media (prefers-reduced-motion: no-preference) {
+    img[src*="icon-coupes"]{ animation:clink 3.4s ease-in-out infinite; transform-origin:bottom center; }
+    @keyframes clink{ 0%,100%{ transform:rotate(0) } 22%{ transform:rotate(-5deg) } 52%{ transform:rotate(4deg) } }
+    img[src*="icon-jeep"]{ animation:drive 3s ease-in-out infinite; }
+    @keyframes drive{ 0%,100%{ transform:translateX(-2px) rotate(-.6deg) } 50%{ transform:translateX(2px) rotate(.6deg) } }
+    img[src*="icon-soleil-mer"]{ animation:shine 4s ease-in-out infinite; transform-origin:center; }
+    @keyframes shine{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.07) } }
+  }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="fl" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M0 -7 q4 0 4 4 q0 3 -4 3 q-4 0 -4 -3 q0 -4 4 -4Z"/>
+    <path d="M7 0 q0 4 -4 4 q-3 0 -3 -4 q0 -4 3 -4 q4 0 4 4Z"/>
+    <path d="M0 7 q-4 0 -4 -4 q0 -3 4 -3 q4 0 4 3 q0 4 -4 4Z"/>
+    <path d="M-7 0 q0 -4 4 -4 q3 0 3 4 q0 4 -3 4 q-4 0 -4 -4Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="currentColor" stroke="none"/>
+  </g>
+</defs></svg>
 <div id="preload" class="preload" role="status" aria-label="Chargement">
   <img class="preload__mono" src="assets/logos/logo-olivier-monogram.png" alt="">
   <p class="preload__title">Marie &amp; Antony</p>
@@ -140,6 +183,7 @@
       <p class="prose prose--italic r">Entre la mer et les oliviers, une évidence — et puis l'envie de la fêter avec vous.</p>
       <p class="prose r r-2">De la Côte d'Azur à l'arrière-pays, on a appris à aimer les longues tablées, les fins de journée dorées et la compagnie de ceux qu'on aime — Volnay compris.</p>
       <p class="prose r r-3">Le 22 mai 2027, on se dit oui à Antibes, puis on file au Château de Vaucouleurs pour une soirée à notre image : simple, lumineuse et pleine de Provence.</p>
+      <svg class="picto hort-accent r" viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="sway"><path d="M60 122 C60 104 60 96 60 84"/><path d="M60 108 C50 106 44 100 42 92 C52 92 58 99 60 108Z"/><path d="M60 100 C70 99 77 94 79 86 C69 85 62 91 60 100Z"/><g class="floret" style="animation-delay:.05s"><use href="#fl" x="60" y="52"/></g><g class="floret" style="animation-delay:.12s"><use href="#fl" x="47" y="58"/></g><g class="floret" style="animation-delay:.19s"><use href="#fl" x="73" y="58"/></g><g class="floret" style="animation-delay:.26s"><use href="#fl" x="52" y="46"/></g><g class="floret" style="animation-delay:.33s"><use href="#fl" x="68" y="46"/></g><g class="floret" style="animation-delay:.40s"><use href="#fl" x="60" y="38"/></g><g class="floret" style="animation-delay:.47s"><use href="#fl" x="42" y="46"/></g><g class="floret" style="animation-delay:.54s"><use href="#fl" x="78" y="46"/></g><g class="floret" style="animation-delay:.61s"><use href="#fl" x="60" y="64"/></g></g></svg>
       <div class="photobooth r r-2 tilt-r"><img src="assets/img/bw/photobooth-strip.png" alt="Marie & Antony"></div>
       <div class="ph-cluster r r-3" style="margin-top:1.6rem">
         <img class="tilt-l" src="assets/img/bw/volnay-1.png" alt="Volnay">
@@ -155,6 +199,25 @@
       <h2 class="script-mid r">Le programme</h2>
       <div class="dot-rule" aria-hidden="true"><span class="l"></span><img src="assets/icons/icon-branche-olivier.png" alt=""><span class="l"></span></div>
       <div class="prog" id="prog"></div>
+
+      <div class="repas r">
+        <div class="repas__row">
+          <svg class="picto" viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle class="ember" cx="54" cy="58" r="1.6" fill="currentColor" stroke="none"/><circle class="ember e2" cx="66" cy="56" r="1.3" fill="currentColor" stroke="none"/><circle class="ember e3" cx="60" cy="54" r="1.5" fill="currentColor" stroke="none"/>
+            <path class="flame f3" d="M60 74 C52 64 56 56 60 48 C64 56 68 64 60 74Z"/><path class="flame f2" d="M48 76 C43 69 46 62 49 56 C53 63 54 70 48 76Z"/><path class="flame f4" d="M72 76 C67 69 70 62 73 56 C77 63 78 70 72 76Z"/><path class="flame" d="M40 78 C37 73 39 68 41 64 C45 69 45 74 40 78Z"/><path class="flame f5" d="M80 78 C77 73 79 68 81 64 C85 69 85 74 80 78Z"/>
+            <ellipse cx="60" cy="84" rx="40" ry="11"/><path d="M22 84 C24 96 96 96 98 84"/><path d="M27 89 C36 94 84 94 93 89"/><path d="M34 93 L28 116"/><path d="M86 93 L92 116"/><path d="M60 95 L60 118"/>
+          </svg>
+          <svg class="picto" viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path class="heat" d="M44 30 q4 -5 0 -10"/><path class="heat h2" d="M60 28 q4 -5 0 -10"/><path class="heat" d="M76 30 q4 -5 0 -10"/>
+            <path d="M40 56 C34 44 50 36 64 38 C82 40 90 50 86 60 C83 68 70 72 58 70 C48 69 44 64 40 56Z"/>
+            <path d="M84 52 c10 -3 16 2 14 9 c5 1 7 7 1 10 c-3 5 -11 4 -12 -2 c-7 0 -9 -8 -3 -11"/>
+            <path d="M55 50 q6 4 4 12" stroke-width="1.6"/>
+            <path d="M26 86 h68"/><path d="M30 94 h60"/><path d="M34 86 v8 M50 86 v8 M66 86 v8 M82 86 v8" stroke-width="1.6"/><path d="M34 102 L30 118 M86 102 L90 118"/>
+            <path class="flame f2" d="M58 100 C54 94 56 89 58 85 C61 90 62 95 58 100Z"/>
+          </svg>
+        </div>
+        <p class="repas__cap">Le dîner, cuit à la flamme du brasero — <em>Braz&amp;bros</em></p>
+      </div>
     </section>
 
     <!-- ===== Le grand film — plein écran, défilement ===== -->
@@ -259,6 +322,12 @@
   </main>
 
   <!-- ===== Footer ===== -->
+  <div class="hort-rule r" aria-hidden="true">
+    <span class="l"></span>
+    <svg class="picto" viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><g class="sway"><path d="M60 122 C60 104 60 96 60 84"/><path d="M60 108 C50 106 44 100 42 92 C52 92 58 99 60 108Z"/><path d="M60 100 C70 99 77 94 79 86 C69 85 62 91 60 100Z"/><g class="floret" style="animation-delay:.05s"><use href="#fl" x="60" y="52"/></g><g class="floret" style="animation-delay:.12s"><use href="#fl" x="47" y="58"/></g><g class="floret" style="animation-delay:.19s"><use href="#fl" x="73" y="58"/></g><g class="floret" style="animation-delay:.26s"><use href="#fl" x="52" y="46"/></g><g class="floret" style="animation-delay:.33s"><use href="#fl" x="68" y="46"/></g><g class="floret" style="animation-delay:.40s"><use href="#fl" x="60" y="38"/></g><g class="floret" style="animation-delay:.47s"><use href="#fl" x="42" y="46"/></g><g class="floret" style="animation-delay:.54s"><use href="#fl" x="78" y="46"/></g><g class="floret" style="animation-delay:.61s"><use href="#fl" x="60" y="64"/></g></g></svg>
+    <span class="l"></span>
+  </div>
+
   <footer class="ifooter">
     <img class="mono draw" src="assets/logos/logo-olivier-monogram.png" alt="Marie & Antony">
     <p class="date">22 · 05 · 2027</p>
