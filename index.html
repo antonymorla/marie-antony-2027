@@ -454,7 +454,7 @@
   /* hero : parallaxe souris (photos) + parallaxe scroll + rotation olivier */
   (function(){ var tree=document.getElementById('heroTree'), photos=document.getElementById('heroPhotos');
     var sc=window.scrollY, cx=0, cy=0;
-    function applyTree(){ if(tree) tree.style.transform='translateY('+(sc*0.10).toFixed(1)+'px) rotate('+(cx*1.6).toFixed(2)+'deg)'; }
+    function applyTree(){ if(tree) tree.style.transform='rotate('+(cx*1.6).toFixed(2)+'deg)'; }
     window.addEventListener('scroll',function(){ sc=window.scrollY; applyTree(); },{passive:true});
     if(!reduce) window.addEventListener('mousemove',function(e){ cx=e.clientX/window.innerWidth-0.5; cy=e.clientY/window.innerHeight-0.5; applyTree();
       if(photos) photos.style.transform='translate('+(cx*-22).toFixed(1)+'px,'+(cy*-12).toFixed(1)+'px)'; }); })();
