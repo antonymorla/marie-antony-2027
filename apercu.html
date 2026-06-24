@@ -3,138 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aperçu animations — Marie & Antony</title>
+<title>Aperçu pictos Gemini — Marie & Antony</title>
 <link rel="stylesheet" href="ds/styles.css">
 <style>
   body{ background:var(--ma-ivory); color:var(--ma-ink); margin:0; }
   .wrap{ max-width:1100px; margin:0 auto; padding:clamp(2rem,5vw,4rem) 1.2rem 5rem; text-align:center; }
   h1{ font-family:var(--font-script); color:var(--ma-olive); font-size:clamp(2.4rem,6vw,3.6rem); margin:.2em 0 0; font-weight:400; }
   .sub{ font-family:var(--font-caps); text-transform:uppercase; letter-spacing:.3em; font-size:.72rem; color:var(--ma-olive); }
-  .lead{ font-family:var(--font-body); color:var(--ma-ink-soft); font-size:1.05rem; max-width:48ch; margin:1rem auto 0; }
+  .lead{ font-family:var(--font-body); color:var(--ma-ink-soft); font-size:1.05rem; max-width:50ch; margin:1rem auto 0; }
   .grid{ display:grid; grid-template-columns:1fr; gap:2rem; margin-top:clamp(2.5rem,6vw,4rem); }
   @media(min-width:720px){ .grid{ grid-template-columns:repeat(3,1fr); } }
-  .card{ background:var(--ma-cream); border:1px solid var(--ma-line); border-radius:var(--radius-lg); padding:2rem 1rem 1.4rem; }
-  .card svg{ width:clamp(120px,40%,150px); height:auto; color:var(--ma-olive); display:block; margin:0 auto; }
-  .card .nm{ font-family:var(--font-script); color:var(--ma-ink); font-size:1.7rem; margin-top:.8rem; }
-  .card .ds{ font-family:var(--font-body); color:var(--ma-ink-faint); font-size:.9rem; }
-  .seg{ font-family:var(--font-caps); text-transform:uppercase; letter-spacing:.26em; font-size:.66rem; color:var(--ma-ink-faint); margin-top:3.5rem; }
-  svg [fill]{ }
-  /* ---- animations ---- */
-  .sway{ transform-box:fill-box; transform-origin:50% 100%; animation:sway 5s ease-in-out infinite; }
-  @keyframes sway{ 0%,100%{ transform:rotate(-2.5deg) } 50%{ transform:rotate(2.5deg) } }
-  .flame{ transform-box:fill-box; transform-origin:50% 100%; animation:flick 1s ease-in-out infinite alternate; }
-  .flame.f2{ animation-duration:.8s; animation-delay:.15s } .flame.f3{ animation-duration:1.15s; animation-delay:.3s }
-  .flame.f4{ animation-duration:.7s; animation-delay:.05s } .flame.f5{ animation-duration:.95s; animation-delay:.22s }
-  @keyframes flick{ from{ transform:scaleY(.8) translateY(2px); opacity:.55 } to{ transform:scaleY(1.12) translateY(-2px); opacity:1 } }
-  .ember{ transform-box:fill-box; animation:rise 2.4s ease-in infinite; opacity:0 }
-  .ember.e2{ animation-delay:.8s } .ember.e3{ animation-delay:1.6s }
-  @keyframes rise{ 0%{ transform:translateY(0) scale(1); opacity:0 } 15%{ opacity:.9 } 100%{ transform:translateY(-34px) scale(.5); opacity:0 } }
-  .heat{ animation:heat 2s ease-in-out infinite; transform-box:fill-box; transform-origin:center }
-  .heat.h2{ animation-delay:.5s } @keyframes heat{ 0%,100%{ transform:translateX(-1.5px); opacity:.4 } 50%{ transform:translateX(1.5px); opacity:.9 } }
-  .floret{ transform-box:fill-box; transform-origin:center; animation:bloom .9s var(--ease,ease) both }
-  @keyframes bloom{ from{ transform:scale(.2); opacity:0 } to{ transform:scale(1); opacity:1 } }
-  @media (prefers-reduced-motion: reduce){ *{ animation:none !important } }
+  .card{ background:var(--ma-cream); border:1px solid var(--ma-line); border-radius:var(--radius-lg); padding:1.6rem 1rem 1.4rem; }
+  .gp{ width:clamp(130px,52%,170px); height:auto; display:block; margin:0 auto; mix-blend-mode:multiply; }
+  .nm{ font-family:var(--font-script); color:var(--ma-ink); font-size:1.7rem; margin-top:.6rem; }
+  .ds{ font-family:var(--font-body); color:var(--ma-ink-faint); font-size:.9rem; }
+  .note{ font-family:var(--font-body); color:var(--ma-ink-soft); font-size:1rem; max-width:46ch; margin:3rem auto 0; font-style:italic; }
+  .brasero{ animation:glow 2.4s ease-in-out infinite; transform-origin:center 70%; }
+  @keyframes glow{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.045) } }
+  .cote{ animation:bob 3.6s ease-in-out infinite; } @keyframes bob{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-6px) } }
+  .hort{ animation:swayi 5s ease-in-out infinite; transform-origin:center bottom; } @keyframes swayi{ 0%,100%{ transform:rotate(-2.6deg) } 50%{ transform:rotate(2.6deg) } }
+  @media (prefers-reduced-motion:reduce){ *{ animation:none !important } }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <p class="sub">Aperçu — à valider</p>
-  <h1>Pictogrammes animés</h1>
-  <p class="lead">Trois nouveaux pictos au trait olive, animés, dans le style du site. Dis-moi ce que tu en penses avant que je les intègre (et que j'en anime d'autres).</p>
-
+  <p class="sub">Générés par Gemini — à valider</p>
+  <h1>Pictogrammes</h1>
+  <p class="lead">Voici les pictos générés par Gemini (avec ta couronne d'olivier comme référence de style), animés en douceur. Dis-moi si tu les valides — et si tu veux le trait plus foncé pour mieux coller à tes autres icônes.</p>
   <div class="grid">
-
-    <!-- ===== BRASERO ===== -->
-    <div class="card">
-      <svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="Brasero">
-        <!-- embers -->
-        <circle class="ember"  cx="54" cy="58" r="1.6" fill="currentColor" stroke="none"/>
-        <circle class="ember e2" cx="66" cy="56" r="1.3" fill="currentColor" stroke="none"/>
-        <circle class="ember e3" cx="60" cy="54" r="1.5" fill="currentColor" stroke="none"/>
-        <!-- flames -->
-        <g>
-          <path class="flame f3" d="M60 74 C52 64 56 56 60 48 C64 56 68 64 60 74Z"/>
-          <path class="flame f2" d="M48 76 C43 69 46 62 49 56 C53 63 54 70 48 76Z"/>
-          <path class="flame f4" d="M72 76 C67 69 70 62 73 56 C77 63 78 70 72 76Z"/>
-          <path class="flame"    d="M40 78 C37 73 39 68 41 64 C45 69 45 74 40 78Z"/>
-          <path class="flame f5" d="M80 78 C77 73 79 68 81 64 C85 69 85 74 80 78Z"/>
-        </g>
-        <!-- OFYR bowl -->
-        <ellipse cx="60" cy="84" rx="40" ry="11"/>
-        <path d="M22 84 C24 96 96 96 98 84"/>
-        <path d="M20 84 h80" opacity="0"/>
-        <!-- rim band -->
-        <path d="M27 89 C36 94 84 94 93 89"/>
-        <!-- legs -->
-        <path d="M34 93 L28 116"/>
-        <path d="M86 93 L92 116"/>
-        <path d="M60 95 L60 118"/>
-      </svg>
-      <div class="nm">Brasero</div>
-      <div class="ds">Cuisson à la flamme · Braz&bros</div>
-    </div>
-
-    <!-- ===== CÔTE DE BŒUF ===== -->
-    <div class="card">
-      <svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-label="Côte de bœuf">
-        <!-- heat lines -->
-        <path class="heat"    d="M44 30 q4 -5 0 -10"/>
-        <path class="heat h2" d="M60 28 q4 -5 0 -10"/>
-        <path class="heat"    d="M76 30 q4 -5 0 -10"/>
-        <!-- piece of meat + bone -->
-        <path d="M40 56 C34 44 50 36 64 38 C82 40 90 50 86 60 C83 68 70 72 58 70 C48 69 44 64 40 56Z"/>
-        <!-- bone -->
-        <path d="M84 52 c10 -3 16 2 14 9 c5 1 7 7 1 10 c-3 5 -11 4 -12 -2 c-7 0 -9 -8 -3 -11"/>
-        <!-- marbling -->
-        <path d="M55 50 q6 4 4 12" stroke-width="1.6"/>
-        <!-- grill grate -->
-        <path d="M26 86 h68"/>
-        <path d="M30 94 h60"/>
-        <path d="M34 86 v8 M50 86 v8 M66 86 v8 M82 86 v8" stroke-width="1.6"/>
-        <path d="M34 102 L30 118 M86 102 L90 118"/>
-        <!-- little flame under grill -->
-        <path class="flame f2" d="M58 100 C54 94 56 89 58 85 C61 90 62 95 58 100Z"/>
-      </svg>
-      <div class="nm">Côte de bœuf</div>
-      <div class="ds">Grillée au brasero</div>
-    </div>
-
-    <!-- ===== HORTENSIA ===== -->
-    <div class="card">
-      <svg viewBox="0 0 120 130" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-label="Hortensia">
-        <defs>
-          <g id="fl">
-            <path d="M0 -7 q4 0 4 4 q0 3 -4 3 q-4 0 -4 -3 q0 -4 4 -4Z"/>
-            <path d="M7 0 q0 4 -4 4 q-3 0 -3 -4 q0 -4 3 -4 q4 0 4 4Z"/>
-            <path d="M0 7 q-4 0 -4 -4 q0 -3 4 -3 q4 0 4 3 q0 4 -4 4Z"/>
-            <path d="M-7 0 q0 -4 4 -4 q3 0 3 4 q0 4 -3 4 q-4 0 -4 -4Z"/>
-            <circle cx="0" cy="0" r="1.2" fill="currentColor" stroke="none"/>
-          </g>
-        </defs>
-        <g class="sway">
-          <!-- stem + leaves -->
-          <path d="M60 122 C60 104 60 96 60 84"/>
-          <path d="M60 108 C50 106 44 100 42 92 C52 92 58 99 60 108Z"/>
-          <path d="M60 100 C70 99 77 94 79 86 C69 85 62 91 60 100Z"/>
-          <!-- flower head : cluster of florets -->
-          <g class="floret" style="animation-delay:.05s"><use href="#fl" x="60" y="52"/></g>
-          <g class="floret" style="animation-delay:.12s"><use href="#fl" x="47" y="58"/></g>
-          <g class="floret" style="animation-delay:.19s"><use href="#fl" x="73" y="58"/></g>
-          <g class="floret" style="animation-delay:.26s"><use href="#fl" x="52" y="46"/></g>
-          <g class="floret" style="animation-delay:.33s"><use href="#fl" x="68" y="46"/></g>
-          <g class="floret" style="animation-delay:.40s"><use href="#fl" x="60" y="38"/></g>
-          <g class="floret" style="animation-delay:.47s"><use href="#fl" x="42" y="46"/></g>
-          <g class="floret" style="animation-delay:.54s"><use href="#fl" x="78" y="46"/></g>
-          <g class="floret" style="animation-delay:.61s"><use href="#fl" x="60" y="64"/></g>
-        </g>
-      </svg>
-      <div class="nm">Hortensia</div>
-      <div class="ds">La fleur préférée de Marie</div>
-    </div>
-
+    <div class="card"><img class="gp brasero" src="assets/pictos/brasero.png" alt="Brasero"><div class="nm">Brasero</div><div class="ds">Cuisson à la flamme · Braz&bros</div></div>
+    <div class="card"><img class="gp cote" src="assets/pictos/cote.png" alt="Côte de bœuf"><div class="nm">Côte de bœuf</div><div class="ds">Grillée au brasero</div></div>
+    <div class="card"><img class="gp hort" src="assets/pictos/hortensia.png" alt="Hortensia"><div class="nm">Hortensia</div><div class="ds">La fleur préférée de Marie</div></div>
   </div>
-
-  <p class="seg">Et après : j'anime aussi la jeep, les coupes, le soleil… et j'intègre ceux-ci dans le site.</p>
+  <p class="note">Je peux aussi en générer d'autres (alliances, oliviers, soleil, jeep…) dans le même style, et même tenter de petites vidéos animées.</p>
 </div>
 </body>
 </html>
