@@ -1,9 +1,15 @@
 <!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Test anim</title><link rel="stylesheet" href="ds/styles.css">
-<style>body{background:var(--ma-ivory);margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:1rem;font-family:var(--font-body)}
+<style>body{background:var(--ma-ivory);margin:0;padding:3rem 1rem 5rem;font-family:var(--font-body);text-align:center}
 .cap{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.3em;font-size:.7rem;color:var(--ma-olive)}
-video{width:min(80vw,360px);height:auto;mix-blend-mode:darken}
-p{color:var(--ma-ink-soft);max-width:40ch;text-align:center;font-size:1rem}</style></head>
-<body><div class="cap">Test Veo — à valider</div>
-<video src="assets/video/brasero.mp4" autoplay loop muted playsinline></video>
-<p>Animation générée par Veo (image → vidéo), trait olive conservé. Si ça te plaît, je fais la côte de bœuf et l'hortensia.</p></body></html>
+h1{font-family:var(--font-script);color:var(--ma-olive);font-weight:400;font-size:2.6rem;margin:.2em 0 1.5rem}
+.row{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;align-items:flex-start}
+.it{background:var(--ma-cream);border:1px solid var(--ma-line);border-radius:10px;padding:1rem}
+.it video{width:300px;max-width:78vw;height:auto;mix-blend-mode:darken;display:block}
+.it .nm{font-family:var(--font-script);color:var(--ma-ink);font-size:1.6rem;margin-top:.4rem}</style></head>
+<body><div class="cap">Test Veo — à valider</div><h1>3 animations</h1>
+<div class="row">
+<div class="it"><video src="assets/video/brasero.mp4" autoplay loop muted playsinline></video><div class="nm">Brasero</div></div>
+<div class="it"><video src="assets/video/cote.mp4" autoplay loop muted playsinline></video><div class="nm">Côte de bœuf</div></div>
+<div class="it"><video src="assets/video/hortensia.mp4" autoplay loop muted playsinline></video><div class="nm">Hortensia</div></div>
+</div></body></html>
