@@ -269,9 +269,9 @@ function secBudget(R){
   h+='<div class="grid g3">'+
      kpi('Budget estimé total',eur(f.estime),'tout le mariage',  'hl')+
      kpi('Apports prévus',eur(f.apports),'somme des 4 contributeurs')+
-     kpi('Manque à financer',eur(manque),(!isNaN(f.ecartFam)?'≈ '+eur(Math.abs(f.ecartFam))+' par famille':''),'warn')+
+     kpi('Manque à financer',eur(manque),'à compléter','warn')+
      '</div>';
-  h+='<div class="callout"><div class="big">'+eur(manque)+'</div><div class="txt">Il manque <b>'+eur(manque)+'</b> entre le budget estimé ('+eur(f.estime)+') et les apports actuellement prévus ('+eur(f.apports)+')'+(!isNaN(f.ecartFam)?', soit environ <b>'+eur(Math.abs(f.ecartFam))+' à compléter par famille</b>':'')+'.</div></div>';
+  h+='<div class="callout"><div class="big">'+eur(manque)+'</div><div class="txt">Il manque <b>'+eur(manque)+'</b> entre le budget estimé ('+eur(f.estime)+') et les apports actuellement prévus ('+eur(f.apports)+').</div></div>';
   h+='<h3 class="sub">Avancement des paiements</h3>';
   h+='<div class="grid g3">'+
      kpi('Engagé (contrats signés)',eur(f.engage),'')+
