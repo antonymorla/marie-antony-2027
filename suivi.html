@@ -5,16 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Marie &amp; Antony — Suivi du mariage</title>
+<link rel="icon" type="image/png" href="assets/logos/logo-olivier-monogram.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
-/* ===== Tokens — repris du design system Marie & Antony (olive / ivoire / encre) ===== */
+/* ===== Tokens — design system Marie & Antony (olive / ivoire / encre) ===== */
 :root{
   --ivory:#F3EFE2; --ivory-warm:#EFE9D8; --ivory-deep:#E7E0CC; --cream:#FBF8EF;
   --olive:#6B7A48; --olive-deep:#56643A; --olive-ink:#45512E; --olive-soft:#8E9B72; --olive-mist:#C7CDB4;
   --ink:#23211C; --ink-soft:#4C483F; --ink-faint:#6E695D;
   --line:rgba(107,122,72,.40); --line-soft:rgba(107,122,72,.22);
+  --warn-bg:#EAE3CE; --warn-line:#B79B5E; --warn-ink:#7A5C1E;
   --font-script:'Pinyon Script',cursive;
   --font-serif:'Cormorant Garamond',Georgia,serif;
   --font-caps:'EB Garamond',Georgia,serif;
@@ -23,153 +25,143 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{
-  font-family:var(--font-body); font-size:17px; line-height:1.6; color:var(--ink);
-  background:var(--ivory); padding-bottom:48px;
-}
+body{font-family:var(--font-body);font-size:17px;line-height:1.6;color:var(--ink);background:var(--ivory);padding-bottom:48px}
 ::selection{background:var(--olive);color:var(--ivory)}
-.wrap{max-width:920px;margin:0 auto;padding:0 18px}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px}
 
 /* ===== En-tête ===== */
-header.top{padding:34px 0 18px;text-align:center}
+header.top{padding:30px 0 16px;text-align:center}
+header.top .logo{width:78px;height:auto;margin:0 auto 10px;display:block}
 .eyebrow{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.32em;font-size:.72rem;color:var(--olive-deep);font-weight:500}
-.couple{font-family:var(--font-script);color:var(--olive);font-size:clamp(3rem,11vw,5rem);line-height:.95;margin:.1em 0 .05em}
-.subtitle{font-family:var(--font-serif);font-size:1.25rem;color:var(--ink-soft);letter-spacing:.02em}
-.date-pill{display:inline-block;margin-top:14px;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.28em;font-size:.8rem;color:var(--olive-deep);border:1px solid var(--line);border-radius:999px;padding:7px 18px}
+.couple{font-family:var(--font-script);color:var(--olive);font-size:clamp(2.8rem,10vw,4.6rem);line-height:.95;margin:.05em 0}
+.subtitle{font-family:var(--font-serif);font-size:1.2rem;color:var(--ink-soft);letter-spacing:.02em}
+.date-pill{display:inline-block;margin-top:13px;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.26em;font-size:.78rem;color:var(--olive-deep);border:1px solid var(--line);border-radius:999px;padding:7px 18px}
 
-/* ===== Barre de navigation (chips) ===== */
-nav.chips{position:sticky;top:0;z-index:20;background:rgba(243,239,226,.94);backdrop-filter:blur(8px);
-  border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);margin-top:18px}
-.chips-inner{max-width:920px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:11px 18px;scrollbar-width:none}
+nav.chips{position:sticky;top:0;z-index:20;background:rgba(243,239,226,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);margin-top:16px}
+.chips-inner{max-width:960px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;padding:11px 18px;scrollbar-width:none}
 .chips-inner::-webkit-scrollbar{display:none}
-.chips a{flex:0 0 auto;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;
-  color:var(--olive-deep);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap;transition:.2s}
+.chips a{flex:0 0 auto;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--olive-deep);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;white-space:nowrap;transition:.2s}
 .chips a:hover,.chips a:active{background:var(--olive);color:var(--ivory);border-color:var(--olive)}
 
-/* ===== Sections & cartes ===== */
-section{padding-top:42px;scroll-margin-top:64px}
+section{padding-top:40px;scroll-margin-top:64px}
 .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
 .sec-num{font-family:var(--font-script);color:var(--olive-soft);font-size:1.9rem;line-height:1}
 h2.sec-title{font-family:var(--font-serif);font-weight:600;font-size:clamp(1.5rem,4vw,2rem);color:var(--ink);letter-spacing:.01em}
-.sec-intro{color:var(--ink-faint);font-style:italic;font-size:1.02rem;margin-bottom:20px;max-width:60ch}
+h3.sub{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.2em;font-size:.78rem;color:var(--olive-deep);margin:22px 0 10px}
+.sec-intro{color:var(--ink-faint);font-style:italic;font-size:1.02rem;margin-bottom:18px;max-width:62ch}
 .rule{height:1px;background:var(--line-soft);border:0;margin-top:8px}
 
 .card{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius-lg);padding:20px}
-.grid{display:grid;gap:14px}
-.g2{grid-template-columns:repeat(2,1fr)}
-.g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}
+.grid{display:grid;gap:13px}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:640px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:430px){.g2{grid-template-columns:1fr}}
 
-/* KPI */
-.kpi{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px 16px;text-align:center}
+.kpi{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius-lg);padding:17px 15px;text-align:center}
 .kpi.hl{background:var(--olive);border-color:var(--olive)}
-.kpi.hl .kpi-val,.kpi.hl .kpi-lbl{color:var(--ivory)}
-.kpi.hl .kpi-sub{color:var(--olive-mist)}
-.kpi-lbl{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.18em;font-size:.66rem;color:var(--ink-faint);display:block;margin-bottom:7px}
-.kpi-val{display:block;font-family:var(--font-serif);font-weight:600;font-size:clamp(1.4rem,5vw,1.95rem);color:var(--olive-deep);line-height:1.05}
-.kpi-sub{display:block;font-size:.78rem;color:var(--ink-faint);margin-top:5px;line-height:1.3}
+.kpi.hl .kpi-val,.kpi.hl .kpi-lbl{color:var(--ivory)} .kpi.hl .kpi-sub{color:var(--olive-mist)}
+.kpi.warn{background:var(--warn-bg);border-color:var(--warn-line)}
+.kpi.warn .kpi-val{color:var(--warn-ink)} .kpi.warn .kpi-lbl{color:var(--warn-ink)}
+.kpi-lbl{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;color:var(--ink-faint);display:block;margin-bottom:7px}
+.kpi-val{display:block;font-family:var(--font-serif);font-weight:600;font-size:clamp(1.35rem,5vw,1.9rem);color:var(--olive-deep);line-height:1.05}
+.kpi-sub{display:block;font-size:.76rem;color:var(--ink-faint);margin-top:5px;line-height:1.3}
 
-/* Barre de progression */
-.progress-wrap{margin-top:18px}
 .progress{height:14px;background:var(--ivory-deep);border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.progress > i{display:block;height:100%;background:var(--olive);border-radius:999px}
+.progress>i{display:block;height:100%;background:var(--olive);border-radius:999px}
 .progress-legend{display:flex;justify-content:space-between;font-size:.8rem;color:var(--ink-faint);margin-top:8px;font-family:var(--font-caps);letter-spacing:.04em}
 
-/* Contributeurs */
-.contrib{display:flex;flex-direction:column;gap:6px;text-align:left}
+.contrib{display:flex;flex-direction:column;gap:5px;text-align:left}
 .contrib .who{font-family:var(--font-serif);font-weight:600;font-size:1.15rem;color:var(--ink)}
 .contrib .role{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.16em;font-size:.62rem;color:var(--olive-deep)}
 .contrib .row{display:flex;justify-content:space-between;font-size:.92rem;margin-top:2px}
 .contrib .row b{font-family:var(--font-serif);color:var(--olive-deep)}
 
-/* Liste de postes (dépenses engagées) */
-.poste{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius-lg);padding:16px 18px}
-.poste + .poste{margin-top:12px}
-.poste-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
-.poste-name{font-family:var(--font-serif);font-weight:600;font-size:1.18rem;color:var(--ink)}
-.poste-presta{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.14em;font-size:.64rem;color:var(--olive-deep);margin-top:2px}
-.poste-total{font-family:var(--font-serif);font-weight:600;font-size:1.3rem;color:var(--olive-deep);white-space:nowrap}
-.poste-bars{display:flex;height:9px;border-radius:999px;overflow:hidden;margin:12px 0 10px;border:1px solid var(--line)}
-.poste-bars i{display:block;height:100%}
-.bar-paid{background:var(--olive)}
-.bar-rest{background:var(--olive-mist)}
-.poste-meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.86rem;color:var(--ink-soft)}
-.poste-meta .m b{font-family:var(--font-serif);color:var(--olive-deep)}
-.tag{display:inline-block;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.1em;font-size:.6rem;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--olive-deep);background:var(--ivory-warm)}
-.tag.paid{background:var(--olive);color:var(--ivory);border-color:var(--olive)}
-.tag.warn{background:#EFE9D8;color:var(--olive-ink)}
-.note{font-size:.84rem;color:var(--ink-faint);font-style:italic;margin-top:9px;border-top:1px dashed var(--line-soft);padding-top:8px}
-.who-split{font-size:.8rem;color:var(--ink-faint);margin-top:7px}
-.who-split span{margin-right:12px;white-space:nowrap}
-.who-split b{color:var(--olive-deep);font-family:var(--font-serif)}
+.callout{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:var(--radius-lg);padding:16px 18px;margin-top:14px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.callout .big{font-family:var(--font-serif);font-weight:600;font-size:1.7rem;color:var(--warn-ink);white-space:nowrap}
+.callout .txt{flex:1;min-width:200px;font-size:.92rem;color:var(--ink-soft)}
+.callout .txt b{color:var(--warn-ink)}
 
-/* Tableaux */
-.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--cream);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
-th{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.12em;font-size:.64rem;color:var(--olive-deep);text-align:left;padding:11px 13px;background:var(--ivory-warm);border-bottom:1px solid var(--line)}
-td{padding:11px 13px;border-bottom:1px solid var(--line-soft);vertical-align:top}
-tr:last-child td{border-bottom:0}
-td.num,th.num{text-align:right;font-family:var(--font-serif);color:var(--olive-deep);white-space:nowrap}
-tr.tot td{background:var(--ivory-warm);font-weight:600}
-.day-head td{background:var(--olive-mist);font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.14em;font-size:.68rem;color:var(--olive-ink);font-weight:600}
+/* ===== Tableaux ===== */
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-lg);border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--cream);min-width:520px}
+th{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.1em;font-size:.62rem;color:var(--olive-deep);text-align:left;padding:10px 12px;background:var(--ivory-warm);border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--font-serif);color:var(--olive-deep);white-space:nowrap;font-size:1rem}
+tr.tot td,tfoot td{background:var(--olive-mist);font-weight:600;color:var(--olive-ink);border-top:1.5px solid var(--olive-soft)}
+tfoot td.num{color:var(--olive-ink)}
+.sub-presta{display:block;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.1em;font-size:.6rem;color:var(--ink-faint);margin-top:2px}
+.sub-modal{display:block;font-size:.78rem;color:var(--ink-faint);font-style:italic;margin-top:5px;line-height:1.35;max-width:34ch}
+.mini{font-size:.74rem;color:var(--ink-faint);display:block;margin-top:3px}
+.badge{display:inline-block;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.08em;font-size:.58rem;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--olive-deep);background:var(--ivory-warm);white-space:nowrap}
+.badge.ok{background:var(--olive);color:var(--ivory);border-color:var(--olive)}
+.badge.part{background:var(--olive-mist);color:var(--olive-ink);border-color:var(--olive-soft)}
+.badge.wait{background:var(--cream);color:var(--ink-faint)}
+.badge.cancel{background:var(--warn-bg);color:var(--warn-ink);border-color:var(--warn-line)}
+.badge.find{background:#E9D9D9;color:#7a2e2e;border-color:#c08a8a}
 a.ext{color:var(--olive-deep);text-decoration:none;border-bottom:1px solid var(--line)}
+.group-row td{background:var(--ivory-warm);font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.14em;font-size:.66rem;color:var(--olive-ink);font-weight:600;padding-top:13px}
 
 /* Budget prévisionnel groupé */
-.day-block{margin-top:14px}
-.day-title{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.18em;font-size:.74rem;color:var(--olive-deep);border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:8px}
-.line{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:.96rem;border-bottom:1px dotted var(--line-soft)}
+.day-block{margin-top:6px}
+.day-title{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.18em;font-size:.74rem;color:var(--olive-deep);border-bottom:1px solid var(--line);padding-bottom:6px;margin:16px 0 8px}
+.line{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:.96rem;border-bottom:1px dotted var(--line-soft)}
 .line:last-child{border-bottom:0}
-.line .l{color:var(--ink-soft)}
-.line .l small{color:var(--ink-faint);font-style:italic}
+.line .l{color:var(--ink-soft)} .line .l small{color:var(--ink-faint);font-style:italic}
+.line .l .matched{display:inline-block;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.08em;font-size:.56rem;color:var(--olive-deep);background:var(--ivory-warm);border:1px solid var(--line-soft);border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle}
 .line .v{font-family:var(--font-serif);color:var(--olive-deep);white-space:nowrap}
 .line .v.empty{color:var(--ink-faint);font-style:italic;font-family:var(--font-body)}
 .line .v.credit{color:var(--olive)}
 
 /* Rétroplanning */
 .retro-day{margin-top:16px}
-.retro-day > h3{font-family:var(--font-serif);font-weight:600;font-size:1.2rem;color:var(--olive-deep);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:8px}
+.retro-day>h3{font-family:var(--font-serif);font-weight:600;font-size:1.2rem;color:var(--olive-deep);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:8px}
 .task{display:flex;gap:9px;align-items:flex-start;padding:5px 0;font-size:.95rem}
 .task .box{flex:0 0 auto;width:15px;height:15px;border:1.5px solid var(--olive-soft);border-radius:3px;margin-top:4px}
 .task .when{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.1em;font-size:.6rem;color:var(--olive-deep);background:var(--ivory-warm);border:1px solid var(--line-soft);border-radius:999px;padding:1px 8px;margin-right:6px;white-space:nowrap}
 .task .who-t{color:var(--olive);font-style:italic}
 
-/* détails / collapse */
-details.coll>summary{cursor:pointer;list-style:none;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:var(--olive-deep);padding:6px 0}
+details.coll>summary{cursor:pointer;list-style:none;font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:var(--olive-deep);padding:8px 0}
 details.coll>summary::-webkit-details-marker{display:none}
 details.coll>summary::before{content:"▸ ";color:var(--olive-soft)}
 details.coll[open]>summary::before{content:"▾ "}
 
-/* États de chargement / erreur */
 .status{text-align:center;padding:40px 0;color:var(--ink-faint);font-style:italic}
-.err{background:#EFE9D8;border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px;color:var(--olive-ink);text-align:center;font-size:.95rem}
-
-/* Pied & actions */
+.err{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:var(--radius-lg);padding:18px;color:var(--warn-ink);text-align:center;font-size:.95rem}
 .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
 .btn{font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--ivory);background:var(--olive);border:1px solid var(--olive);border-radius:999px;padding:9px 20px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:.2s}
-.btn:hover{background:var(--olive-deep)}
-.btn.ghost{background:transparent;color:var(--olive-deep)}
-.btn.ghost:hover{background:var(--olive);color:var(--ivory)}
-.updated{text-align:center;font-size:.78rem;color:var(--ink-faint);margin-top:14px;font-family:var(--font-caps);letter-spacing:.06em}
-footer{text-align:center;padding:40px 0 10px;color:var(--ink-faint)}
+.btn:hover{background:var(--olive-deep)} .btn.ghost{background:transparent;color:var(--olive-deep)} .btn.ghost:hover{background:var(--olive);color:var(--ivory)}
+.updated{text-align:center;font-size:.78rem;color:var(--ink-faint);margin-top:13px;font-family:var(--font-caps);letter-spacing:.06em}
+footer{text-align:center;padding:38px 0 10px;color:var(--ink-faint)}
 footer .fl{font-family:var(--font-script);color:var(--olive-soft);font-size:1.8rem}
 
-/* ===== Impression ===== */
+/* Tableau adaptatif : reflow en blocs compacts sur petit écran */
+@media(max-width:560px){
+  .rtbl{border:0;overflow:visible}
+  .rtbl table{min-width:0;background:transparent}
+  .rtbl thead{display:none}
+  .rtbl tbody tr,.rtbl tfoot tr{display:block;border:1px solid var(--line);border-radius:8px;margin-bottom:10px;padding:9px 13px;background:var(--cream)}
+  .rtbl td{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:4px 0;border:0;text-align:right;font-size:.95rem}
+  .rtbl td:first-child{display:block;text-align:left;border-bottom:1px solid var(--line-soft);padding-bottom:7px;margin-bottom:5px}
+  .rtbl td::before{content:attr(data-label);font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.1em;font-size:.6rem;color:var(--ink-faint);text-align:left;flex:0 0 auto}
+  .rtbl td:first-child::before{display:none}
+  .rtbl td.num{font-size:1.05rem}
+  .rtbl tfoot tr{background:var(--olive-mist)}
+  .rtbl .sub-modal{max-width:none}
+  .rtbl .mini{display:inline;margin-left:6px}
+  .rtbl td.empty-cell{display:none}
+}
 @media print{
-  @page{margin:14mm}
-  html,body{background:#fff;font-size:11.5pt;color:#000}
+  @page{margin:13mm}
+  html,body{background:#fff;font-size:11pt;color:#000}
   nav.chips,.actions,.btn,.refresh-row{display:none!important}
   .wrap{max-width:none;padding:0}
-  section{padding-top:20px;page-break-inside:auto}
-  .card,.kpi,.poste,table,.day-block,.retro-day{page-break-inside:avoid}
-  .couple{color:var(--olive)}
+  section{padding-top:18px;page-break-inside:auto}
+  .card,.kpi,table,.day-block,.retro-day,.callout,.tbl-scroll{page-break-inside:avoid}
+  .tbl-scroll{overflow:visible} table{min-width:0}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  details.coll{open:true}
-  details.coll>summary{display:none}
-  details.coll>*{display:block!important}
-  .sec-head{page-break-after:avoid}
-  h2.sec-title{page-break-after:avoid}
+  details.coll>summary{display:none} details.coll>*{display:block!important}
+  .sec-head,h2.sec-title,h3.sub{page-break-after:avoid}
 }
 </style>
 </head>
@@ -177,6 +169,7 @@ footer .fl{font-family:var(--font-script);color:var(--olive-soft);font-size:1.8r
 
 <header class="top">
   <div class="wrap">
+    <img class="logo" src="assets/logos/logo-olivier-monogram.png" alt="Marie & Antony">
     <div class="eyebrow">Le mariage de</div>
     <div class="couple">Marie&nbsp;&amp;&nbsp;Antony</div>
     <div class="subtitle">Suivi du budget &amp; de l'organisation</div>
@@ -189,19 +182,17 @@ footer .fl{font-family:var(--font-script);color:var(--olive-soft);font-size:1.8r
   </div>
 </header>
 
-<nav class="chips">
-  <div class="chips-inner">
-    <a href="#budget">Budget</a>
-    <a href="#financement">Qui paie</a>
-    <a href="#engage">Dépenses engagées</a>
-    <a href="#previsionnel">Prévisionnel</a>
-    <a href="#petites">Petites dépenses</a>
-    <a href="#invites">Invités</a>
-    <a href="#logements">Logements</a>
-    <a href="#retro">Rétroplanning</a>
-    <a href="#prestataires">Prestataires</a>
-  </div>
-</nav>
+<nav class="chips"><div class="chips-inner">
+  <a href="#budget">Budget</a>
+  <a href="#financement">Qui paie</a>
+  <a href="#engage">Dépenses engagées</a>
+  <a href="#previsionnel">Prévisionnel</a>
+  <a href="#petites">Petites dépenses</a>
+  <a href="#invites">Invités</a>
+  <a href="#logements">Logements</a>
+  <a href="#retro">Rétroplanning</a>
+  <a href="#prestataires">Prestataires</a>
+</div></nav>
 
 <main class="wrap" id="app">
   <div class="status" id="loading">Chargement des données du tableau…</div>
@@ -209,131 +200,99 @@ footer .fl{font-family:var(--font-script);color:var(--olive-soft);font-size:1.8r
 
 <footer>
   <div class="fl">Marie &amp; Antony</div>
-  <div style="font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.2em;font-size:.66rem;margin-top:6px">Données synchronisées en direct depuis le tableau partagé</div>
+  <div style="font-family:var(--font-caps);text-transform:uppercase;letter-spacing:.2em;font-size:.66rem;margin-top:6px">Synchronisé en direct avec le tableau partagé</div>
 </footer>
 
 <script>
-/* ============================================================
-   Configuration — feuille Google partagée (lecture seule, en direct)
-   ============================================================ */
 const SHEET='1ddsxg7VWNyZjinIJdfncMoZ08IdK6A6dLF1_JLOt78g';
-const TABS={
-  budget:'71242059', petites:'546987903', invites:'100985339',
-  logements:'519314487', retro:'1702573515', tables:'1254093292', comparatif:'57283534'
-};
+const TABS={budget:'71242059',petites:'546987903',invites:'100985339',logements:'519314487',retro:'1702573515',tables:'1254093292',comparatif:'57283534'};
 const store={};
 
-/* ---- Helpers d'accès aux cellules gviz ---- */
 function cell(row,i){ return (row.c && row.c[i]) ? row.c[i] : null; }
 function txt(row,i){ const c=cell(row,i); if(!c) return ''; if(c.f!=null) return String(c.f).trim(); if(c.v!=null) return String(c.v).trim(); return ''; }
-function num(row,i){
-  const c=cell(row,i); if(!c) return NaN;
-  if(typeof c.v==='number') return c.v;
-  let s=(c.f!=null?c.f:c.v); if(s==null) return NaN;
-  s=String(s).replace(/[  \s€]/g,'').replace(',','.');
-  if(s===''||s==='-') return NaN;
-  const n=parseFloat(s); return isNaN(n)?NaN:n;
-}
-function eur(n){ if(n==null||isNaN(n)) return '—'; const neg=n<0; const v=Math.abs(Math.round(n)).toLocaleString('fr-FR').replace(/ /g,' '); return (neg?'– ':'')+v+' €'; }
+function num(row,i){ const c=cell(row,i); if(!c) return NaN; if(typeof c.v==='number') return c.v; let s=(c.f!=null?c.f:c.v); if(s==null) return NaN; s=String(s).replace(/[  \s€]/g,'').replace(',','.'); if(s===''||s==='-') return NaN; const n=parseFloat(s); return isNaN(n)?NaN:n; }
+function eur(n){ if(n==null||isNaN(n)) return '—'; const neg=n<0; const v=Math.abs(Math.round(n)).toLocaleString('fr-FR').replace(/ /g,' '); return (neg?'– ':'')+v+' €'; }
 function esc(s){ return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function findRow(rows,col,match){ for(let i=0;i<rows.length;i++){ const v=txt(rows[i],col).toLowerCase(); if(match(v,i)) return i; } return -1; }
 
-/* ============================================================
-   Chargement JSONP (contourne CORS, données en temps réel)
-   ============================================================ */
-function reloadData(){
-  document.getElementById('app').innerHTML='<div class="status" id="loading">Mise à jour des données…</div>';
-  Object.keys(TABS).forEach(k=>delete store[k]);
-  load();
-}
+function reloadData(){ document.getElementById('app').innerHTML='<div class="status">Mise à jour…</div>'; Object.keys(TABS).forEach(k=>delete store[k]); load(); }
 function load(){
-  const keys=Object.keys(TABS); let done=0, errored=false;
-  const t=Date.now();
-  const timer=setTimeout(()=>{ if(done<keys.length && !errored){ errored=true; showError(); } }, 12000);
+  const keys=Object.keys(TABS); let done=0,errored=false; const t=Date.now();
+  const timer=setTimeout(()=>{ if(done<keys.length&&!errored){errored=true;showError();} },12000);
   keys.forEach(k=>{
     const cb='cb_'+k;
-    window[cb]=function(resp){
-      try{ store[k]=(resp&&resp.table&&resp.table.rows)?resp.table.rows:[]; }catch(e){ store[k]=[]; }
-      done++;
-      if(done===keys.length){ clearTimeout(timer); render(); }
-    };
+    window[cb]=function(resp){ try{ store[k]=(resp&&resp.table&&resp.table.rows)?resp.table.rows:[]; }catch(e){ store[k]=[]; } done++; if(done===keys.length){ clearTimeout(timer); render(); } };
     const s=document.createElement('script');
     s.src='https://docs.google.com/spreadsheets/d/'+SHEET+'/gviz/tq?tqx=out:json;responseHandler:'+cb+'&gid='+TABS[k]+'&headers=0&_='+t;
-    s.onerror=function(){ if(!errored){ errored=true; clearTimeout(timer); showError(); } };
+    s.onerror=function(){ if(!errored){errored=true;clearTimeout(timer);showError();} };
     document.head.appendChild(s);
   });
 }
-function showError(){
-  document.getElementById('app').innerHTML=
-   '<div class="err"><b>Impossible de charger les données.</b><br>'+
-   'Vérifie que le tableau Google est bien partagé en lecture (« Tout utilisateur disposant du lien »), puis '+
-   '<a class="ext" href="javascript:reloadData()">réessaie</a>.</div>';
-}
+function showError(){ document.getElementById('app').innerHTML='<div class="err"><b>Impossible de charger les données.</b><br>Vérifie que le tableau Google est partagé en lecture, puis <a class="ext" href="javascript:reloadData()">réessaie</a>.</div>'; }
 
-/* ============================================================
-   Rendu
-   ============================================================ */
 function render(){
-  const B=store.budget||[];
-  let html='';
-  html+=secBudget(B);
-  html+=secFinancement(B);
-  html+=secEngage(B);
-  html+=secPrevisionnel(B);
-  html+=secPetites(store.petites||[]);
-  html+=secInvites(store.invites||[]);
-  html+=secLogements(store.logements||[], store.invites||[]);
-  html+=secRetro(store.retro||[], store.tables||[]);
-  html+=secPrestataires(store.comparatif||[]);
-  document.getElementById('app').innerHTML=html;
+  const B=store.budget||[], P=store.petites||[];
+  let h='';
+  h+=secBudget(B);
+  h+=secFinancement(B);
+  h+=secEngage(B);
+  h+=secPrevisionnel(B,P);
+  h+=secPetites(P);
+  h+=secInvites(store.invites||[]);
+  h+=secLogements(store.logements||[], store.invites||[]);
+  h+=secRetro(store.retro||[], store.tables||[]);
+  h+=secPrestataires(store.comparatif||[]);
+  document.getElementById('app').innerHTML=h;
   const d=new Date();
   document.getElementById('updated').textContent='Données à jour au '+d.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})+' · '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
 }
+function secHead(id,n,title,intro){ return '<section id="'+id+'"><div class="sec-head"><span class="sec-num">'+n+'</span><h2 class="sec-title">'+title+'</h2></div><hr class="rule">'+(intro?'<p class="sec-intro">'+intro+'</p>':'<div style="height:14px"></div>'); }
+function kpi(lbl,val,sub,cls){ return '<div class="kpi'+(cls?' '+cls:'')+'"><span class="kpi-lbl">'+lbl+'</span><span class="kpi-val">'+val+'</span>'+(sub?'<span class="kpi-sub">'+sub+'</span>':'')+'</div>'; }
 
-function secHead(id,n,title,intro){
-  return '<section id="'+id+'"><div class="sec-head"><span class="sec-num">'+n+'</span>'+
-    '<h2 class="sec-title">'+title+'</h2></div><hr class="rule">'+
-    (intro?'<p class="sec-intro">'+intro+'</p>':'<div style="height:16px"></div>');
+/* ===== 1. Budget ===== */
+function budgetFigures(R){
+  const f={};
+  let i;
+  i=findRow(R,1,v=>v==='total'); if(i>=0){ f.apports=num(R[i],3); }
+  i=findRow(R,1,v=>v.startsWith('budget estimé')); if(i>=0) f.estime=num(R[i],3);
+  i=findRow(R,1,v=>v==='ecart'); if(i>=0){ f.ecart=num(R[i],3); if(i+1<R.length) f.ecartFam=num(R[i+1],3); }
+  i=findRow(R,1,v=>v.startsWith('total engagé')); if(i>=0){ f.engage=num(R[i],3); f.paye=num(R[i],6); f.reste=num(R[i],11); }
+  return f;
 }
-
-/* ---- Recherche d'ancres dans l'onglet budget ---- */
-function findRow(rows,col,match){ for(let i=0;i<rows.length;i++){ const v=txt(rows[i],col).toLowerCase(); if(match(v,i)) return i; } return -1; }
-
-/* ===== 1. Budget — l'essentiel ===== */
 function secBudget(R){
-  let prevTotal=NaN, ecart=NaN;
-  const iEst=findRow(R,1,v=>v.startsWith('budget estimé')); if(iEst>=0) prevTotal=num(R[iEst],3);
-  const iEc=findRow(R,1,v=>v==='ecart'); if(iEc>=0) ecart=num(R[iEc],3);
-  // totaux engagés
-  const iTot=findRow(R,1,v=>v.startsWith('total engagé'));
-  let engage=NaN, paye=NaN, reste=NaN;
-  if(iTot>=0){ engage=num(R[iTot],3); paye=num(R[iTot],6); reste=num(R[iTot],11); }
-  const pct = (paye&&engage)? Math.round(paye/engage*100):0;
-  let h=secHead('budget','i','Le budget en un coup d’œil',
-    'Deux chiffres à retenir : ce qui est <b>déjà engagé par contrat</b> (et l’acompte versé), et le <b>budget prévisionnel total</b> estimé pour l’ensemble du mariage.');
-  h+='<div class="grid g4">'+
-     kpi('Prévisionnel total',eur(prevTotal),'tout le mariage estimé',true)+
-     kpi('Engagé (contrats signés)',eur(engage),'')+
-     kpi('Déjà payé (acomptes)',eur(paye),pct+'% de l’engagé')+
-     kpi('Reste à payer (engagé)',eur(reste),'sur les contrats signés')+
+  const f=budgetFigures(R);
+  const pct=(f.paye&&f.engage)?Math.round(f.paye/f.engage*100):0;
+  const manque=(!isNaN(f.ecart))?Math.abs(f.ecart):(f.estime-f.apports);
+  let h=secHead('budget','i','Le budget',
+    'D’abord le coût global du mariage et ce qui reste à financer ; ensuite, où en sont les paiements sur les contrats déjà signés.');
+  h+='<h3 class="sub">Coût global &amp; financement</h3>';
+  h+='<div class="grid g3">'+
+     kpi('Budget estimé total',eur(f.estime),'tout le mariage',  'hl')+
+     kpi('Apports prévus',eur(f.apports),'somme des 4 contributeurs')+
+     kpi('Manque à financer',eur(manque),(!isNaN(f.ecartFam)?'≈ '+eur(Math.abs(f.ecartFam))+' par famille':''),'warn')+
      '</div>';
-  h+='<div class="card progress-wrap" style="margin-top:14px"><div class="progress"><i style="width:'+pct+'%"></i></div>'+
-     '<div class="progress-legend"><span>Payé : '+eur(paye)+'</span><span>Engagé : '+eur(engage)+'</span></div>'+
-     '<p class="note" style="border:0;padding-top:10px">L’écart entre le prévisionnel ('+eur(prevTotal)+') et l’engagé correspond aux postes encore à réserver (traiteur du civil, alcool, fleurs, tenues…). Détail dans « Prévisionnel ».</p>'+
-     '</div></section>';
-  return h;
+  h+='<div class="callout"><div class="big">'+eur(manque)+'</div><div class="txt">Il manque <b>'+eur(manque)+'</b> entre le budget estimé ('+eur(f.estime)+') et les apports actuellement prévus ('+eur(f.apports)+')'+(!isNaN(f.ecartFam)?', soit environ <b>'+eur(Math.abs(f.ecartFam))+' à compléter par famille</b>':'')+'.</div></div>';
+  h+='<h3 class="sub">Avancement des paiements</h3>';
+  h+='<div class="grid g3">'+
+     kpi('Engagé (contrats signés)',eur(f.engage),'')+
+     kpi('Déjà payé (acomptes)',eur(f.paye),pct+'% de l’engagé')+
+     kpi('Reste à payer (engagé)',eur(f.reste),'sur les contrats')+
+     '</div>';
+  h+='<div class="card" style="margin-top:13px"><div class="progress"><i style="width:'+pct+'%"></i></div>'+
+     '<div class="progress-legend"><span>Payé : '+eur(f.paye)+'</span><span>Engagé : '+eur(f.engage)+'</span></div></div>';
+  return h+'</section>';
 }
-function kpi(lbl,val,sub,hl){ return '<div class="kpi'+(hl?' hl':'')+'"><span class="kpi-lbl">'+lbl+'</span><span class="kpi-val">'+val+'</span>'+(sub?'<span class="kpi-sub">'+sub+'</span>':'')+'</div>'; }
 
 /* ===== 2. Qui finance quoi ===== */
 const PAYEURS=[
-  {key:'MORLA', who:'Famille Morla', role:'Parents d’Antony'},
-  {key:'GAGEO', who:'Famille Gageonnet', role:'Parents de Marie'},
-  {key:'Antony', who:'Antony', role:'Les mariés'},
-  {key:'Marie', who:'Marie', role:'Les mariés'}
+  {key:'MORLA',who:'Famille Morla',role:'Parents d’Antony'},
+  {key:'GAGEO',who:'Famille Gageonnet',role:'Parents de Marie'},
+  {key:'Antony',who:'Antony',role:'Les mariés'},
+  {key:'Marie',who:'Marie',role:'Les mariés'}
 ];
 function secFinancement(R){
   let h=secHead('financement','ii','Qui finance quoi',
-    'Budget indicatif que chacun prévoit d’apporter, et montant déjà versé en acomptes à ce jour. (Les libellés peuvent être ajustés si besoin.)');
+    'Budget indicatif que chacun prévoit d’apporter, et montant déjà versé en acomptes. (Libellés ajustables.)');
   h+='<div class="grid g2">';
   PAYEURS.forEach(p=>{
     const i=findRow(R,1,v=>v===p.key.toLowerCase());
@@ -343,244 +302,230 @@ function secFinancement(R){
        '<div class="row"><span>Déjà versé</span><b>'+eur(paid)+'</b></div></div>';
   });
   h+='</div>';
-  const iT=findRow(R,1,v=>v==='total'); // 1er "Total" = total des contributions
-  if(iT>=0){
-    h+='<div class="card" style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;background:var(--ivory-warm)">'+
-       '<span class="kpi-lbl" style="margin:0">Total des apports prévus</span>'+
-       '<span style="font-family:var(--font-serif);font-weight:600;font-size:1.4rem;color:var(--olive-deep)">'+eur(num(R[iT],3))+'</span></div>';
-  }
   return h+'</section>';
 }
 
-/* ===== 3. Dépenses engagées (contrats signés) ===== */
+/* ===== 3. Dépenses engagées — tableau ===== */
 function secEngage(R){
   const iH=findRow(R,1,v=>v==='libellé');
   const iE=findRow(R,1,v=>v.startsWith('total engagé'));
   let h=secHead('engage','iii','Dépenses engagées — contrats signés',
-    'Chaque prestataire réservé : le montant total fixé par le contrat, l’acompte déjà versé (et par qui), et ce qu’il reste à régler.');
-  if(iH<0||iE<0){ return h+'<div class="err">Section budget introuvable.</div></section>'; }
+    'Chaque prestataire réservé : le montant fixé par contrat, l’acompte déjà versé (et par qui), le reste à régler et l’échéance.');
+  if(iH<0||iE<0) return h+'<div class="err">Section budget introuvable.</div></section>';
+  h+='<div class="tbl-scroll rtbl"><table><thead><tr>'+
+     '<th>Poste &amp; prestataire</th><th class="num">Montant</th><th class="num">Acompte versé</th><th class="num">Reste à payer</th><th>Statut</th>'+
+     '</tr></thead><tbody>';
   for(let i=iH+1;i<iE;i++){
     const r=R[i]; const name=txt(r,1); if(!name) continue;
     const montant=num(r,3); if(isNaN(montant)) continue;
-    const presta=txt(r,2), pct=txt(r,5), acompte=num(r,6), reste=num(r,11), modal=txt(r,12), note4=txt(r,4);
+    const presta=txt(r,2),pct=txt(r,5),acompte=num(r,6),reste=num(r,11),modal=txt(r,12),note4=txt(r,4);
     const pa=num(r,7),pm=num(r,8),pmo=num(r,9),pg=num(r,10);
     const paid=isNaN(acompte)?0:acompte;
-    const pPaid=montant?Math.min(100,Math.round(paid/montant*100)):0;
-    const fullyPaid=(!isNaN(reste)&&Math.round(reste)<=0)&&paid>0;
-    let split=[];
-    if(!isNaN(pa)&&pa>0) split.push('<span>Antony <b>'+eur(pa)+'</b></span>');
-    if(!isNaN(pm)&&pm>0) split.push('<span>Marie <b>'+eur(pm)+'</b></span>');
-    if(!isNaN(pmo)&&pmo>0) split.push('<span>F. Morla <b>'+eur(pmo)+'</b></span>');
-    if(!isNaN(pg)&&pg>0) split.push('<span>F. Gageonnet <b>'+eur(pg)+'</b></span>');
     const toCancel=/annuler/i.test(note4);
-    h+='<div class="poste"><div class="poste-top"><div><div class="poste-name">'+esc(name)+'</div>'+
-       (presta?'<div class="poste-presta">'+esc(presta)+'</div>':'')+'</div>'+
-       '<div class="poste-total">'+eur(montant)+'</div></div>';
-    if(!toCancel && paid>0){
-      h+='<div class="poste-bars"><i class="bar-paid" style="width:'+pPaid+'%"></i><i class="bar-rest" style="width:'+(100-pPaid)+'%"></i></div>';
-    }
-    h+='<div class="poste-meta">';
-    if(toCancel){
-      h+='<span class="m"><span class="tag warn">À annuler</span></span>';
-    } else {
-      if(fullyPaid){ h+='<span class="m"><span class="tag paid">Soldé</span></span>'; }
-      h+='<span class="m">Acompte '+(pct?'('+esc(pct)+') ':'')+'<b>'+eur(acompte)+'</b></span>';
-      h+='<span class="m">Reste à payer <b>'+(isNaN(reste)?'—':eur(reste))+'</b></span>';
-    }
-    h+='</div>';
-    if(split.length) h+='<div class="who-split">Versé par : '+split.join(' ')+'</div>';
-    if(modal) h+='<div class="note">'+esc(modal)+'</div>';
+    let split=[];
+    if(pa>0)split.push('Antony '+eur(pa)); if(pm>0)split.push('Marie '+eur(pm));
+    if(pmo>0)split.push('F. Morla '+eur(pmo)); if(pg>0)split.push('F. Gageonnet '+eur(pg));
+    let badge;
+    if(toCancel) badge='<span class="badge cancel">À annuler</span>';
+    else if(!isNaN(reste)&&Math.round(reste)<=0&&paid>0) badge='<span class="badge ok">Soldé</span>';
+    else if(paid>0) badge='<span class="badge part">Acompte versé '+(pct?'· '+esc(pct):'')+'</span>';
+    else badge='<span class="badge wait">À régler</span>';
+    h+='<tr><td><b style="font-family:var(--font-serif);font-size:1.05rem">'+esc(name)+'</b>'+
+       (presta?'<span class="sub-presta">'+esc(presta)+'</span>':'')+
+       (modal?'<span class="sub-modal">⏱ '+esc(modal)+'</span>':'')+'</td>'+
+       '<td class="num" data-label="Montant">'+eur(montant)+'</td>'+
+       '<td class="num" data-label="Acompte versé">'+(paid>0?eur(acompte):'—')+(split.length?'<span class="mini">'+esc(split.join(' · '))+'</span>':'')+'</td>'+
+       '<td class="num" data-label="Reste à payer">'+(toCancel?'—':(isNaN(reste)?'—':eur(reste)))+'</td>'+
+       '<td data-label="Statut">'+badge+'</td></tr>';
   }
-  // ligne total
   const eng=num(R[iE],3),pay=num(R[iE],6),res=num(R[iE],11);
-  h+='<div class="card" style="margin-top:14px"><div class="grid g3">'+
-     '<div style="text-align:center"><span class="kpi-lbl">Total engagé</span><div style="font-family:var(--font-serif);font-weight:600;font-size:1.3rem;color:var(--olive-deep)">'+eur(eng)+'</div></div>'+
-     '<div style="text-align:center"><span class="kpi-lbl">Acomptes versés</span><div style="font-family:var(--font-serif);font-weight:600;font-size:1.3rem;color:var(--olive-deep)">'+eur(pay)+'</div></div>'+
-     '<div style="text-align:center"><span class="kpi-lbl">Reste à payer</span><div style="font-family:var(--font-serif);font-weight:600;font-size:1.3rem;color:var(--olive-deep)">'+eur(res)+'</div></div>'+
-     '</div></div>';
+  h+='</tbody><tfoot><tr><td>TOTAL ENGAGÉ</td><td class="num" data-label="Montant">'+eur(eng)+'</td><td class="num" data-label="Acompte versé">'+eur(pay)+'</td><td class="num" data-label="Reste à payer">'+eur(res)+'</td><td class="empty-cell"></td></tr></tfoot></table></div>';
   return h+'</section>';
 }
 
-/* ===== 4. Budget prévisionnel détaillé (par jour) ===== */
-function secPrevisionnel(R){
-  const iH=findRow(R,1,v=>v==='budget'); // ancre "BUDGET"
+/* ===== 4. Budget prévisionnel — avec rapprochement petites dépenses ===== */
+function petitesLabels(P){
+  const out=[];
+  for(let i=1;i<P.length;i++){ const l=txt(P[i],1); if(l && !/^total/i.test(l)) out.push(l); }
+  return out;
+}
+function matchPetite(label,plabels){
+  const keys=['pétale','petale','cigare','serviette','plateau','boite','boîte'];
+  const low=label.toLowerCase();
+  for(const k of keys){
+    if(low.includes(k) && plabels.some(p=>p.toLowerCase().includes(k))) return true;
+  }
+  return false;
+}
+function secPrevisionnel(R,P){
+  const iH=findRow(R,1,v=>v==='budget');
+  const plabels=petitesLabels(P);
   let h=secHead('previsionnel','iv','Budget prévisionnel détaillé',
-    'L’estimation complète, poste par poste, regroupée par moment du mariage. Inclut ce qui n’est pas encore réservé.');
+    'L’estimation complète, regroupée par moment du mariage. Les postes déjà achetés via les petites dépenses sont signalés pour éviter de les compter deux fois.');
   if(iH<0) return h+'<div class="err">Section prévisionnel introuvable.</div></section>';
   const DAYS=['jeudi - mariage civil','vendredi','samedi','samedi midi','dimanche','autres / décorations'];
-  let groups=[], cur=null, total=NaN;
+  let groups=[],cur=null,total=NaN;
   for(let i=iH+1;i<R.length;i++){
     const r=R[i]; const lbl=txt(r,1); if(!lbl) continue;
     const low=lbl.toLowerCase();
     if(low==='total'){ total=num(r,3); break; }
     if(DAYS.includes(low)){ cur={day:lbl,items:[]}; groups.push(cur); continue; }
     if(!cur){ cur={day:'',items:[]}; groups.push(cur); }
-    const m=num(r,3);
-    const nb=txt(r,4), pp=txt(r,5);
-    const credit=/argent à recevoir/i.test(lbl);
-    cur.items.push({label:lbl, montant:m, nb, pp, credit});
+    cur.items.push({label:lbl,montant:num(r,3),nb:txt(r,4),pp:txt(r,5),credit:/argent à recevoir/i.test(lbl),matched:matchPetite(lbl,plabels)});
   }
   h+='<div class="card">';
   groups.forEach(g=>{
     if(!g.items.length) return;
     h+='<div class="day-block">'+(g.day?'<div class="day-title">'+esc(g.day)+'</div>':'');
     g.items.forEach(it=>{
-      let sub=''; if(it.nb && it.pp){ sub=' <small>('+esc(it.nb)+' × '+esc(it.pp)+' €)</small>'; }
-      let v; if(it.credit){ v='<span class="v credit">'+eur(it.montant)+'</span>'; }
-      else if(isNaN(it.montant)){ v='<span class="v empty">à estimer</span>'; }
-      else { v='<span class="v">'+eur(it.montant)+'</span>'; }
-      h+='<div class="line"><span class="l">'+esc(it.label)+sub+'</span>'+v+'</div>';
+      let sub=(it.nb&&it.pp)?' <small>('+esc(it.nb)+' × '+esc(it.pp)+' €)</small>':'';
+      let tag=it.matched?'<span class="matched">déjà acheté → petites dépenses</span>':'';
+      let v; if(it.credit) v='<span class="v credit">'+eur(it.montant)+'</span>';
+      else if(isNaN(it.montant)) v='<span class="v empty">'+(it.matched?'voir petites dép.':'à estimer')+'</span>';
+      else v='<span class="v">'+eur(it.montant)+'</span>';
+      h+='<div class="line"><span class="l">'+esc(it.label)+sub+tag+'</span>'+v+'</div>';
     });
     h+='</div>';
   });
   h+='</div>';
-  if(!isNaN(total)){
-    h+='<div class="card" style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;background:var(--olive)">'+
-       '<span class="kpi-lbl" style="margin:0;color:var(--ivory)">Total prévisionnel</span>'+
-       '<span style="font-family:var(--font-serif);font-weight:600;font-size:1.45rem;color:var(--ivory)">'+eur(total)+'</span></div>';
-  }
+  if(!isNaN(total)) h+='<div class="card" style="margin-top:13px;display:flex;justify-content:space-between;align-items:center;background:var(--olive)"><span class="kpi-lbl" style="margin:0;color:var(--ivory)">Total prévisionnel</span><span style="font-family:var(--font-serif);font-weight:600;font-size:1.45rem;color:var(--ivory)">'+eur(total)+'</span></div>';
   return h+'</section>';
 }
 
 /* ===== 5. Petites dépenses ===== */
 function secPetites(R){
   let h=secHead('petites','v','Petites dépenses',
-    'Les achats annexes réglés au fil de l’eau par Marie ou Antony.');
+    'Les achats annexes réglés au fil de l’eau par Marie ou Antony. (Ces montants figurent déjà dans l’engagé, ligne « Petites dépenses ».)');
   if(!R.length) return h+'<div class="err">Aucune donnée.</div></section>';
   h+='<div class="tbl-scroll"><table><thead><tr><th>Achat</th><th class="num">Total</th><th class="num">Antony</th><th class="num">Marie</th></tr></thead><tbody>';
+  let footer='';
   for(let i=1;i<R.length;i++){
     const r=R[i]; const lbl=txt(r,1); if(!lbl) continue;
-    const isTot=/^total/i.test(lbl);
-    const tot=num(r,2),a=num(r,3),m=num(r,4);
-    h+='<tr'+(isTot?' class="tot"':'')+'><td>'+esc(lbl)+'</td><td class="num">'+(isNaN(tot)?'—':eur(tot))+'</td><td class="num">'+(isNaN(a)?'—':eur(a))+'</td><td class="num">'+(isNaN(m)?'—':eur(m))+'</td></tr>';
+    const isTot=/^total/i.test(lbl); const tot=num(r,2),a=num(r,3),m=num(r,4);
+    const rowHtml='<td>'+esc(lbl)+'</td><td class="num">'+(isNaN(tot)?'—':eur(tot))+'</td><td class="num">'+(isNaN(a)?'—':eur(a))+'</td><td class="num">'+(isNaN(m)?'—':eur(m))+'</td>';
+    if(isTot) footer='<tfoot><tr>'+rowHtml+'</tr></tfoot>'; else h+='<tr>'+rowHtml+'</tr>';
   }
-  return h+'</tbody></table></div></section>';
+  return h+'</tbody>'+footer+'</table></div></section>';
 }
 
 /* ===== 6. Invités ===== */
+const COTE_ORDER=['Copains','Famille Antony','Famille Marie','Amis parents Antony','Amis parents Marie','Collègues Marie'];
+function mapLog(v){ if(!v) return ''; const l=v.toLowerCase(); if(l==='logement 1') return 'Villa Benji'; if(l.startsWith('logement 2')) return 'Villa Venica'; return v; }
+function parseGuests(R){
+  const iH=findRow(R,1,v=>v==='invités'); if(iH<0) return [];
+  const guests=[];
+  for(let i=iH+1;i<R.length;i++){
+    const r=R[i]; const nom=txt(r,1); if(!nom) break;
+    guests.push({lieu:txt(r,0),nom,nb:num(r,2)||0,cote:txt(r,3)||'Autres',std:txt(r,4),
+      brunch:num(r,6)||0,civil:num(r,7)||0,logM:mapLog(txt(r,8)),logC:txt(r,9),chambre:txt(r,11)});
+  }
+  return guests;
+}
 function secInvites(R){
   let h=secHead('invites','vi','Les invités',
-    'Le récapitulatif des invitations, la répartition par groupe, et qui dort où.');
-  if(!R.length) return h+'<div class="err">Aucune donnée.</div></section>';
-  // collecte
-  let guests=[];
-  for(let i=1;i<R.length;i++){
-    const r=R[i]; const nom=txt(r,1); if(!nom){ break; } // 1ère ligne sans nom = totaux
-    guests.push({lieu:txt(r,0),nom:nom,nb:num(r,2)||0,cote:txt(r,3),std:txt(r,4),
-      brunch:num(r,6)||0,civil:num(r,7)||0,log:txt(r,8),logCivil:txt(r,9)});
-  }
-  const totGuests=guests.reduce((s,g)=>s+g.nb,0);
-  const brunch=guests.reduce((s,g)=>s+g.brunch,0);
-  const civil=guests.reduce((s,g)=>s+g.civil,0);
-  const byCote={}; guests.forEach(g=>{ const c=g.cote||'Autres'; byCote[c]=(byCote[c]||0)+g.nb; });
+    'Trois moments distincts : le <b>mariage</b> du samedi (tous), le <b>mariage civil</b> du jeudi à Antibes, et le <b>brunch</b> du week-end. Plus : qui dort où.');
+  const guests=parseGuests(R);
+  if(!guests.length) return h+'<div class="err">Aucune donnée invités.</div></section>';
+  const totM=guests.reduce((s,g)=>s+g.nb,0);
+  const totCivil=guests.reduce((s,g)=>s+g.civil,0);
+  const totBrunch=guests.reduce((s,g)=>s+g.brunch,0);
+  const stdOK=guests.filter(g=>/oui/i.test(g.std)).reduce((s,g)=>s+g.nb,0);
   h+='<div class="grid g4">'+
-     kpi('Invités (samedi)',totGuests,guests.length+' foyers',true)+
-     kpi('Brunch / week-end',brunch||'—','')+
-     kpi('Mariage civil',civil||'—','jeudi, Antibes')+
-     kpi('Save the Date',guests.filter(g=>/oui/i.test(g.std)).length,'envoyés / '+guests.length)+
+     kpi('Mariage · samedi',totM,guests.length+' foyers','hl')+
+     kpi('Mariage civil · jeudi',totCivil,'Antibes')+
+     kpi('Brunch · week-end',totBrunch,'')+
+     kpi('Save the Date',stdOK,'pers. confirmées')+
      '</div>';
-  // répartition
-  h+='<h3 style="font-family:var(--font-serif);font-weight:600;font-size:1.15rem;color:var(--olive-deep);margin:20px 0 8px">Répartition par groupe</h3>';
-  h+='<div class="card">';
-  const order=Object.keys(byCote).sort((a,b)=>byCote[b]-byCote[a]);
-  order.forEach(c=>{
-    const pc=totGuests?Math.round(byCote[c]/totGuests*100):0;
-    h+='<div style="margin-bottom:10px"><div class="line" style="border:0;padding:2px 0"><span class="l">'+esc(c)+'</span><span class="v">'+byCote[c]+' <small style="color:var(--ink-faint)">('+pc+'%)</small></span></div>'+
-       '<div class="progress" style="height:8px"><i style="width:'+pc+'%"></i></div></div>';
+  // Répartition par côté
+  const byCote={}; guests.forEach(g=>{ byCote[g.cote]=(byCote[g.cote]||0)+g.nb; });
+  const order=COTE_ORDER.filter(c=>byCote[c]).concat(Object.keys(byCote).filter(c=>!COTE_ORDER.includes(c)));
+  h+='<h3 class="sub">Répartition par côté</h3><div class="card">';
+  order.forEach(c=>{ const pc=totM?Math.round(byCote[c]/totM*100):0;
+    h+='<div style="margin-bottom:10px"><div class="line" style="border:0;padding:2px 0"><span class="l">'+esc(c)+'</span><span class="v">'+byCote[c]+' <small style="color:var(--ink-faint)">('+pc+'%)</small></span></div><div class="progress" style="height:8px"><i style="width:'+pc+'%"></i></div></div>';
   });
   h+='</div>';
-  // comparatif Priscille
-  const pE=findRow(R,1,v=>v.startsWith('coté edouard'));
-  const pP=findRow(R,1,v=>v.startsWith('coté priscille'));
-  const pA=findRow(R,1,v=>v==='amis');
+  // Tableau détaillé groupé par côté
+  h+='<h3 class="sub">Liste détaillée — qui vient à quoi &amp; dort où</h3>';
+  h+='<div class="tbl-scroll"><table><thead><tr><th>Invité(s)</th><th class="num">Nb</th><th>Civil</th><th>Logement mariage</th><th>Logement civil</th></tr></thead><tbody>';
+  order.forEach(c=>{
+    const gs=guests.filter(g=>g.cote===c); if(!gs.length) return;
+    const sub=gs.reduce((s,g)=>s+g.nb,0);
+    h+='<tr class="group-row"><td>'+esc(c)+'</td><td class="num">'+sub+'</td><td colspan="3"></td></tr>';
+    gs.forEach(g=>{
+      const civ=g.civil>0?'<span class="badge part">civil ·'+g.civil+'</span>':'<span style="color:var(--ink-faint)">—</span>';
+      const eff=g.logM||(g.lieu&&g.lieu!=='??'?g.lieu:'');
+      let logM = eff ? esc(eff)+(!g.logM?'<span class="mini">suggéré</span>':'')+(g.chambre?'<span class="mini">'+esc(g.chambre)+'</span>':'') : '<span style="color:var(--ink-faint)">à préciser</span>';
+      const logC = g.logC ? esc(g.logC) : '<span style="color:var(--ink-faint)">—</span>';
+      h+='<tr><td>'+esc(g.nom)+'</td><td class="num">'+g.nb+'</td><td>'+civ+'</td><td style="font-size:.86rem">'+logM+'</td><td style="font-size:.84rem;color:var(--ink-soft)">'+logC+'</td></tr>';
+    });
+  });
+  h+='</tbody></table></div>';
+  // Comparatif Priscille
+  const pE=findRow(R,1,v=>v.startsWith('coté edouard')),pP=findRow(R,1,v=>v.startsWith('coté priscille')),pA=findRow(R,1,v=>v==='amis');
   if(pE>=0&&pP>=0){
-    h+='<details class="coll" style="margin-top:14px"><summary>Comparatif — mariage de Priscille</summary><div class="card" style="margin-top:8px">'+
+    h+='<details class="coll"><summary>Comparatif — mariage de Priscille</summary><div class="card" style="margin-top:8px">'+
        '<div class="line"><span class="l">Côté Édouard</span><span class="v">'+(num(R[pE],2)||'—')+'</span></div>'+
        '<div class="line"><span class="l">Côté Priscille</span><span class="v">'+(num(R[pP],2)||'—')+'</span></div>'+
-       (pA>=0?'<div class="line"><span class="l">Amis</span><span class="v">'+(num(R[pA],2)||'—')+'</span></div>':'')+
-       '</div></details>';
+       (pA>=0?'<div class="line"><span class="l">Amis</span><span class="v">'+(num(R[pA],2)||'—')+'</span></div>':'')+'</div></details>';
   }
-  // liste détaillée
-  h+='<details class="coll" style="margin-top:14px"><summary>Voir la liste complète des invités ('+guests.length+' foyers)</summary>'+
-     '<div class="tbl-scroll" style="margin-top:8px"><table><thead><tr><th>Invité(s)</th><th class="num">Nb</th><th>Groupe</th><th>Logement</th></tr></thead><tbody>';
-  guests.forEach(g=>{
-    const log=g.log||'<span style="color:#a08">à trouver</span>';
-    h+='<tr><td>'+esc(g.nom)+'</td><td class="num">'+g.nb+'</td><td style="font-size:.82rem;color:var(--ink-faint)">'+esc(g.cote)+'</td><td style="font-size:.85rem">'+(g.log?esc(g.log):'<span class="tag warn">à trouver</span>')+'</td></tr>';
-  });
-  h+='</tbody></table></div></details>';
   return h+'</section>';
 }
 
 /* ===== 7. Logements ===== */
-function secLogements(R, INV){
+function secLogements(R,INV){
   let h=secHead('logements','vii','Logements',
-    'Les hébergements repérés autour du château (distances &amp; infos), et un récap de qui loge où.');
-  // options d'hébergement
+    'D’un côté les hébergements repérés autour du château (capacité, distance, lien) ; de l’autre, le récap de qui dort où.');
+  // Hébergements repérés
   if(R.length){
-    h+='<div class="tbl-scroll"><table><thead><tr><th>Hébergement</th><th>Capacité</th><th>Trajet</th><th>Infos</th></tr></thead><tbody>';
+    h+='<h3 class="sub">Hébergements repérés</h3><div class="tbl-scroll"><table><thead><tr><th>Hébergement</th><th>Capacité</th><th>Trajet</th><th>Infos</th></tr></thead><tbody>';
     for(let i=1;i<R.length;i++){
       const r=R[i]; const nom=txt(r,2); if(!nom) continue;
-      const cap=txt(r,3)+(txt(r,4)?' · '+txt(r,4):''), trajet=txt(r,6), site=txt(r,7), info=txt(r,8), occ=txt(r,1);
+      const cap=txt(r,3)+(txt(r,4)?' · '+txt(r,4):''),trajet=txt(r,6),site=txt(r,7),info=txt(r,8),occ=txt(r,1);
       let infoCell=esc(info||'');
-      if(site && /^https?:/.test(site)) infoCell=(infoCell?infoCell+' · ':'')+'<a class="ext" href="'+esc(site)+'" target="_blank" rel="noopener">site</a>';
-      if(occ) infoCell=(infoCell?infoCell+'<br>':'')+'<span style="font-size:.78rem;color:var(--ink-faint)">'+esc(occ)+'</span>';
+      if(site&&/^https?:/.test(site)) infoCell=(infoCell?infoCell+' · ':'')+'<a class="ext" href="'+esc(site)+'" target="_blank" rel="noopener">site</a>';
+      if(occ) infoCell=(infoCell?infoCell+'<br>':'')+'<span class="mini">'+esc(occ)+'</span>';
       h+='<tr><td><b style="font-family:var(--font-serif)">'+esc(nom)+'</b></td><td>'+esc(cap)+'</td><td>'+esc(trajet)+'</td><td style="font-size:.85rem">'+infoCell+'</td></tr>';
     }
     h+='</tbody></table></div>';
   }
-  // qui loge où (depuis la liste d'invités)
-  let guests=[];
-  for(let i=1;i<INV.length;i++){ const r=INV[i]; const nom=txt(r,1); if(!nom) break; const log=txt(r,8); if(log) guests.push({nom,log,nb:num(r,2)||0}); }
-  if(guests.length){
-    const byLog={}; guests.forEach(g=>{ (byLog[g.log]=byLog[g.log]||[]).push(g.nom); });
-    h+='<details class="coll" style="margin-top:14px"><summary>Qui loge où (mariage)</summary><div class="card" style="margin-top:8px">';
-    Object.keys(byLog).sort().forEach(l=>{
-      h+='<div style="margin-bottom:10px"><div class="day-title">'+esc(l)+' <span style="color:var(--ink-faint);font-size:.66rem">('+byLog[l].length+' foyers)</span></div>'+
-         '<div style="font-size:.9rem;color:var(--ink-soft)">'+byLog[l].map(esc).join(' · ')+'</div></div>';
-    });
-    h+='</div></details>';
+  // Qui dort où (mariage)
+  const guests=parseGuests(INV);
+  const foy=n=>n+' foyer'+(n>1?'s':'');
+  const byLog={}, nonPrecise=[];
+  guests.forEach(g=>{ const eff=g.logM||(g.lieu&&g.lieu!=='??'?g.lieu:''); if(eff){ (byLog[eff]=byLog[eff]||[]).push(g.chambre?g.nom+' ('+g.chambre+')':g.nom); } else if(g.nb>0){ nonPrecise.push(g.nom); } });
+  const keys=Object.keys(byLog).sort((a,b)=>byLog[b].length-byLog[a].length);
+  if(keys.length){
+    h+='<h3 class="sub">Qui dort où — week-end du mariage</h3><div class="card">';
+    keys.forEach(l=>{ h+='<div style="margin-bottom:12px"><div class="day-title" style="margin-top:0">'+esc(l)+' <span style="color:var(--ink-faint);font-size:.66rem">('+foy(byLog[l].length)+')</span></div><div style="font-size:.9rem;color:var(--ink-soft)">'+byLog[l].map(esc).join(' · ')+'</div></div>'; });
+    if(nonPrecise.length) h+='<div class="mini" style="margin-top:6px">Logement non précisé (local ou à organiser) : '+foy(nonPrecise.length)+'.</div>';
+    h+='</div>';
   }
   return h+'</section>';
 }
 
 /* ===== 8. Rétroplanning ===== */
-function secRetro(R, T){
+function secRetro(R,T){
   let h=secHead('retro','viii','Rétroplanning',
     'La to-do des derniers jours, regroupée par jour. (Susceptible d’évoluer.)');
   const DAYS=['avant départ dans le sud','mercredi','jeudi','vendredi','samedi','dimanche'];
   const TIMES=['matin','aprem','soir','début de semaine'];
-  let groups=[], cur=null;
+  let groups=[],cur=null;
   for(let i=0;i<R.length;i++){
-    const r=R[i];
-    const c1=txt(r,1), c3=txt(r,3), c4=txt(r,4);
-    const low1=c1.toLowerCase();
+    const r=R[i]; const c1=txt(r,1),c3=txt(r,3),c4=txt(r,4); const low1=c1.toLowerCase();
     if(DAYS.some(d=>low1.startsWith(d))){ cur={day:c1,tasks:[]}; groups.push(cur); continue; }
     if(!cur){ cur={day:'À prévoir',tasks:[]}; groups.push(cur); }
-    let when='', who=c3, task='';
-    if(TIMES.includes(low1) || /\d\s*h/.test(c1)){ when=c1; task=c4||''; }
-    else { task=c4||c1; }
-    if(!task) continue;
-    cur.tasks.push({when,who,task});
+    let when='',who=c3,task='';
+    if(TIMES.includes(low1)||/\d\s*h/.test(c1)){ when=c1; task=c4||''; } else { task=c4||c1; }
+    if(!task) continue; cur.tasks.push({when,who,task});
   }
-  groups.forEach(g=>{
-    if(!g.tasks.length) return;
+  groups.forEach(g=>{ if(!g.tasks.length) return;
     h+='<div class="retro-day"><h3>'+esc(g.day)+'</h3>';
-    g.tasks.forEach(t=>{
-      h+='<div class="task"><span class="box"></span><span>'+
-         (t.when?'<span class="when">'+esc(t.when)+'</span>':'')+
-         (t.who?'<span class="who-t">'+esc(t.who)+' — </span>':'')+
-         esc(t.task)+'</span></div>';
-    });
+    g.tasks.forEach(t=>{ h+='<div class="task"><span class="box"></span><span>'+(t.when?'<span class="when">'+esc(t.when)+'</span>':'')+(t.who?'<span class="who-t">'+esc(t.who)+' — </span>':'')+esc(t.task)+'</span></div>'; });
     h+='</div>';
   });
-  // tables / logistique
-  if(T && T.length){
-    let lines=[];
-    T.forEach(r=>{ const v=txt(r,1); if(v) lines.push(v); });
-    if(lines.length){
-      h+='<details class="coll" style="margin-top:14px"><summary>Logistique tables</summary><div class="card" style="margin-top:8px">'+
-         lines.map(l=>'<div class="line"><span class="l">'+esc(l)+'</span></div>').join('')+'</div></details>';
-    }
+  if(T&&T.length){
+    let lines=[]; T.forEach(r=>{ const v=txt(r,1); if(v) lines.push(v); });
+    if(lines.length) h+='<details class="coll"><summary>Logistique tables</summary><div class="card" style="margin-top:8px">'+lines.map(l=>'<div class="line"><span class="l">'+esc(l)+'</span></div>').join('')+'</div></details>';
   }
   return h+'</section>';
 }
@@ -590,26 +535,20 @@ function secPrestataires(R){
   let h=secHead('prestataires','ix','Prestataires comparés',
     'Le suivi des devis et contacts (wedding planners, photographes, animation…).');
   const CATS=['photographe','location vaisselle','animation','dj'];
-  let groups=[{cat:'Wedding planner / Coordination',items:[]}], cur=groups[0];
+  let groups=[{cat:'Wedding planner / Coordination',items:[]}],cur=groups[0];
   for(let i=1;i<R.length;i++){
     const r=R[i]; const name=txt(r,2); if(!name) continue;
-    const p3=num(r,3), p4=num(r,4);
-    const low=name.toLowerCase();
+    const p3=num(r,3),p4=num(r,4),low=name.toLowerCase();
     if(isNaN(p3)&&isNaN(p4)&&CATS.some(c=>low.startsWith(c))){ cur={cat:name,items:[]}; groups.push(cur); continue; }
     const price=!isNaN(p3)?p3:(!isNaN(p4)?p4:NaN);
-    // note : 1ère chaîne non vide après le prix
-    let note=''; for(let j=4;j<=8;j++){ const t=txt(r,j); if(t && isNaN(num(r,j))){ note=t; break; } }
+    let note=''; for(let j=4;j<=8;j++){ const t=txt(r,j); if(t&&isNaN(num(r,j))){ note=t; break; } }
     cur.items.push({name,price,note});
   }
   let body='';
-  groups.forEach(g=>{
-    const items=g.items.filter(it=>it.name);
-    if(!items.length) return;
+  groups.forEach(g=>{ const items=g.items.filter(it=>it.name); if(!items.length) return;
     body+='<div class="day-block"><div class="day-title">'+esc(g.cat)+'</div>';
-    items.forEach(it=>{
-      const v=isNaN(it.price)?'<span class="v empty">—</span>':'<span class="v">'+eur(it.price)+'</span>';
-      body+='<div class="line"><span class="l">'+esc(it.name)+(it.note?' <small>'+esc(it.note)+'</small>':'')+'</span>'+v+'</div>';
-    });
+    items.forEach(it=>{ const v=isNaN(it.price)?'<span class="v empty">—</span>':'<span class="v">'+eur(it.price)+'</span>';
+      body+='<div class="line"><span class="l">'+esc(it.name)+(it.note?' <small>'+esc(it.note)+'</small>':'')+'</span>'+v+'</div>'; });
     body+='</div>';
   });
   return h+'<div class="card">'+body+'</div></section>';
