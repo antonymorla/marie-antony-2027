@@ -1,0 +1,38 @@
+/* ============================================================
+   Marie & Antony — Menu commun à toutes les pages
+   (une seule source : ne pas recopier ces règles dans les pages)
+   ============================================================ */
+.inav { display: none; } /* on remplace la nav du design system */
+.nav2 { position: sticky; top: 0; z-index: 50; display: flex; flex-direction: column; align-items: center;
+        gap: .55rem; padding: .85rem 1rem .7rem;
+        background: color-mix(in srgb, var(--ma-ivory) 92%, transparent); backdrop-filter: blur(8px);
+        border-bottom: 1px solid transparent; transition: border-color .3s var(--ease), padding .3s var(--ease); }
+.nav2[data-scrolled="true"] { border-bottom-color: var(--ma-line-soft); padding-top: .5rem; padding-bottom: .5rem; }
+
+/* monogramme A · branche · M entre deux filets (déclinaison n° 6), anthracite du logo */
+.nav2__brand { display: block; line-height: 0; }
+.nav2__mono { height: 44px; width: auto; display: block; color: #2E2F2B; overflow: visible; transition: height .3s var(--ease); }
+.nav2__mono line { stroke: currentColor; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.nav2__mono text { font-family: var(--font-serif); font-weight: 500; font-size: 52px; fill: currentColor; text-anchor: middle; }
+.nav2[data-scrolled="true"] .nav2__mono { height: 32px; }
+
+/* liens */
+.nav2__menu { display: flex; align-items: center; gap: clamp(.7rem, 2vw, 1.7rem); flex-wrap: wrap; justify-content: center; }
+.nav2__menu a { font-family: var(--font-caps); text-transform: uppercase; letter-spacing: .2em; font-size: .72rem;
+                color: var(--ma-ink); text-decoration: none; position: relative; padding: .25em 0; white-space: nowrap;
+                transition: color .3s var(--ease); }
+.nav2__menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: var(--ma-olive);
+                       transform: scaleX(0); transform-origin: center; transition: transform .3s var(--ease); }
+.nav2__menu a:hover, .nav2__menu a[aria-current="page"] { color: var(--ma-olive); }
+.nav2__menu a:hover::after, .nav2__menu a[aria-current="page"]::after { transform: scaleX(1); }
+
+/* bouton « Confirmer ma présence », toujours visible */
+.nav2__menu .nav2__cta { background: var(--ma-olive); color: var(--ma-ivory); border: 1px solid var(--ma-olive); border-radius: 999px; padding: .35em 1.1em; }
+.nav2__menu .nav2__cta::after { display: none; }
+.nav2__menu .nav2__cta:hover { background: #56643A; border-color: #56643A; color: var(--ma-ivory); }
+
+@media (max-width: 640px) {
+  .nav2__mono { height: 34px; }
+  .nav2__menu { gap: .55rem .9rem; }
+  .nav2__menu a { font-size: .62rem; letter-spacing: .13em; }
+}

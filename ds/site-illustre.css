@@ -33,8 +33,6 @@
 /* ---------- Hero ---------- */
 .ihero { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(3rem, 7vw, 5rem); position: relative; }
 .ihero__photos { width: min(100%, 1180px); margin: 0 auto clamp(1.4rem, 4vw, 2.4rem); transition: transform var(--dur) var(--ease); }
-.ihero__photos img { width: 100%; height: auto; display: block; border: 1px solid var(--ma-line-soft); }
-.ihero__photos:hover { transform: rotate(-0.6deg) scale(1.01); }
 .ihero__tree { width: clamp(150px, 24vw, 250px); margin: 0 auto clamp(0.5rem, 2vw, 1.2rem); will-change: transform; }
 .ihero__cd { margin-top: clamp(1.8rem, 4vw, 2.6rem); }
 .ihero__cta { margin-top: clamp(1.8rem, 4vw, 2.4rem); display: flex; justify-content: center; }
@@ -73,9 +71,7 @@
 .vid__cap { font-family: var(--font-script); color: var(--ma-olive); font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1; margin-top: 0.4rem; text-align: center; }
 
 /* ---------- Photomaton ---------- */
-.photobooth { display: inline-block; margin: clamp(1.5rem,4vw,2.5rem) auto 0; transition: transform 0.5s var(--ease); will-change: transform; }
-.photobooth img { width: clamp(170px, 28vw, 230px); height: auto; display: block; border: 1px solid var(--ma-line-soft); }
-.photobooth:hover { transform: rotate(1.5deg) scale(1.02) translateY(-6px); }
+.photobooth { display: flex; justify-content: center; margin: clamp(1.5rem,4vw,2.5rem) auto 0; }
 .ph-cluster { display: flex; align-items: flex-start; justify-content: center; gap: clamp(0.8rem, 2.5vw, 1.8rem); flex-wrap: wrap; margin-top: clamp(1.5rem,4vw,2.5rem); }
 .ph-cluster img { width: clamp(160px, 24vw, 240px); height: auto; border: 1px solid var(--ma-line-soft); transition: transform 0.5s var(--ease); will-change: transform; }
 .ph-cluster img:hover { transform: rotate(0deg) scale(1.04) translateY(-6px); }

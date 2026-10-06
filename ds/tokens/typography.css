@@ -5,7 +5,7 @@
 
 :root {
   /* ---- Familles ---- */
-  --font-script: 'Pinyon Script', 'Snell Roundhand', cursive;        /* prénoms, grands titres romantiques */
+  --font-script: 'Gwendolyn', 'Snell Roundhand', cursive;        /* prénoms, grands titres romantiques */
   --font-serif:  'Cormorant Garamond', 'Cormorant', Georgia, serif;  /* logo, titres de section, noms en capitales serif */
   --font-caps:   'EB Garamond', 'Cormorant Garamond', Georgia, serif;/* CAPITALES très espacées : nav, dates, lieux, légendes, boutons */
   --font-body:   'EB Garamond', Georgia, 'Times New Roman', serif;   /* texte courant */
