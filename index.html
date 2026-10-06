@@ -74,9 +74,6 @@
             mask-image: radial-gradient(ellipse 90% 84% at 50% 50%, #000 60%, transparent 100%); }
   .fs-hint { margin: 0; text-align: center; pointer-events: none; font-family: var(--font-script);
              color: var(--ma-olive); font-size: clamp(1.6rem,3.6vw,2.4rem); opacity: .9; }
-  @media (prefers-reduced-motion: reduce) {
-    .fs-track { height: auto; } .fs-sticky { position: static; height: auto; } .fs-box video { height: auto; }
-  }
   /* Mobile : on garde le scroll-scrub (sticky), on réduit juste la hauteur vidéo */
   @media (max-width: 760px) { .fs-box video { max-height: 62vh; } }
 
@@ -125,7 +122,6 @@
     .ihero__names .amp { display: block; font-size: .42em; line-height: 1.1; margin: 0; }
   }
   .ihero__rule { display: block; width: 64px; height: 1px; background: var(--ma-olive); opacity: .55; margin: clamp(.9rem, 2.4vw, 1.4rem) auto clamp(.8rem, 2vw, 1.1rem); }
-  .ifooter img.mono { width: clamp(84px, 10vw, 110px); }
   @media (prefers-reduced-motion: no-preference) {
     .ihero .r, .ihero .draw { transition-delay: var(--d, 0s); }
     html:not(.site-ready) .ihero .r { opacity: 0; transform: translateY(18px); }
@@ -170,6 +166,15 @@
   .hort-accent { width:72px; height:auto; margin:1.2rem auto .2rem; }
   .clip { width:100%; height:auto; display:block; mix-blend-mode:darken; }
   .prog__clip { width:auto; height:150px; margin:0 auto; }
+  /* filets entre les étapes du programme : centrés (ils partaient à gauche) */
+  .prog__link { align-self: center; }
+  .pprog { width: 96px; height: auto; color: var(--ma-olive); display: block; overflow: visible; }
+  .bouee .w1 { animation: wave 3.2s linear infinite; }
+  .bouee .w2 { animation: wave 4.4s linear infinite reverse; opacity: .8; }
+  .bouee .ring { transform-box: fill-box; transform-origin: 50% 100%; animation: bob 3.6s ease-in-out infinite; }
+  @keyframes wave { from { transform: translateX(0) } to { transform: translateX(16px) } }
+  @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2deg) } 50% { transform: translateY(-1.6px) rotate(2deg) } }
+  @media (prefers-reduced-motion: reduce) { .bouee .w1, .bouee .w2, .bouee .ring { animation: none; } }
   .disco { width: 132px; height: auto; color: var(--ma-olive); display: block; overflow: visible; margin-bottom: -10px; }
   .disco .beams { animation: beams 22s linear infinite; }
   .disco .beam { animation: beam 3.6s ease-in-out infinite; } .disco .b1 { animation-delay: .9s } .disco .b2 { animation-delay: 1.8s } .disco .b3 { animation-delay: 2.7s }
@@ -551,7 +556,7 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
       <p class="prose prose--italic r r-2">Entre la mer et les oliviers, une évidence — et puis l'envie de la fêter avec vous.</p>
       <p class="prose r r-2">De la Côte d'Azur à l'arrière-pays, on a appris à aimer les longues tablées, les fins de journée dorées et la compagnie de ceux qu'on aime, sans oublier Volnay.</p>
       <p class="prose r r-3">La cérémonie sera célébrée à la cathédrale de l'Immaculée-Conception d'Antibes. Nous vous retrouverons ensuite au Château de Vaucouleurs pour une soirée à notre image : un dîner en famille et entre amis, puis la piste de danse jusqu'au bout de la nuit.</p>
-      <div class="vid vid--sm r" data-ani style="margin:1.4rem auto 0"><video class="clip" src="assets/video/hortensia.mp4" loop muted playsinline preload="metadata"></video></div>
+      <div class="vid vid--sm r" data-ani style="margin:1.4rem auto 0"><video class="clip" src="assets/video/hortensia.mp4" poster="assets/video/hortensia-poster.jpg" loop muted playsinline preload="metadata"></video></div>
       <div class="photobooth r r-2">
         <div class="booth booth--v" role="img" aria-label="Marie, Antony et Volnay au photomaton">
           <div class="booth__f" style="--i:0"><img src="assets/img/maton/maton-5.jpg" alt=""></div>
@@ -602,7 +607,7 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
       <h2 class="script-mid r">La Côte d'Azur</h2>
       <div class="vid vid--md" data-scrub>
         <div class="vidcrop" style="aspect-ratio:888/720;--vw:144%;--vx:-22.1%">
-          <video src="assets/video/jeep.mp4" muted playsinline preload="auto"></video>
+          <video src="assets/video/jeep.mp4" poster="assets/video/jeep-poster.jpg" muted playsinline preload="auto"></video>
         </div>
       </div>
       <div class="todo" id="todo"></div>
@@ -614,7 +619,7 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
       <h2 class="script-mid r">Serez-vous des nôtres&nbsp;?</h2>
       <div class="vid vid--sm" data-ani>
         <div class="vidcrop" style="aspect-ratio:692/720;--vw:185%;--vx:-42.5%">
-          <video src="assets/video/coupes.mp4" loop muted playsinline preload="metadata"></video>
+          <video src="assets/video/coupes.mp4" poster="assets/video/coupes-poster.jpg" loop muted playsinline preload="metadata"></video>
         </div>
         <div class="vid__cap">Aux mariés&nbsp;!</div>
       </div>
@@ -744,13 +749,16 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
   /* boule disco de la soirée : facettes qui tournent + petits reflets */
   var DISCO = '<svg class="disco" viewBox="0 0 160 150" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><clipPath id="discoClip"><circle cx="80" cy="76" r="25.4"/></clipPath><linearGradient id="discoBeam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="currentColor" stop-opacity=".42"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></linearGradient></defs><g transform="translate(80 76)"><g class="beams"><polygon class="beam b0" points="0,0 73.3,-2.4 73.3,2.4" fill="url(#discoBeam)" stroke="none" transform="rotate(8)"/><polygon class="beam b1" points="0,0 58.4,-3.6 58.4,3.6" fill="url(#discoBeam)" stroke="none" transform="rotate(52)"/><polygon class="beam b2" points="0,0 60.9,-2.4 60.9,2.4" fill="url(#discoBeam)" stroke="none" transform="rotate(97)"/><polygon class="beam b3" points="0,0 68.4,-2.7 68.4,2.7" fill="url(#discoBeam)" stroke="none" transform="rotate(141)"/><polygon class="beam b0" points="0,0 72.2,-2.5 72.2,2.5" fill="url(#discoBeam)" stroke="none" transform="rotate(188)"/><polygon class="beam b1" points="0,0 73.4,-2.6 73.4,2.6" fill="url(#discoBeam)" stroke="none" transform="rotate(233)"/><polygon class="beam b2" points="0,0 67.6,-3.5 67.6,3.5" fill="url(#discoBeam)" stroke="none" transform="rotate(276)"/><polygon class="beam b3" points="0,0 69.0,-3.5 69.0,3.5" fill="url(#discoBeam)" stroke="none" transform="rotate(322)"/></g></g><path d="M80 0 V44" stroke-width=".9"/><rect x="77" y="44" width="6" height="5" rx="1" stroke-width=".9"/><circle cx="80" cy="76" r="26" stroke-width="1.1"/><g clip-path="url(#discoClip)" stroke-width=".55"><ellipse cx="80" cy="52" rx="10.0" ry="1.4"/><ellipse cx="80" cy="58" rx="18.8" ry="1.8"/><ellipse cx="80" cy="64" rx="23.1" ry="2.1"/><ellipse cx="80" cy="70" rx="25.3" ry="2.2"/><ellipse cx="80" cy="76" rx="26.0" ry="2.2"/><ellipse cx="80" cy="82" rx="25.3" ry="2.2"/><ellipse cx="80" cy="88" rx="23.1" ry="2.1"/><ellipse cx="80" cy="94" rx="18.8" ry="1.8"/><ellipse cx="80" cy="100" rx="10.0" ry="1.4"/><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="0.00s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-0.75s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-1.50s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-2.25s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-3.00s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-3.75s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-4.50s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-5.25s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-6.00s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-6.75s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-7.50s" repeatCount="indefinite"/></ellipse><ellipse cx="80" cy="76" rx="0" ry="26"><animate attributeName="rx" values="0;26;0" keyTimes="0;.5;1" calcMode="spline" keySplines=".39 .575 .565 1;.47 0 .745 .715" dur="9s" begin="-8.25s" repeatCount="indefinite"/></ellipse><rect class="gl" x="73.6" y="83.3" width="2.8" height="2.2" fill="currentColor" stroke="none" style="animation-delay:0.36s"/><rect class="gl" x="66.0" y="86.7" width="2.8" height="2.2" fill="currentColor" stroke="none" style="animation-delay:2.37s"/><rect class="gl" x="86.0" y="57.3" width="3.2" height="2.6" fill="currentColor" stroke="none" style="animation-delay:1.43s"/><rect class="gl" x="99.3" y="70.0" width="2.8" height="2.3" fill="currentColor" stroke="none" style="animation-delay:1.06s"/><rect class="gl" x="72.2" y="96.0" width="2.9" height="2.3" fill="currentColor" stroke="none" style="animation-delay:0.69s"/><rect class="gl" x="82.1" y="76.4" width="3.7" height="3.0" fill="currentColor" stroke="none" style="animation-delay:2.68s"/><rect class="gl" x="71.4" y="60.3" width="3.6" height="2.9" fill="currentColor" stroke="none" style="animation-delay:3.16s"/><rect class="gl" x="95.9" y="81.7" width="2.9" height="2.3" fill="currentColor" stroke="none" style="animation-delay:2.55s"/><rect class="gl" x="89.1" y="59.9" width="3.4" height="2.7" fill="currentColor" stroke="none" style="animation-delay:0.70s"/><rect class="gl" x="56.9" y="66.8" width="3.0" height="2.4" fill="currentColor" stroke="none" style="animation-delay:1.27s"/><rect class="gl" x="85.0" y="89.9" width="3.8" height="3.0" fill="currentColor" stroke="none" style="animation-delay:3.12s"/><rect class="gl" x="69.2" y="59.1" width="3.3" height="2.7" fill="currentColor" stroke="none" style="animation-delay:1.75s"/><rect class="gl" x="86.8" y="55.5" width="2.8" height="2.3" fill="currentColor" stroke="none" style="animation-delay:2.95s"/><rect class="gl" x="83.4" y="83.8" width="2.7" height="2.2" fill="currentColor" stroke="none" style="animation-delay:1.28s"/><rect class="gl" x="97.4" y="81.1" width="3.8" height="3.0" fill="currentColor" stroke="none" style="animation-delay:0.63s"/><rect class="gl" x="76.3" y="88.6" width="3.1" height="2.5" fill="currentColor" stroke="none" style="animation-delay:2.52s"/><rect class="gl" x="81.5" y="56.7" width="2.7" height="2.2" fill="currentColor" stroke="none" style="animation-delay:3.15s"/><rect class="gl" x="60.6" y="60.1" width="3.0" height="2.4" fill="currentColor" stroke="none" style="animation-delay:2.28s"/><rect class="gl" x="95.0" y="73.3" width="3.2" height="2.6" fill="currentColor" stroke="none" style="animation-delay:2.52s"/><rect class="gl" x="67.9" y="68.3" width="3.3" height="2.7" fill="currentColor" stroke="none" style="animation-delay:2.04s"/><rect class="gl" x="61.3" y="84.9" width="3.4" height="2.7" fill="currentColor" stroke="none" style="animation-delay:3.11s"/><rect class="gl" x="90.8" y="62.7" width="3.5" height="2.8" fill="currentColor" stroke="none" style="animation-delay:3.15s"/><rect class="gl" x="72.7" y="64.4" width="2.8" height="2.2" fill="currentColor" stroke="none" style="animation-delay:0.14s"/><rect class="gl" x="57.4" y="79.9" width="2.8" height="2.3" fill="currentColor" stroke="none" style="animation-delay:0.62s"/><rect class="gl" x="93.7" y="65.1" width="2.8" height="2.3" fill="currentColor" stroke="none" style="animation-delay:1.46s"/><rect class="gl" x="87.3" y="75.3" width="3.6" height="2.9" fill="currentColor" stroke="none" style="animation-delay:1.28s"/><rect class="gl" x="79.6" y="84.6" width="3.2" height="2.5" fill="currentColor" stroke="none" style="animation-delay:2.29s"/><rect class="gl" x="77.1" y="57.4" width="2.7" height="2.2" fill="currentColor" stroke="none" style="animation-delay:2.51s"/><rect class="gl" x="87.5" y="78.3" width="2.8" height="2.2" fill="currentColor" stroke="none" style="animation-delay:2.73s"/><rect class="gl" x="60.7" y="71.1" width="2.8" height="2.2" fill="currentColor" stroke="none" style="animation-delay:1.22s"/><rect class="gl" x="69.2" y="70.8" width="3.5" height="2.8" fill="currentColor" stroke="none" style="animation-delay:1.73s"/><rect class="gl" x="66.2" y="87.4" width="3.5" height="2.8" fill="currentColor" stroke="none" style="animation-delay:2.65s"/><rect class="gl" x="56.2" y="79.6" width="3.7" height="2.9" fill="currentColor" stroke="none" style="animation-delay:0.83s"/><rect class="gl" x="64.5" y="89.2" width="3.0" height="2.4" fill="currentColor" stroke="none" style="animation-delay:1.28s"/></g><g fill="currentColor" stroke="none"><path class="spark" style="animation-delay:0.00s" transform="translate(30 58) scale(1.00)" d="M0 -4.5 L.9 -.9 L4.5 0 L.9 .9 L0 4.5 L-.9 .9 L-4.5 0 L-.9 -.9Z"/><path class="spark" style="animation-delay:0.45s" transform="translate(132 50) scale(0.85)" d="M0 -4.5 L.9 -.9 L4.5 0 L.9 .9 L0 4.5 L-.9 .9 L-4.5 0 L-.9 -.9Z"/><path class="spark" style="animation-delay:0.90s" transform="translate(118 112) scale(0.70)" d="M0 -4.5 L.9 -.9 L4.5 0 L.9 .9 L0 4.5 L-.9 .9 L-4.5 0 L-.9 -.9Z"/><path class="spark" style="animation-delay:1.35s" transform="translate(40 118) scale(0.80)" d="M0 -4.5 L.9 -.9 L4.5 0 L.9 .9 L0 4.5 L-.9 .9 L-4.5 0 L-.9 -.9Z"/><path class="spark" style="animation-delay:1.80s" transform="translate(146 88) scale(0.60)" d="M0 -4.5 L.9 -.9 L4.5 0 L.9 .9 L0 4.5 L-.9 .9 L-4.5 0 L-.9 -.9Z"/><path class="spark" style="animation-delay:2.25s" transform="translate(18 92) scale(0.55)" d="M0 -4.5 L.9 -.9 L4.5 0 L.9 .9 L0 4.5 L-.9 .9 L-4.5 0 L-.9 -.9Z"/><path class="spark" style="animation-delay:2.70s" transform="translate(100 26) scale(0.55)" d="M0 -4.5 L.9 -.9 L4.5 0 L.9 .9 L0 4.5 L-.9 .9 L-4.5 0 L-.9 -.9Z"/><path class="spark" style="animation-delay:3.15s" transform="translate(58 30) scale(0.50)" d="M0 -4.5 L.9 -.9 L4.5 0 L.9 .9 L0 4.5 L-.9 .9 L-4.5 0 L-.9 -.9Z"/></g></svg>';
 
+  /* bouée du brunch (piscine du château) : les vaguelettes glissent, la bouée tangue */
+  var BOUEE = '<svg class="pprog bouee" viewBox="0 0 120 104" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><clipPath id="boueeWater"><rect x="0" y="0" width="120" height="87.5"/></clipPath><clipPath id="boueeW1"><rect x="6" y="78" width="108" height="16"/></clipPath><clipPath id="boueeW2"><rect x="16" y="88" width="88" height="16"/></clipPath></defs><g clip-path="url(#boueeWater)"><g class="ring"><circle cx="60" cy="48" r="38"/><circle cx="60" cy="48" r="19"/><path d="M76.5 58.0 L89.7 71.2 M70.0 64.5 L83.2 77.7 M50.0 64.5 L36.8 77.7 M43.5 58.0 L30.3 71.2 M43.5 38.0 L30.3 24.8 M50.0 31.5 L36.8 18.3 M70.0 31.5 L83.2 18.3 M76.5 38.0 L89.7 24.8"/></g></g><g clip-path="url(#boueeW1)"><path class="w1" d="M-32 88 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0"/></g><g clip-path="url(#boueeW2)"><path class="w2" d="M-32 97 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0 q4.0 2.6 8 0 q4.0 -2.6 8 0"/></g></svg>';
+
   var DATA = {
     programme: [
       { icon: 'cathedrale-antibes', time: '14 h 00', name: 'Cérémonie', desc: "À la cathédrale de l'Immaculée-Conception, dans la vieille ville d'Antibes." },
       { icon: 'coupes', time: 'À partir de 17 h', name: "Vin d'honneur", desc: "Au Château de Vaucouleurs, à Puget-sur-Argens." },
       { icon: 'couronne-olivier', clip: 'brasero', time: '', name: 'Dîner', desc: "Tous à table, en famille et entre amis." },
       { svg: DISCO, time: '', name: 'Soirée', desc: "On danse jusqu'au bout de la nuit." },
-      { icon: 'soleil-mer', time: 'Le lendemain · dimanche 23 mai', name: 'Brunch', desc: "Au Château de Vaucouleurs, pour prolonger la fête en douceur." }
+      { svg: BOUEE, time: 'Le lendemain · dimanche 23 mai', name: 'Brunch', desc: "Au Château de Vaucouleurs, pour prolonger la fête en douceur." }
     ],
     lieux: [
       { kicker: 'Cérémonie · 14 h', icon: 'cathedrale-antibes', name: "Cathédrale de l'Immaculée-Conception", addr: "Rue du Saint-Esprit, 06600 Antibes", maps: 'https://maps.google.com/?q=Cath%C3%A9drale+Antibes' },
@@ -776,7 +784,7 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
 
   (function(){ var b=document.getElementById('prog'),h='';
     DATA.programme.forEach(function(p,i){ if(i>0)h+='<span class="prog__link" aria-hidden="true"></span>';
-      var media=p.svg?p.svg:p.clip?'<video class="clip prog__clip" src="assets/video/'+p.clip+'.mp4" loop muted playsinline preload="metadata"></video>':'<img class="draw" src="'+icon(p.icon)+'" alt="">';
+      var media=p.svg?p.svg:p.clip?'<video class="clip prog__clip" src="assets/video/'+p.clip+'.mp4" poster="assets/video/'+p.clip+'-poster.jpg" loop muted playsinline preload="metadata"></video>':'<img class="draw" src="'+icon(p.icon)+'" alt="">';
       h+='<div class="prog__item r">'+media+(p.time?'<span class="prog__time">'+p.time+'</span>':'')+'<span class="prog__name">'+p.name+'</span><p class="prog__desc">'+p.desc+'</p></div>'; });
     b.innerHTML=h;
     if(reduce) [].forEach.call(b.querySelectorAll('svg.disco'),function(d){ if(d.pauseAnimations) d.pauseAnimations(); }); })();
@@ -804,7 +812,9 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
 
   /* RSVP : un bloc par invité (prénom, nom, présence samedi / brunch), envoi par Formsubmit */
   (function(){ var form=document.getElementById('rsvp-form'), list=document.getElementById('guests'), tpl=document.getElementById('guest-tpl');
-    var RSVP_TO='gageonnet.marie@gmail.com', err=document.getElementById('rsvp-err');
+    /* RSVP_SCRIPT : adresse du script Google (mails aux couleurs du site + onglet « Réponses RSVP »).
+       Vide = envoi de secours par FormSubmit vers RSVP_TO. */
+    var RSVP_SCRIPT='', RSVP_TO='gageonnet.marie@gmail.com', err=document.getElementById('rsvp-err');
     var MAX=4, addBtn=document.getElementById('add-guest');
     function renumber(){ [].forEach.call(list.children,function(g,i){ g.querySelector('.guest__n').textContent=i+1; g.querySelector('.guest__rm').hidden=(list.children.length===1); });
       addBtn.parentNode.hidden=(list.children.length>=MAX); }
@@ -825,6 +835,14 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
       data['Email']=form.email.value; data['Restrictions alimentaires']=form.regime.value; data['Chanson']=form.chanson.value; data['Petit mot']=form.mot.value;
       data._subject='RSVP mariage — '+first+(guests.length>1?' (+'+(guests.length-1)+')':''); data._template='table'; data._replyto=form.email.value; data._honey=form._honey.value;
       btn.disabled=true;
+      if(RSVP_SCRIPT){
+        var payload={ persons:guests.map(function(g){ var v=function(k){ return g.querySelector('[data-k='+k+']'); };
+            return { prenom:v('prenom').value, nom:v('nom').value, samedi:v('samedi').checked, brunch:v('brunch').checked }; }),
+          email:form.email.value, regime:form.regime.value, chanson:form.chanson.value, mot:form.mot.value, website:form._honey.value };
+        /* text/plain : requête « simple », pas de pré-vérification CORS côté Google */
+        fetch(RSVP_SCRIPT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
+          .then(function(r){ return r.json(); }).then(function(j){ if(j && j.ok) thanks(); else fail(); }).catch(fail);
+        return; }
       fetch('https://formsubmit.co/ajax/'+RSVP_TO,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)})
         .then(function(r){ return r.json(); }).then(function(j){ if(j && (j.success===true||j.success==='true')) thanks(); else fail(); }).catch(fail); }); })();
 
@@ -858,7 +876,7 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
   (function(){
     var film=document.getElementById('film'), track=document.querySelector('.fs-track');
     var clips=[].slice.call(document.querySelectorAll('[data-scrub] video'));
-    if(reduce){ var all=clips.slice(); if(film) all.push(film); all.forEach(function(v){ v.loop=true; v.muted=true; v.play().catch(function(){}); }); return; }
+    /* pas d'exception « réduire les animations » : le film n'avance que si l'on fait défiler, il ne joue jamais tout seul */
     var items=[];
     if(film&&track){ items.push({v:film, prog:function(){ var r=track.getBoundingClientRect(), t=r.height-window.innerHeight; return t>0?Math.min(1,Math.max(0,-r.top/t)):0; }}); }
     clips.forEach(function(v){ var box=v.closest('[data-scrub]'); items.push({v:v, prog:function(){ var r=box.getBoundingClientRect(), vh=window.innerHeight; return Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height))); }}); });

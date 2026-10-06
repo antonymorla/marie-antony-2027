@@ -319,7 +319,7 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
       <p class="eyebrow-caps r">Où dormir</p>
       <h1 class="script-big r" style="font-size:clamp(3rem,8vw,5rem)">Hébergements</h1>
       <div class="dot-rule r" aria-hidden="true"><span class="l"></span><img src="assets/icons/icon-branche-olivier.png" alt=""><span class="l"></span></div>
-      <p class="lead r">Quelques adresses qu'on a repérées autour du <strong>Château de Vaucouleurs</strong>, des plus proches aux plus lointaines. De la villa entre amis à l'hôtel les pieds dans l'eau — il y en a pour tous les goûts. Les durées indiquées sont en voiture jusqu'au château.</p>
+      <p class="lead r">Les adresses que nous avons repérées autour du <strong>Château de Vaucouleurs</strong>, du plus proche au plus éloigné : hôtels, villas à partager entre amis, camping. Les durées sont en voiture jusqu'au château, et les prix des hôtels sont indicatifs, par nuit.</p>
       <div class="lodges" id="lodges"></div>
       <div style="text-align:center"><a class="backlink" href="index.html#accueil">← Retour à l'accueil</a></div>
     </section>
@@ -338,15 +338,25 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var HB='assets/hebergements/';
   var LODGES=[
-    {name:"Camping la Bastiane",img:"bastiane.jpg",trip:"6 min",meta:["Camping 4★","Mobil-homes & spa"],info:"Puget-sur-Argens",site:"https://www.labastiane.com/"},
-    {name:"Villa Benji",img:"benji.jpg",trip:"6 min",meta:["6 personnes","Piscine chauffée"],info:"Maison de vacances",site:"https://www.puget-lesadrets-tourisme.com/fiche/villa-benji-maison-de-vacances/"},
-    {name:"Hôtel l'Arena",img:"arena.jpg",trip:"7 min",meta:["Hôtel","Piscine & jardin"],info:"Fréjus",site:"https://hotel-frejus-arena.com/fr/"},
-    {name:"Villa la Framboisine",img:"framboisine.jpg",trip:"8 min",meta:["8 personnes","Villa 4★ · piscine"],info:"Puget-sur-Argens",site:"https://www.puget-lesadrets-tourisme.com/fiche/la-framboisine/"},
-    {name:"Villa Venica",img:"venica.jpg",trip:"13 min",meta:["20 personnes","Piscine & jardin"],info:"3 nuits minimum",site:"https://www.villavenica.com/"},
-    {name:"Le Daya Hôtel & Spa",img:"daya.jpg",trip:"16 min",meta:["Hôtel 5★","Spa & golf"],info:"Roquebrune-sur-Argens",site:"https://ledaya.fr/"},
-    {name:"Mas de la Colombe",img:"colombe.jpg",trip:"17 min",meta:["10 personnes","5 chambres · piscine"],info:"Mas provençal",site:"https://www.puget-lesadrets-tourisme.com/fiche/le-mas-la-colombe/"},
-    {name:"Mercure Thalasso & Spa",img:"mercure.jpg",trip:"17 min",meta:["Hôtel","Thalasso · les pieds dans l'eau"],info:"Port-Fréjus",site:"https://www.thalasso-portfrejus.com/hotel/"},
-    {name:"Le Mas de la Clé d'Or",img:"",trip:"",meta:[],info:"À priori non disponible",site:""}
+    {"name": "hotelF1 Fréjus Roquebrune", "img": "hotelf1.jpg", "trip": "5 min", "meta": ["Hôtel 1★", "1 à 3 pers.", "45-65 € / nuit"], "info": "Roquebrune-sur-Argens · ~4 km", "site": "https://all.accor.com/hotel/2488/index.fr.shtml", "cta": "Voir le site →"},
+    {"name": "Hôtel La Cigale", "img": "cigale.jpg", "trip": "5 min", "meta": ["Hôtel 2★", "9 chambres, 1 à 3 pers.", "70-95 € / nuit"], "info": "Puget-sur-Argens, centre · ~4 km", "site": "https://la-cigale-puget-sur-argens.eatbu.com/", "cta": "Voir le site →"},
+    {"name": "Camping la Bastiane", "img": "bastiane.jpg", "trip": "6 min", "meta": ["Camping 4★", "Mobil-homes & spa"], "info": "Puget-sur-Argens", "site": "https://www.labastiane.com/"},
+    {"name": "Villa Benji", "img": "benji.jpg", "trip": "6 min", "meta": ["6 personnes", "Piscine chauffée"], "info": "Maison de vacances", "site": "https://www.puget-lesadrets-tourisme.com/fiche/villa-benji-maison-de-vacances/"},
+    {"name": "B&B Hôtel Fréjus Roquebrune", "img": "bb-roquebrune.jpg", "trip": "6 min", "meta": ["Hôtel 3★", "2 à 4 pers.", "75-105 € / nuit"], "info": "Roquebrune-sur-Argens · ~5 km", "site": "https://www.hotel-bb.com/fr/hotel/frejus-roquebrune-sur-argens", "cta": "Voir le site →"},
+    {"name": "Villa la Framboisine", "img": "framboisine.jpg", "trip": "8 min", "meta": ["8 personnes", "Villa 4★ · piscine"], "info": "Puget-sur-Argens", "site": "https://www.puget-lesadrets-tourisme.com/fiche/la-framboisine/"},
+    {"name": "B&B Hôtel Fréjus Puget", "img": "bb-puget.jpg", "trip": "8 min", "meta": ["Hôtel 3★", "2 à 4 pers.", "80-115 € / nuit"], "info": "Fréjus · ~6 km", "site": "https://www.hotel-bb.com/fr/hotel/frejus-puget-sur-argens", "cta": "Voir le site →"},
+    {"name": "ibis budget Fréjus Capitou A8", "img": "ibis-budget.jpg", "trip": "10 min", "meta": ["Hôtel 2★", "2 à 4 pers.", "70-100 € / nuit"], "info": "Fréjus · ~8 km", "site": "https://all.accor.com/hotel/2550/index.fr.shtml", "cta": "Voir le site →"},
+    {"name": "Le Daya Hôtel & Spa", "img": "daya.jpg", "trip": "12 min", "meta": ["Hôtel 5★", "Spa & golf", "2 pers.", "260-400 € / nuit"], "info": "Roquebrune-sur-Argens · ~10 km", "site": "https://ledaya.fr/", "cta": "Voir le site →"},
+    {"name": "Villa Venica", "img": "venica.jpg", "trip": "13 min", "meta": ["20 personnes", "Piscine & jardin"], "info": "3 nuits minimum", "site": "https://www.villavenica.com/"},
+    {"name": "Hôtel L'Aréna", "img": "arena.jpg", "trip": "13 min", "meta": ["Hôtel 3★", "Piscine & jardin", "2 à 4 pers.", "130-195 € / nuit"], "info": "Fréjus, centre · ~11 km", "site": "https://hotel-frejus-arena.com/fr/", "cta": "Voir le site →"},
+    {"name": "ibis Styles Fréjus Saint-Raphaël", "img": "ibis-styles.jpg", "trip": "14 min", "meta": ["Hôtel 3★", "2 à 4 pers.", "100-145 € / nuit"], "info": "Fréjus · ~12 km", "site": "https://all.accor.com/hotel/B2C8/index.fr.shtml", "cta": "Voir le site →"},
+    {"name": "Le Confidentiel Hôtel & Spa", "img": "confidentiel.jpg", "trip": "15 min", "meta": ["Hôtel 4★", "2 pers.", "180-270 € / nuit"], "info": "Saint-Raphaël · ~14 km", "site": "https://www.confidentiel-hotel.com/fr", "cta": "Voir le site →"},
+    {"name": "Logis Hôtel Atoll", "img": "atoll.jpg", "trip": "16 min", "meta": ["Hôtel 3★", "2 à 3 pers.", "110-155 € / nuit"], "info": "Fréjus · ~14 km", "site": "https://www.logishotels.com/fr/hotel/logis-hotel-atoll-429188", "cta": "Voir le site →"},
+    {"name": "Mercure Thalasso Port-Fréjus", "img": "mercure.jpg", "trip": "16 min", "meta": ["Hôtel 4★", "Thalasso · les pieds dans l'eau", "2 à 4 pers.", "150-230 € / nuit"], "info": "Fréjus · ~15 km", "site": "https://www.thalasso-portfrejus.com/hotel/", "cta": "Voir le site →"},
+    {"name": "Mas de la Colombe", "img": "colombe.jpg", "trip": "17 min", "meta": ["10 personnes", "5 chambres · piscine"], "info": "Mas provençal", "site": "https://www.puget-lesadrets-tourisme.com/fiche/le-mas-la-colombe/"},
+    {"name": "Hôtel L'Oasis", "img": "oasis.jpg", "trip": "17 min", "meta": ["Hôtel 3★", "2 à 4 pers.", "120-175 € / nuit"], "info": "Fréjus-Plage · ~15 km", "site": "https://www.hotel-oasis.net/", "cta": "Voir le site →"},
+    {"name": "Van der Valk Saint-Aygulf", "img": "vandervalk.jpg", "trip": "18 min", "meta": ["Hôtel 4★", "2 à 4 pers.", "140-210 € / nuit"], "info": "Fréjus, Saint-Aygulf · ~16 km", "site": "https://www.hotelstaygulf.fr/", "cta": "Voir le site →"},
+    {"name": "Le Mas de la Clé d'Or", "img": "", "trip": "", "meta": [], "info": "À priori non disponible", "site": ""}
   ];
   var box=document.getElementById('lodges'), h='';
   LODGES.forEach(function(l){
@@ -356,7 +366,7 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
     var trip = l.trip ? '<p class="lodge__trip">'+l.trip+' du château</p>' : '<p class="lodge__trip" style="color:var(--ma-ink-faint)">Hébergement</p>';
     var meta = l.meta.length ? '<div class="lodge__meta">'+l.meta.map(function(m){return '<span>'+m+'</span>';}).join('')+'</div>' : '';
     var info = l.info ? '<p class="lodge__info">'+l.info+'</p>' : '';
-    var cta = l.site ? '<div class="lodge__cta"><a class="ma-btn ma-btn--outline ma-btn--sm" href="'+l.site+'" target="_blank" rel="noopener">Voir le site →</a></div>' : '';
+    var cta = l.site ? '<div class="lodge__cta"><a class="ma-btn ma-btn--outline ma-btn--sm" href="'+l.site+'" target="_blank" rel="noopener">'+(l.cta||'Voir le site →')+'</a></div>' : '';
     h += '<article class="lodge r">'+media+'<div class="lodge__body">'+trip+'<h2 class="lodge__name">'+l.name+'</h2>'+meta+info+cta+'</div></article>';
   });
   box.innerHTML=h;
