@@ -141,6 +141,10 @@
 
   /* ---------- Infos : bouton logement ---------- */
   .info2__btn { margin-top: .9rem; }
+  /* texte replié derrière « Lire la suite » pour garder des blocs de même hauteur */
+  .info2__toggle { display: table; margin: .35rem auto 0; padding: .2rem 0; background: none; border: 0; border-bottom: 1px solid var(--ma-line); cursor: pointer; font-family: var(--font-caps); text-transform: uppercase; letter-spacing: .18em; font-size: .62rem; color: var(--ma-olive); }
+  .info2__toggle:hover { color: var(--ma-olive-deep); }
+  .info2__more[hidden] { display: none; }
   /* ---------- À faire : 6 idées sur 3 colonnes ---------- */
   @media (min-width: 860px) { .todo { grid-template-columns: repeat(3, 1fr); } }
   /* ---------- RSVP : un bloc par invité ---------- */
@@ -152,6 +156,11 @@
   .guest__rm:hover { color: var(--ma-olive); }
   .guests__add { display: flex; justify-content: center; }
   .guests__hint { text-align: center; margin-top: -.6rem; }
+  /* logement & taxi : choix unique, cases rondes */
+  .stay { display: flex; flex-direction: column; gap: .7rem; }
+  .stay__q { margin: .2rem 0 0; font-family: var(--font-body); color: var(--ma-ink); }
+  .stay .ma-field[hidden] { display: none; }
+  .ma-check--radio .ma-check__box { border-radius: 50%; }
   .rsvp2__err { color: #8a3b2e; font-family: var(--font-body); text-align: center; margin: 0; }
   /* ---- Pictogrammes animés ---- */
   .picto { color: var(--ma-olive); display: block; }
@@ -509,6 +518,7 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
       <a href="#lieux">Itinéraires</a>
       <a href="#infos">Infos</a>
       <a href="hebergements.html">Hébergements</a>
+      <a href="cagnotte.html">Cagnotte</a>
       <a href="#rsvp" class="nav2__cta">Confirmer ma présence</a>
     </nav>
   </header>
@@ -550,12 +560,12 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
 
     <!-- ===== Notre histoire ===== -->
     <section class="sec col" id="histoire">
-      <h2 class="script-mid r">On se marie&nbsp;!</h2>
+      <h2 class="script-mid r">Nous nous marions&nbsp;!</h2>
       <svg class="squiggle" viewBox="0 0 280 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q 22 -2, 42 8 T 82 8 T 122 8 T 162 8 T 202 8 T 242 8 T 278 8"/></svg>
-      <p class="prose r">Le samedi 22 mai 2027, on se dit oui. Et ce jour-là, on aimerait vous avoir à nos côtés.</p>
-      <p class="prose prose--italic r r-2">Entre la mer et les oliviers, une évidence — et puis l'envie de la fêter avec vous.</p>
-      <p class="prose r r-2">De la Côte d'Azur à l'arrière-pays, on a appris à aimer les longues tablées, les fins de journée dorées et la compagnie de ceux qu'on aime, sans oublier Volnay.</p>
-      <p class="prose r r-3">La cérémonie sera célébrée à la cathédrale de l'Immaculée-Conception d'Antibes. Nous vous retrouverons ensuite au Château de Vaucouleurs pour une soirée à notre image : un dîner en famille et entre amis, puis la piste de danse jusqu'au bout de la nuit.</p>
+      <p class="prose r">Le samedi 22 mai 2027, nous nous dirons oui. Nous serions très heureux de partager ce moment avec vous.</p>
+      <p class="prose prose--italic r r-2">La mer, les oliviers, et vous tous réunis : une évidence.</p>
+      <p class="prose r r-2">Nous avions envie de fêter ce jour sur la Côte d'Azur, qui nous est chère, entourés de ceux que nous aimons.</p>
+      <p class="prose r r-3">La cérémonie aura lieu à la cathédrale de l'Immaculée-Conception, à Antibes. Nous vous retrouverons ensuite au Château de Vaucouleurs pour une soirée à notre image : un dîner tous ensemble, puis la piste de danse jusqu'au bout de la nuit.</p>
       <div class="vid vid--sm r" data-ani style="margin:1.4rem auto 0"><video class="clip" src="assets/video/hortensia.mp4" poster="assets/video/hortensia-poster.jpg" loop muted playsinline preload="metadata"></video></div>
       <div class="photobooth r r-2">
         <div class="booth booth--v" role="img" aria-label="Marie, Antony et Volnay au photomaton">
@@ -595,7 +605,7 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
 
     <!-- ===== Infos ===== -->
     <section class="sec col" id="infos">
-      <p class="eyebrow-caps r">Infos pratiques</p>
+      <p class="eyebrow-caps r">Informations pratiques</p>
       <h2 class="script-mid r">Préparer votre séjour</h2>
       <svg class="squiggle" viewBox="0 0 280 16" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 Q 22 -2, 42 8 T 82 8 T 122 8 T 162 8 T 202 8 T 242 8 T 278 8"/></svg>
       <div class="infos2" id="infos2"></div>
@@ -603,8 +613,8 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
 
     <!-- ===== À faire ===== -->
     <section class="sec col" id="afaire">
-      <p class="eyebrow-caps r">À faire autour</p>
-      <h2 class="script-mid r">La Côte d'Azur</h2>
+      <p class="eyebrow-caps r">Si vous restez quelques jours</p>
+      <h2 class="script-mid r">La French Riviera</h2>
       <div class="vid vid--md" data-scrub>
         <div class="vidcrop" style="aspect-ratio:888/720;--vw:144%;--vx:-22.1%">
           <video src="assets/video/jeep.mp4" poster="assets/video/jeep-poster.jpg" muted playsinline preload="auto"></video>
@@ -621,7 +631,6 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
         <div class="vidcrop" style="aspect-ratio:692/720;--vw:185%;--vx:-42.5%">
           <video src="assets/video/coupes.mp4" poster="assets/video/coupes-poster.jpg" loop muted playsinline preload="metadata"></video>
         </div>
-        <div class="vid__cap">Aux mariés&nbsp;!</div>
       </div>
       <div id="rsvp-slot">
         <form class="rsvp2 r" id="rsvp-form" novalidate>
@@ -644,6 +653,23 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
           </template>
           <div class="guests__add"><button type="button" class="ma-btn ma-btn--outline ma-btn--sm" id="add-guest">+ Une autre personne nommée sur le faire-part</button></div>
           <p class="ma-field__hint guests__hint">Si vous ne pouvez pas venir, laissez simplement les cases décochées.</p>
+          <fieldset class="guest stay">
+            <legend class="guest__lbl">Logement &amp; taxi</legend>
+            <p class="stay__q">Avez-vous trouvé votre logement&nbsp;?</p>
+            <div class="rsvp2__checks">
+              <label class="ma-check ma-check--radio"><input type="radio" name="logement" value="oui"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Oui</label>
+              <label class="ma-check ma-check--radio"><input type="radio" name="logement" value="pas encore"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Pas encore</label>
+            </div>
+            <label class="ma-field" id="stay-addr" hidden><span class="ma-field__label">Pouvez-vous nous donner l'adresse&nbsp;?</span>
+              <input class="ma-control" name="adresse" placeholder="Nom de l'hôtel ou adresse"></label>
+            <p class="stay__q">Êtes-vous intéressés par le service de taxi du samedi soir&nbsp;?</p>
+            <div class="rsvp2__checks">
+              <label class="ma-check ma-check--radio"><input type="radio" name="taxi" value="oui"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Oui</label>
+              <label class="ma-check ma-check--radio"><input type="radio" name="taxi" value="non"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Non</label>
+              <label class="ma-check ma-check--radio"><input type="radio" name="taxi" value="je ne sais pas encore"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Je ne sais pas encore</label>
+            </div>
+            <p class="ma-field__hint">Bien entendu, tout cela pourra se décider au dernier moment&nbsp;: c'est seulement pour avoir une première estimation.</p>
+          </fieldset>
           <label class="ma-field"><span class="ma-field__label">Email</span>
             <input class="ma-control" type="email" name="email" placeholder="vous@exemple.fr" autocomplete="email" required></label>
           <label class="ma-field"><span class="ma-field__label">Restrictions alimentaires</span>
@@ -718,9 +744,9 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
     var imgsTotal=imgs.length||1, imgsDone=0, vidFrac=0, revealed=false;
     function paint(){ var p=Math.min(1,(imgsDone/imgsTotal)*0.30 + vidFrac*0.70); if(fill) fill.style.width=Math.max(6,Math.round(p*100))+'%'; }
     function finish(){ if(pre.classList.contains('done')) return; pre.classList.add('done'); setTimeout(function(){ pre.style.display='none'; },900); siteReady(); }
-    /* première visite (ou ?enveloppe dans l'adresse) : l'enveloppe s'ouvre avant d'entrer sur le site ; un clic passe */
+    /* à chaque visite (une fois par onglet ouvert, ou ?enveloppe dans l'adresse) : l'enveloppe s'ouvre avant d'entrer sur le site ; un clic passe */
     function firstVisit(){ var f=/[?&]enveloppe\b/.test(location.search);
-      try{ if(!localStorage.getItem('ma-enveloppe')) f=true; localStorage.setItem('ma-enveloppe','1'); }catch(e){}
+      try{ if(!sessionStorage.getItem('ma-enveloppe')) f=true; sessionStorage.setItem('ma-enveloppe','1'); }catch(e){ f=true; }
       return f && !reduce; }
     function reveal(){ if(revealed) return; revealed=true; if(fill) fill.style.width='100%';
       if(!firstVisit()){ finish(); return; }
@@ -757,8 +783,8 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
       { icon: 'cathedrale-antibes', time: '14 h 00', name: 'Cérémonie', desc: "À la cathédrale de l'Immaculée-Conception, dans la vieille ville d'Antibes." },
       { icon: 'coupes', time: 'À partir de 17 h', name: "Vin d'honneur", desc: "Au Château de Vaucouleurs, à Puget-sur-Argens." },
       { icon: 'couronne-olivier', clip: 'brasero', time: '', name: 'Dîner', desc: "Tous à table, en famille et entre amis." },
-      { svg: DISCO, time: '', name: 'Soirée', desc: "On danse jusqu'au bout de la nuit." },
-      { svg: BOUEE, time: 'Le lendemain · dimanche 23 mai', name: 'Brunch', desc: "Au Château de Vaucouleurs, pour prolonger la fête en douceur." }
+      { svg: DISCO, time: '', name: 'Soirée', desc: "Nous danserons jusqu'au bout de la nuit." },
+      { svg: BOUEE, time: 'Dimanche 23 mai · À partir de 12 h 30', name: 'Brunch', desc: "Au Château de Vaucouleurs, pour prolonger la fête en douceur." }
     ],
     lieux: [
       { kicker: 'Cérémonie · 14 h', icon: 'cathedrale-antibes', name: "Cathédrale de l'Immaculée-Conception", addr: "Rue du Saint-Esprit, 06600 Antibes", maps: 'https://maps.google.com/?q=Cath%C3%A9drale+Antibes' },
@@ -767,8 +793,8 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
     infos: [
       { icon: 'jeep', title: 'Accès', body: ['Voiture : A8, sortie Le Muy.', 'Train : Antibes & Les Arcs.', 'Avion : Nice (45 min).'] },
       { icon: 'valise', title: 'Où dormir', body: ['Nous avons repéré plusieurs adresses autour du château.'], btn: { label: 'Nos conseils de logement', href: 'hebergements.html' } },
-      { icon: 'cypres', title: 'Navettes retour', body: ['Des navettes vous raccompagneront de 2 h à 5 h du matin, dans un rayon autour du château.', 'Les détails suivront sur le groupe WhatsApp.'] },
-      { icon: 'epagneul', title: 'Bon à savoir', body: ['Parking gratuit au château.', "Il n'y aura pas de garde d'enfants sur place.", 'Vous rentrez en navette ? Votre voiture vous attendra pour le brunch du dimanche : prévoyez simplement un moyen de revenir au château.', 'Volnay sera de la fête.'] }
+      { icon: 'cypres', title: 'Parking & taxis', body: ['Parking gratuit au château.', 'Samedi soir, deux taxis feront des allers-retours entre le château et votre logement, de minuit et demi à cinq heures et demie du matin, dans un rayon de 15 km.'], more: ['Votre voiture peut passer la nuit au château. Pour revenir au brunch ou la récupérer le dimanche, nous avons réuni les taxis de la région.', "<em>Le plus simple : demandez au chauffeur qui vous raccompagne le samedi de repasser vous prendre le lendemain.</em>"], btn: { label: 'Nos contacts de taxi', href: 'taxis.html' } },
+      { icon: 'epagneul', title: 'Bon à savoir', body: ["Il n'y aura pas de garde d'enfants sur place.", 'Volnay sera de la fête.'] }
     ],
     afaire: [
       { icon: 'palmier', title: 'Antibes', desc: "La vieille ville et son marché provençal, le musée Picasso, le sentier du Cap d'Antibes." },
@@ -794,8 +820,12 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
     b.innerHTML=h; })();
 
   (function(){ var b=document.getElementById('infos2'),h='';
-    DATA.infos.forEach(function(c){ h+='<div class="info2 r"><img src="'+icon(c.icon)+'" alt=""><h4>'+c.title+'</h4>'+c.body.map(function(x){return '<p>'+x+'</p>';}).join('')+(c.btn?'<a class="ma-btn ma-btn--outline ma-btn--sm info2__btn" href="'+c.btn.href+'">'+c.btn.label+'</a>':'')+'</div>'; });
-    b.innerHTML=h; })();
+    var ps=function(a){ return a.map(function(x){return '<p>'+x+'</p>';}).join(''); };
+    DATA.infos.forEach(function(c){ h+='<div class="info2 r"><img src="'+icon(c.icon)+'" alt=""><h4>'+c.title+'</h4>'+ps(c.body)+(c.more?'<div class="info2__more" hidden>'+ps(c.more)+'</div><button type="button" class="info2__toggle" aria-expanded="false">Lire la suite +</button>':'')+(c.btn?'<a class="ma-btn ma-btn--outline ma-btn--sm info2__btn" href="'+c.btn.href+'">'+c.btn.label+'</a>':'')+'</div>'; });
+    b.innerHTML=h;
+    b.addEventListener('click',function(e){ var t=e.target.closest('.info2__toggle'); if(!t) return;
+      var m=t.previousElementSibling, open=m.hidden; m.hidden=!open;
+      t.setAttribute('aria-expanded',String(open)); t.textContent=open?'Réduire −':'Lire la suite +'; }); })();
 
   (function(){ var b=document.getElementById('todo'),h='';
     DATA.afaire.forEach(function(a){ h+='<div class="todo__i r"><img src="'+icon(a.icon)+'" alt=""><h4>'+a.title+'</h4><p>'+a.desc+'</p></div>'; });
@@ -823,6 +853,8 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
       list.appendChild(g); renumber(); return g; }
     add(); add(); /* deux personnes d'office : ce seront surtout des couples */
     addBtn.addEventListener('click',function(){ if(list.children.length<MAX) add().querySelector('input').focus(); });
+    var addr=document.getElementById('stay-addr'), radio=function(n){ var r=form.querySelector('input[name='+n+']:checked'); return r?r.value:''; };
+    form.addEventListener('change',function(e){ if(e.target.name==='logement') addr.hidden=(e.target.value!=='oui'); });
     function thanks(){ document.getElementById('rsvp-slot').innerHTML='<div class="rsvp2__thanks"><p class="script-mid" style="margin:0">Merci&nbsp;!</p><p class="prose" style="margin-top:.8rem">Nous avons bien reçu votre réponse. À très bientôt.</p></div>'; }
     function fail(){ err.hidden=false; err.textContent="L'envoi n'a pas abouti. Réessayez dans un instant, ou écrivez-nous directement à "+RSVP_TO+"."; btn.disabled=false; }
     var btn=form.querySelector('button[type=submit]');
@@ -832,12 +864,14 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
       guests.forEach(function(g,i){ var v=function(k){ return g.querySelector('[data-k='+k+']'); };
         data['Personne '+(i+1)]=v('prenom').value.trim()+' '+v('nom').value.trim().toUpperCase()+' — samedi 22 : '+oui(v('samedi').checked)+' · brunch 23 : '+oui(v('brunch').checked); });
       var first=list.querySelector('[data-k=prenom]').value.trim()+' '+list.querySelector('[data-k=nom]').value.trim();
+      data['Logement trouvé']=radio('logement'); data['Adresse du logement']=addr.hidden?'':form.adresse.value; data['Taxi samedi soir']=radio('taxi');
       data['Email']=form.email.value; data['Restrictions alimentaires']=form.regime.value; data['Chanson']=form.chanson.value; data['Petit mot']=form.mot.value;
       data._subject='RSVP mariage — '+first+(guests.length>1?' (+'+(guests.length-1)+')':''); data._template='table'; data._replyto=form.email.value; data._honey=form._honey.value;
       btn.disabled=true;
       if(RSVP_SCRIPT){
         var payload={ persons:guests.map(function(g){ var v=function(k){ return g.querySelector('[data-k='+k+']'); };
             return { prenom:v('prenom').value, nom:v('nom').value, samedi:v('samedi').checked, brunch:v('brunch').checked }; }),
+          logement:radio('logement'), adresse:addr.hidden?'':form.adresse.value, taxi:radio('taxi'),
           email:form.email.value, regime:form.regime.value, chanson:form.chanson.value, mot:form.mot.value, website:form._honey.value };
         /* text/plain : requête « simple », pas de pré-vérification CORS côté Google */
         fetch(RSVP_SCRIPT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)})
