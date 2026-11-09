@@ -177,6 +177,12 @@
   .prog__clip { width:auto; height:150px; margin:0 auto; }
   /* filets entre les étapes du programme : centrés (ils partaient à gauche) */
   .prog__link { align-self: center; }
+  /* version civile (?civil) : un intertitre par jour dans le programme, trois lieux */
+  .prog__day { display: flex; align-items: center; justify-content: center; gap: 14px; margin: clamp(1.2rem, 3vw, 2rem) 0 0;
+    font-family: var(--font-caps); text-transform: uppercase; letter-spacing: .3em; font-size: .8rem; color: var(--ma-olive); }
+  .prog__day:first-child { margin-top: 0; }
+  .prog__day::before, .prog__day::after { content: ""; width: clamp(32px, 10vw, 70px); height: 1px; background: var(--ma-line); }
+  @media (min-width: 900px) { .lieux2--3 { grid-template-columns: repeat(3, 1fr); } }
   .pprog { width: 96px; height: auto; color: var(--ma-olive); display: block; overflow: visible; }
   .bouee .w1 { animation: wave 3.2s linear infinite; }
   .bouee .w2 { animation: wave 4.4s linear infinite reverse; opacity: .8; }
@@ -221,6 +227,7 @@
     @keyframes ringpulse{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.06) } }
   }
 </style>
+<script src="ds/version.js"></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -646,6 +653,8 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
                 <label class="ma-field"><span class="ma-field__label">Nom</span><input class="ma-control" data-k="nom" autocomplete="family-name" required></label>
               </div>
               <div class="rsvp2__checks">
+                <label class="ma-check only-civil"><input type="checkbox" data-k="jeudi"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Mariage civil, déjeuner &amp; dîner · jeudi 20 mai</label>
+                <label class="ma-check only-civil"><input type="checkbox" data-k="vendredi"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Welcome dinner · vendredi 21 mai</label>
                 <label class="ma-check"><input type="checkbox" data-k="samedi"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Cérémonie &amp; dîner · samedi 22 mai</label>
                 <label class="ma-check"><input type="checkbox" data-k="brunch"><span class="ma-check__box"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Brunch · dimanche 23 mai</label>
               </div>
@@ -808,8 +817,33 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
   function icon(n){ return IB + '/icon-' + n + '.png'; }
   function el(h){ var t=document.createElement('template'); t.innerHTML=h.trim(); return t.content.firstChild; }
 
-  (function(){ var b=document.getElementById('prog'),h='';
-    DATA.programme.forEach(function(p,i){ if(i>0)h+='<span class="prog__link" aria-hidden="true"></span>';
+  /* ---- Version civile (adresse avec ?civil, voir ds/version.js) : jeudi, vendredi, puis le samedi et le brunch ---- */
+  var CIVIL = !!window.MA_CIVIL;
+  if(CIVIL){
+    var P=DATA.programme, brunch={}; for(var k in P[4]) brunch[k]=P[4][k]; brunch.time='À partir de 12 h 30';
+    DATA.programme=[
+      { day: 'Jeudi 20 mai' },
+      { icon: 'alliances', time: '10 h 45', name: 'Mariage civil', desc: "Rendez-vous devant la mairie d'Antibes, cours Masséna." },
+      { icon: 'soleil-mer', time: '', name: 'Déjeuner', desc: "Dans la baie de la Garoupe, au Cap d'Antibes." },
+      { icon: 'vieil-antibes', time: 'Le soir', name: 'Dîner', desc: "Dans le Vieil Antibes." },
+      { day: 'Vendredi 21 mai' },
+      { icon: 'chateau-vaucouleurs', time: '19 h 00', name: 'Welcome dinner', desc: "Au Château de Vaucouleurs, pour nous retrouver tous ensemble la veille du mariage." },
+      { day: 'Samedi 22 mai' }, P[0], P[1], P[2], P[3],
+      { day: 'Dimanche 23 mai' }, brunch
+    ];
+    DATA.lieux.unshift({ kicker: 'Mariage civil · Jeudi 10 h 45', icon: 'vieil-antibes', name: "Mairie d'Antibes", addr: 'Cours Masséna, 06600 Antibes', maps: 'https://maps.google.com/?q=H%C3%B4tel+de+Ville+Antibes+Cours+Mass%C3%A9na' });
+    DATA.lieux[1].kicker = 'Cérémonie · Samedi 14 h';
+    DATA.lieux[2].kicker = "Welcome dinner, vin d'honneur, dîner & brunch";
+    document.getElementById('lieux2').classList.add('lieux2--3');
+    var eb=document.querySelector('#jourj .eyebrow-caps'); if(eb) eb.textContent='Du jeudi au dimanche';
+  } else {
+    [].forEach.call(document.getElementById('guest-tpl').content.querySelectorAll('.only-civil'),function(n){ n.remove(); });
+  }
+
+  (function(){ var b=document.getElementById('prog'),h='',prev=null;
+    DATA.programme.forEach(function(p,i){
+      if(p.day){ h+='<p class="prog__day r">'+p.day+'</p>'; prev=null; return; }
+      if(prev)h+='<span class="prog__link" aria-hidden="true"></span>'; prev=p;
       var media=p.svg?p.svg:p.clip?'<video class="clip prog__clip" src="assets/video/'+p.clip+'.mp4" poster="assets/video/'+p.clip+'-poster.jpg" loop muted playsinline preload="metadata"></video>':'<img class="draw" src="'+icon(p.icon)+'" alt="">';
       h+='<div class="prog__item r">'+media+(p.time?'<span class="prog__time">'+p.time+'</span>':'')+'<span class="prog__name">'+p.name+'</span><p class="prog__desc">'+p.desc+'</p></div>'; });
     b.innerHTML=h;
@@ -861,16 +895,18 @@ c115 -252 178 -592 159 -862 -9 -114 -25 -200 -71 -355 -52 -181 -68 -234 -80
     form.addEventListener('submit',function(e){ e.preventDefault(); err.hidden=true;
       if(!form.checkValidity()){ form.reportValidity(); return; }
       var data={}, guests=[].slice.call(list.children), oui=function(b){ return b?'oui':'non'; };
+      if(CIVIL) data['Invitation']='Civil, welcome dinner et religieux';
       guests.forEach(function(g,i){ var v=function(k){ return g.querySelector('[data-k='+k+']'); };
-        data['Personne '+(i+1)]=v('prenom').value.trim()+' '+v('nom').value.trim().toUpperCase()+' — samedi 22 : '+oui(v('samedi').checked)+' · brunch 23 : '+oui(v('brunch').checked); });
+        data['Personne '+(i+1)]=v('prenom').value.trim()+' '+v('nom').value.trim().toUpperCase()+' — '+(CIVIL?'jeudi 20 : '+oui(v('jeudi').checked)+' · vendredi 21 : '+oui(v('vendredi').checked)+' · ':'')+'samedi 22 : '+oui(v('samedi').checked)+' · brunch 23 : '+oui(v('brunch').checked); });
       var first=list.querySelector('[data-k=prenom]').value.trim()+' '+list.querySelector('[data-k=nom]').value.trim();
       data['Logement trouvé']=radio('logement'); data['Adresse du logement']=addr.hidden?'':form.adresse.value; data['Taxi samedi soir']=radio('taxi');
       data['Email']=form.email.value; data['Restrictions alimentaires']=form.regime.value; data['Chanson']=form.chanson.value; data['Petit mot']=form.mot.value;
-      data._subject='RSVP mariage — '+first+(guests.length>1?' (+'+(guests.length-1)+')':''); data._template='table'; data._replyto=form.email.value; data._honey=form._honey.value;
+      data._subject='RSVP mariage'+(CIVIL?' (civil)':'')+' — '+first+(guests.length>1?' (+'+(guests.length-1)+')':''); data._template='table'; data._replyto=form.email.value; data._honey=form._honey.value;
       btn.disabled=true;
       if(RSVP_SCRIPT){
         var payload={ persons:guests.map(function(g){ var v=function(k){ return g.querySelector('[data-k='+k+']'); };
-            return { prenom:v('prenom').value, nom:v('nom').value, samedi:v('samedi').checked, brunch:v('brunch').checked }; }),
+            return { prenom:v('prenom').value, nom:v('nom').value, jeudi:CIVIL&&v('jeudi').checked, vendredi:CIVIL&&v('vendredi').checked, samedi:v('samedi').checked, brunch:v('brunch').checked }; }),
+          invitation:CIVIL?'civil':'religieux',
           logement:radio('logement'), adresse:addr.hidden?'':form.adresse.value, taxi:radio('taxi'),
           email:form.email.value, regime:form.regime.value, chanson:form.chanson.value, mot:form.mot.value, website:form._honey.value };
         /* text/plain : requête « simple », pas de pré-vérification CORS côté Google */
