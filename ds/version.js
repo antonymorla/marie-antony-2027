@@ -16,7 +16,14 @@
       if (m && PAGES.test(m[1]) && !/[?&]civil\b/.test(m[2] || '')) {
         a.setAttribute('href', m[1] + (m[2] ? m[2] + '&civil' : '?civil') + (m[3] || ''));
       }
-      if (/#jourj$/.test(h) && a.textContent.trim() === 'Le jour J') a.textContent = 'Le programme';
+      /* onglet « Les jours d'avant » (jeudi et vendredi) juste avant « Le jour J » dans le menu */
+      if (/#jourj$/.test(h) && a.closest('.nav2__menu') && !(a.previousElementSibling && a.previousElementSibling.hasAttribute('data-avant'))) {
+        var av = a.cloneNode(false);
+        av.setAttribute('href', a.getAttribute('href').replace(/#jourj$/, '#joursavant'));
+        av.setAttribute('data-avant', '');
+        av.textContent = "Les jours d'avant";
+        a.parentNode.insertBefore(av, a);
+      }
     });
   }
   window.MA_FIX_LINKS = fix;
